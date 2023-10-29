@@ -1,0 +1,66 @@
+@import url(/src/App.css);
+
+.input {
+    display: flex;
+    padding: 10px 14px;
+    align-items: center;
+    gap: 8px;
+  
+    align-self: stretch;
+    border-radius: 8px;
+    border: 1px solid var(--Border-Color, #E4E7E9);
+    background: #FFF;
+    box-shadow: 0px 1px 2px 0px rgba(16, 24, 40, 0.05);
+    outline: none;
+    caret-color: var(--font-color-black) /* Màu của dấu nhấp nháy */
+    
+}
+
+.input::placeholder {
+
+    color: var(--Font-Color-Black, #8B8E99);
+    font-family: Inter;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 24px;
+}
+
+.form {
+    color: var(--Font-Color-Black, #8B8E99);
+    font-family: Inter;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 24px; /* 150% */
+    display: flex;
+height: 70px;
+padding-top: 26px;
+justify-content: center;
+align-items: center;
+flex: 1 0 0;
+}
+
+.form>* {
+    color: var(--font-color-black);
+}
+
+.title {
+    color: var(--font-color-black);
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 20px;
+}
+
+.icon {
+    font-size: 18px;
+}
+.dark {
+    background-color: transparent;
+}
+
+.light {
+    background-color: var(--BG);
+}

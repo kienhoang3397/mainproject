@@ -1,0 +1,18 @@
+.logoInv {
+    
+ flex-shrink: 0;
+    background: url('../../../assets/image/LogoInv.png') no-repeat center/cover transparent;
+}
+
+.whiteLogo {
+    
+    flex-shrink: 0;
+    background: url('../../../assets/image/WhiteLogo.png') no-repeat center/cover transparent;
+
+}
+
+.greyLogo {
+    
+    flex-shrink: 0;
+    background: url('../../../assets/image/GreyLogo.png') no-repeat center/cover transparent;
+}

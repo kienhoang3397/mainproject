@@ -1,0 +1,43 @@
+.container{
+    gap: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+}
+
+.text {
+    color: #BF4800;
+    text-align: center;
+    font-family: Poppins;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 16px;
+    /* 133.337% */
+    letter-spacing: -0.12px;
+}
+
+.title {
+    color: #000;
+    text-align: center;
+    font-family: Poppins;
+    font-size: 23px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 20px;
+    /* 86.958% */
+    letter-spacing: -0.224px;
+}
+
+.content {
+    color: #1D1D1F;
+    text-align: center;
+    font-family: Poppins;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 20px;
+    /* 142.859% */
+    letter-spacing: -0.224px;
+}

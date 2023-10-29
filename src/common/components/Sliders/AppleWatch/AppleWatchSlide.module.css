@@ -1,0 +1,84 @@
+.bg {
+    background: #FFF;
+}
+
+.containerHomeSlide {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* Set an appropriate height here */
+
+}
+
+.banner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(127deg, #383638 3.9%, #0B0B0B 28.86%, #0B0B0B 70.57%, #383638 96.6%);
+    border-radius: 20px;
+    margin: 0 80px;
+    padding: 0 80px;
+
+}
+
+.leftBannerImg,
+.rightBannerImg {
+
+    width: 201.827px;
+    height: 243px;
+    flex-shrink: 0;
+}
+
+
+.rightBannerImg,
+.leftBannerImg {
+
+    display: flex;
+    align-items: center;
+}
+
+.text {
+    color: #FFF;
+    text-align: center;
+    font-family: Poppins;
+    font-size: 96px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+
+
+
+}
+
+.imgBanner {
+    width: auto;
+    height: auto;
+
+}
+
+.btnLeft {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 0;
+    z-index: 2;
+}
+
+.btnRight {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 0;
+    z-index: 2;
+}
+
+.container {
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.00), rgba(255, 255, 255, 0.2));
+    margin: 0 30px;
+
+}
+
+.containerWatchSlide {
+    margin-top: 40px;
+    margin-bottom: 40px;
+}

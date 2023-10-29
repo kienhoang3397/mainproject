@@ -1,0 +1,15 @@
+.container {
+    display: flex;
+width: 147px;
+height: 32px;
+padding: 2px 8.959px 4.125px 7.875px;
+justify-content: center;
+align-items: flex-end;
+gap: 28.625px;
+flex-shrink: 0;
+}
+.item{
+    width: 20.666px;
+height: 21.875px;
+flex-shrink: 0;
+}

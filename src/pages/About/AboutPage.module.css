@@ -1,0 +1,139 @@
+.bg {
+    background: var(--BG);
+}
+.header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+    padding: 80px 0;
+}
+
+.title {
+    color: var(--Font-Color-Black, #8B8E99);
+    text-align: center;
+    font-family: Inter;
+    font-size: 64px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    letter-spacing: -2.56px;
+}
+
+.adminAndDate {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.admin {
+    color: var(--Font-Color-Black, #8B8E99);
+    font-family: Inter;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    letter-spacing: -0.32px;
+}
+
+.date {
+    color: var(--Font-Color-Black, #8B8E99);
+    font-family: Inter;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    letter-spacing: -0.28px;
+}
+
+.content {
+    color: var(--Font-Color-Black, #8B8E99);
+    text-align: center;
+    font-family: Inter;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 28px;
+    /* 175% */
+}
+
+.photo {
+    width: 1280px;
+    height: 600px;
+    flex-shrink: 0;
+    border-radius: 30px;
+    z-index: 0;
+    position: relative; /* Add position property */
+
+    /* Use background properties to set the background image */
+    background: url('../../assets/image/photoAbout.png') no-repeat;
+    background-size: cover; /* Optional: Ensure the background image covers the entire container */
+}
+
+.logo {
+    display: flex;
+    width: 366px;
+    height: 366px;
+    padding-left: 0px;
+  
+    align-items: center;
+    flex-shrink: 0;
+    position: absolute;
+    /* Higher z-index value for the logo to overlay the photo */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Add position property */
+   /* Position at the top of the .photo container */
+  
+}
+.blogContent{
+    display: flex;
+    flex-direction: column;
+    gap: 56px;
+}
+.itemBlog{
+    gap: 24px;
+    display: flex;
+    flex-direction: column;
+}
+.titleBlog{
+    color: var(--Font-Color-Black, #8B8E99);
+    font-family: Inter;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 36px; /* 150% */
+    letter-spacing: -0.96px;
+}
+.contentBlog{
+    color: var(--Font-Color-Black, #8B8E99);
+font-family: Inter;
+font-size: 16px;
+font-style: normal;
+font-weight: 400;
+line-height: 28px; /* 175% */
+}
+.asideItem{
+    color: var(--Font-Color-Black, #8B8E99);
+text-align: center;
+font-family: Inter;
+font-size: 14px;
+font-style: normal;
+font-weight: 600;
+line-height: normal;
+letter-spacing: 1.4px;
+text-transform: uppercase;
+}
+aside {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.containerBlog{
+    display: flex;
+    gap: 80px;
+   
+}

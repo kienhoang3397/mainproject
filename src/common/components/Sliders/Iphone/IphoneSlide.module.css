@@ -1,0 +1,48 @@
+.text {
+    display: flex;
+
+flex-direction: column;
+justify-content: center;
+flex-shrink: 0;
+color: #1D1D1F;
+text-align: center;
+font-family: Poppins;
+font-size: 43px;
+font-style: normal;
+font-weight: 700;
+line-height: 52.008px; 
+letter-spacing: -0.144px;
+margin-top:  30px;
+margin-bottom: 40px;
+}
+.btnLeft{
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 0;
+    z-index: 2;
+}
+.btnRight{
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right:0;
+    z-index: 2;
+   
+}
+.container {
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.00), rgba(255, 255, 255, 0.2));
+  margin: 0 30px;
+ 
+}
+.containerHomeSlide{
+    padding-top: 40px;
+    margin-bottom: 40px;
+    background: #FFF;
+}
+
+
+  
+
+  
+  

@@ -1,0 +1,47 @@
+
+.sideBar{
+    display: flex;
+    width: 150px;
+    padding: 10px 0px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+}
+.titleCategory{
+    color: var(--Font-Color-Black, #8B8E99);
+font-family: Poppins;
+font-size: 16px;
+font-style: normal;
+font-weight: 500;
+line-height: normal;
+text-transform: uppercase;
+align-self: stretch;
+}
+.inputPrice{
+    display: flex;
+
+}
+.categorySection{
+    display: flex;
+flex-direction: column;
+align-items: flex-start;
+gap: 5px;
+align-self: stretch;
+}
+.contentCheckBox {
+    color: var(--Font-Color-Black, #8B8E99);
+    font-family: Poppins;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.checkBoxField{
+    display: flex;
+    height: 32px;
+  
+    align-items: center;
+    gap: 8px;
+    align-self: stretch;
+}

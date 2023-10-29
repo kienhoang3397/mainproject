@@ -1,0 +1,59 @@
+@import url('/src/common/styles/variables.css');
+
+.defaultValue {
+    background-color: var(--blue-BG);
+    color: #ffffff;
+    width: 100%;
+    height: 51.923px;
+    text-align: center;
+    font-family: Poppins;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 550;
+    line-height: 125.5%;
+    border-radius: 10px;
+    border: solid var(--blue-BG);
+    padding: 10px;
+}
+
+.disable {
+    background-color: var(--BG);
+    color: var(--default-text-color);
+    width: 100%;
+    height: 51.923px;
+   
+    text-align: center;
+    font-family: Poppins;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 125.5%;
+    border-radius: 10px;
+    /* 17.57px */
+    text-decoration-line: strikethrough;
+}
+
+.variant2 {
+    width: 100%;
+    height: 51.923px;
+    border: 1px solid var(--blue-BG);
+    background-color: transparent;
+    border-radius: 10px;
+    color: var(--Blue-BG, #3858D6);
+    text-align: center;
+    font-family: Poppins;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 125.5%;
+
+}
+
+.ArrowBtnLeft,
+.ArrowBtnRight {
+    width: 43px;
+    height: 43px;
+    
+   
+    filter: drop-shadow(2px 4px 12px rgba(0, 0, 0, 0.25));
+}

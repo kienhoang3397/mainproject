@@ -1,0 +1,46 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato&family=Poppins:wght@200;400;500&display=swap');
+
+.container-trending {
+    display: flex;
+    background-color: rgb(241, 235, 235);
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    
+
+}
+
+.container-img2 {
+    position: relative;
+}
+
+.container-img2:hover .hidden-content {
+    display: block;
+}
+
+.hidden-content {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: translate(50%, 50%);
+}
+
+.trending-img {
+    width: 450px;
+    height: 200px;
+}
+
+.trending-title {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+}
+
+.trending-title:hover {
+    color: yellow;
+}
+
+.trending-description {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
+}

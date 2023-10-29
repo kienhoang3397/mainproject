@@ -1,0 +1,38 @@
+.containerProducts {
+    display: flex;
+   
+  
+    padding-top: 10px;
+    justify-content: flex-end;
+    align-items: flex-start;
+    gap: 10px;
+    flex-shrink: 0;
+    
+}
+
+.container {
+    display: flex;
+    
+    padding: 18px 8px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 18px;
+    flex-shrink: 0;
+}
+
+.name {
+    display: flex;
+   
+    flex-direction: column;
+    justify-content: center;
+    color: #000;
+    text-align: center;
+    font-family: Poppins;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 20px;
+    /* 142.859% */
+    letter-spacing: -0.224px;
+}

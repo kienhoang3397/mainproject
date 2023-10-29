@@ -1,0 +1,139 @@
+.contactContainer {
+    display: flex;
+    gap: 60px;
+    width: 100%;
+    border-radius: 10px;
+    background: #FFF;
+    box-shadow: 2px 4px 12px 0px rgba(0, 0, 0, 0.25);
+    padding: 50px;
+    margin: 50px;
+  }
+  
+  .leftContent {
+    background-color: black;
+    color: #FFF;
+    border-radius: 13px;
+    padding: 40px;
+    width: 35%;
+    gap: 110px;
+  }
+  
+  .titleContactInfo {
+    display: flex;
+    gap: 5px;
+  }
+  
+  .cotactInfo {
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+  }
+  
+  .textInfo {
+    gap: 15px;
+    display: flex;
+    align-items: center;
+  }
+  
+  .textInfo > p {
+    color: #FFF;
+    font-family: Poppins;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+  }
+  
+  .rightContent {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 65%;
+  }
+  
+  .checkBoxField {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 22px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+  
+  .checkBoxField input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+  }
+  
+  .checkmark {
+    position: absolute;
+    transform: translateY(-50%);
+    top: 50%;
+    left: 0;
+    height: 20px;
+    width: 20px;
+    background-color: #ccc;
+    border-radius: 50%;
+  }
+  
+  .checkBoxField:hover input~.checkmark,
+  .checkBoxField input:checked~.checkmark {
+    background-color: #ccc;
+    border-radius: 50%;
+  }
+  
+  .checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 5c-.28 0-.53.11-.71.29L7 9.59l-2.29-2.3a1.003 1.003 0 00-1.42 1.42l3 3c.18.18.43.29.71.29s.53-.11.71-.29l5-5A1.003 1.003 0 0012 5z" fill="%23fff"/></svg>') no-repeat center center;
+    background-size: cover; /* You may adjust the background size as needed */
+    width: 100%; 
+    height: 100%;
+  }
+  
+  .checkBoxField input:checked~.checkmark:after {
+    display: block;
+  }
+  
+  .contentCheckBox,
+  .titleSubject {
+    color: var(--Font-Color-Black, #8B8E99);
+    font-family: Poppins;
+    font-style: normal;
+    line-height: 20px;
+  }
+  
+  .titleSubject {
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 20px;
+  }
+  
+  .contentCheckBox {
+    font-size: 12px;
+    font-weight: 400;
+  }
+  
+  .checkBoxContainer {
+    margin-top: 15px;
+    display: flex;
+    gap: 20px;
+  }
+  
+  .formContact {
+    display: grid;
+    grid-template-columns: auto auto;
+    gap: 50px;
+  }
+  

@@ -1,0 +1,27 @@
+.textContainer{
+    display: flex;
+ 
+    justify-content: center;
+    align-items: center;
+    gap: 2px;
+    flex-shrink: 0;
+}
+
+.text {
+ 
+    color: #8B8E99;
+    font-family: Poppins;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+.icon{
+    display: flex;
+width: 44px;
+height: 44px;
+justify-content: center;
+align-items: center;
+flex-shrink: 0;
+color: var(--Font-Color-Black, #8B8E99)
+}

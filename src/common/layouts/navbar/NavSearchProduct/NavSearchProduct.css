@@ -1,0 +1,17 @@
+.seachNavProduct{
+    display: flex;
+    flex-direction: row;
+   gap: 10px;
+    align-items: center;
+   justify-content: space-between;
+   
+    
+ 
+}
+.searchField{
+    height: 44px;
+    width: 30rem;
+    display: flex;
+    
+}
+

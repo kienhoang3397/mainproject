@@ -1,0 +1,72 @@
+@import url(/src/common/styles/_global.css);
+
+.light > *{
+    background-color: var(--BG);
+}
+.dark > *{
+    background-color: transparent;
+}
+.container {
+    display: inline-block;
+    position: relative;
+    font-family: 'Poppins', sans-serif;
+    font-weight: bold;
+
+}
+.icon {
+    color: var(--font-color-black);
+}
+.content {
+    color:#000000;
+}
+.dropdown {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    padding: 8px;
+   
+    border: 1px solid #ccc;
+    width: 186px;
+    height: 54px;
+    flex-shrink: 0;
+    justify-content: center;
+    user-select: none;
+    transition: background-color 0.2s;
+}
+
+.text1 {
+    font-weight: bold;
+    color: var(--font-color-black);
+}
+
+.dropdownList {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.2s ease-in-out;
+    position: absolute;
+    top: 100%;
+    left: 0;
+
+   
+    border-top: none;
+    border-radius: 0 0 4px 4px;
+
+}
+
+.dropdownItem {
+    padding: 8px;
+    cursor: pointer;
+    width: 186px;
+    height: 54px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 0.5px solid var(--Font-Color-Black, #8B8E99);
+   
+
+}
+
+.container:hover .dropdownList {
+    max-height: 220px;
+
+}
