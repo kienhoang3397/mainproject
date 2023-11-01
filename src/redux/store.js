@@ -11,7 +11,9 @@ export default configureStore({
     counter: counterSlice,
     todoList: todoListReducer,
     search: searchSlice,
-    selectedCategories: selectedCategoriesSlice,
+    selectedCategoriesz: selectedCategoriesSlice,
     selectedPrice: selectedPrice, // Correção da chave aqui
+    
+    
   },
 });

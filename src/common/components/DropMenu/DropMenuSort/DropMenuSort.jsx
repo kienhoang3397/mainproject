@@ -9,24 +9,24 @@ import { Button, ConfigProvider, Dropdown, Input } from 'antd';
 
 
 
-function DropMenuSort({ dark, light }) {
+function DropMenuSort({ dark, light, ascending, descending, handlePriceSort }) {
   const items = [
     {
       key: '1',
       label: (
-        <li className={styles.dropdownItem}>Price: High to Low</li>
+        <button onClick={handlePriceSort} value={ascending} className={styles.dropdownItem}>Price: High to Low</button>
       ),
     },
     {
       key: '2',
       label: (
-        <li className={styles.dropdownItem}>Price: Low to High</li>
+        <button onClick={handlePriceSort} value={descending} className={styles.dropdownItem}>Price: Low to High</button>
       ),
     },
     {
       key: '3',
       label: (
-        <li className={styles.dropdownItem}>New</li>
+        <option className={styles.dropdownItem}>New</option>
       ),
     },
   ];

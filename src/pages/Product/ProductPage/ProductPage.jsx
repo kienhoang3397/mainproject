@@ -1,67 +1,115 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
-import styles from './ProductPage.module.css'; // Import the styles object
+import React, { useState } from 'react';
+
 import ProductListingCard from '../../../common/components/Cards/ProductListingCard/ProductListingCard';
-import { Input } from 'antd';
-import DropMenuSort from '../../../common/components/DropMenu/DropMenuSort/DropMenuSort';
-
 import NavSearchProduct from '../../../common/layouts/navbar/NavSearchProduct/NavSearchProduct';
-
-import { AiFillStar } from 'react-icons/ai';
-import { Link } from 'react-router-dom';
 import { dataProductPages } from '../../../common/datas/ProductListingData';
 import Sidebar from '../../../common/components/Side/Sidebar/Sidebar';
+import styles from './ProductPage.module.css';
 
 function ProductPage() {
+  
+  const [selectedCategories, setSelectedCategories] = useState([]);
+  const [query, setQuery] = useState('');
+  const [priceFilterVal, setPriceFilterVal] = useState([0, 2000]);
+  const [priceFilterVal2, setPriceFilterVal2] = useState([0, 2000]);
 
-  const search = useSelector((state) => state.search);
-  const selectedCategories = useSelector((state) => state.selectedCategories);
+  const handleInputChange = (event) => {
+    setQuery(event.target.value);
+    
+  };
+  const handleUpdatePrice2 = ([valueMin, valueMax]) => {
+    if (priceFilterVal2[0] === valueMin && priceFilterVal2[1] === valueMax) {
+
+      setPriceFilterVal2([0, 2000]);
+    } else {
+      // Otherwise, set the new selected range
+      setPriceFilterVal2([valueMin, valueMax]);
+    }
+    // console.log(priceFilterVal2);
+  };
+
+  const handleUpdatePrice = (value) => {
+    setPriceFilterVal(value);
+    // console.log(2, priceFilterVal2)
+    // console.log(1, priceFilterVal)
+  };
+  
+
+  const handleChange = (event) => {
+    const newCategory = event.target.value;
+    const checked = selectedCategories.includes(newCategory);
+
+    if (checked) {
+      // If category is already selected, remove it
+      setSelectedCategories(selectedCategories.filter((category) => category !== newCategory));
+    } else {
+      // If category is not selected, add it
+      setSelectedCategories([...selectedCategories, newCategory]);
+    }
+
+  };
+
+  function filteredData(products, selected, query, priceFilterVal, priceFilterVal2) {
+    let filteredProducts = products;
+
+    if (priceFilterVal) {
+      filteredProducts = filteredProducts.filter((product) =>
+        product.price >= priceFilterVal[0] && product.price <= priceFilterVal[1]
+      );
+    }
+    if (priceFilterVal2) {
+      filteredProducts = filteredProducts.filter((product) =>
+        product.price >= priceFilterVal2[0] && product.price <= priceFilterVal2[1]
+      );
+    }
+    
+
+
+    if (selected.length > 0) {
+      filteredProducts = filteredProducts.filter(({ category }) =>
+        selected.includes(category)
+      );
+    }
+
+    if (query) {
+      filteredProducts = filteredProducts.filter((product) =>
+        product.name.toLowerCase().includes(query.toLowerCase())
+      );
+    }
+
+    return filteredProducts.map(({ id, image, price, name, delprice }) => (
+      <ProductListingCard
+        image={image}
+        price={price}
+        name={name}
+        delprice={delprice}
+        key={id}
+        id={id}
+      />
+    ));
+  }
+
+
+  const result = filteredData(dataProductPages, selectedCategories, query, priceFilterVal, priceFilterVal2);
 
   return (
-    <section className={styles.productRow}>
-      <div className={styles.leftContentProductPage}><Sidebar/></div>
-      <section className={styles.rightContentProductPage}>
-        <NavSearchProduct />
-        <div>
-          <section className={styles.cardContainer}>
-            {dataProductPages
-              .filter((item) => {
-                // Filter by search query
-                const matchesSearch = search.toLowerCase() === '' ? true : item.name.toLowerCase().includes(search);
-
-                // Filter by selected categories
-                const matchesCategory = selectedCategories.length === 0 ? true : selectedCategories.includes(item.category);
-
-                return matchesSearch && matchesCategory;
-              })
-              .map((dataProductPage) => (
-                <section className={styles.card} key={dataProductPage.id}>
-                 <div className={styles.containerImg}><img className={styles.imgCard} src={dataProductPage.image} alt="" /></div> 
-                  <div className={styles.cardDetails}>
-                    <div className={styles.rating}>
-                      <AiFillStar className={styles.ratingStar} />
-                      <AiFillStar className={styles.ratingStar} />
-                      <AiFillStar className={styles.ratingStar} />
-                      <AiFillStar className={styles.ratingStarNoFill} />
-                      <AiFillStar className={styles.ratingStarNoFill} />
-                      <span className={styles.ratingTime}> (784) </span>
-                    </div>
-                    <Link  style={{ textDecoration: 'none'}} to={`/${dataProductPage.id}`}>
-                      <h1 className={styles.name}>{dataProductPage.name}</h1>
-                    </Link>
-
-                    <div className={styles.prices}>
-                      <del className={styles.delPrice}>₹{dataProductPage.price + (dataProductPage.price * 0.25)}</del>
-                      <p className={styles.price}>Form ₹{dataProductPage.price}</p>
-                    </div>
-                  </div>
-                </section>
-              ))}
-          </section>
+    <div>
+      <section className={styles.productRow}>
+        <div className={styles.leftContentProductPage}>
+          <Sidebar
+            priceFilterVal={priceFilterVal}
+            handleChange={handleChange}
+            handleUpdatePrice={handleUpdatePrice}
+            handleUpdatePrice2={handleUpdatePrice2}
+          />
         </div>
+        <section className={styles.rightContentProductPage}>
+          <NavSearchProduct productCur={result.length} query={query} handleInputChange={handleInputChange} />
+          <div className={styles.cardContainer}>{result}</div>
+        </section>
       </section>
-    </section>
+    </div>
   );
 }
 
-export default ProductPage
+export default ProductPage;

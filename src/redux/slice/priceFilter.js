@@ -1,17 +1,17 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const selectedPriceSlice = createSlice({
-  name: 'selectedPrice',
+const categoriesSlice = createSlice({
+  name: 'categories',
   initialState: [],
   reducers: {
-    addPriceRange: (state, action) => {
+    addCategory: (state, action) => {
       state.push(action.payload);
     },
-    removePriceRange: (state, action) => {
-      return state.filter((priceRange) => priceRange !== action.payload);
+    removeCategory: (state, action) => {
+      return state.filter(category => category !== action.payload);
     },
   },
 });
 
-export const { addPriceRange, removePriceRange } = selectedPriceSlice.actions;
-export default selectedPriceSlice.reducer;
+export const { addCategory, removeCategory } = categoriesSlice.actions;
+export default categoriesSlice.reducer;

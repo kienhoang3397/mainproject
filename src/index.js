@@ -5,11 +5,14 @@ import App from './App';
 import { Provider } from 'react-redux';
 import store from './redux/store';
 import { Router } from 'react-router-dom';
+import { ConfigProvider } from 'antd';
+import { sideProductConfig } from './common/config/configANT';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
+    <ConfigProvider theme={sideProductConfig}>
     <Provider store={store}>
    
     <App />
@@ -18,7 +21,7 @@ root.render(
    
    
     </Provider>
-  
+    </ConfigProvider>
   </React.StrictMode>
 );
 

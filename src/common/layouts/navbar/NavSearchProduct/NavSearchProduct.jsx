@@ -5,23 +5,20 @@ import './NavSearchProduct.css'
 import { ConfigProvider, Input } from 'antd';
 import { useDispatch } from 'react-redux';
 import { setSearch } from '../../../../redux/slice/search';
+import { dataProductPages } from '../../../datas/ProductListingData';
 
-function NavSearchProduct() {
-  const dispatch = useDispatch();
+function NavSearchProduct({ handleInputChange, query, productCur, ascending, descending, handlePriceSort}) {
 
-  const handleSearchChange = (e) => {
-    const newValue = e.target.value;
-    dispatch(setSearch(newValue));
-  }
 
   return (
 
 
 
     <section className='seachNavProduct'>
-      <Input onChange={handleSearchChange} className='searchField' placeholder='Search...' />
-      <DropMenuSort light />
-      <p className='contentNavProduct'>20/400 Results Loaded</p>
+      <Input onChange={handleInputChange}
+          value={query}  className='searchField' placeholder='Search...' />
+      <DropMenuSort handlePriceSort={handlePriceSort} light descending={descending} ascending={ascending}/>
+      <p className='contentNavProduct'>{productCur}/{dataProductPages.length} Results Loaded</p>
     </section>
 
 
