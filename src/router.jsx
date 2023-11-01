@@ -13,34 +13,33 @@ import ProductPage from './pages/Product/ProductPage/ProductPage';
 export const router = createBrowserRouter([
   {
     path: '/',
-    element: <MainLayout />, // Consider using the layout at the top level
+    element: <MainLayout />,
     children: [
       {
-        path: 'home', // Initial route for Home (corrected path)
+        index: true, // Set this route as the default route
         element: <HomePage />
       },
       {
-        path: 'about', // About page
+        path: 'about',
         element: <AboutPage />
       },
       {
-        path: 'contact', // Contact page
+        path: 'contact',
         element: <ContactPage />
       },
       {
-        path: 'login', // Login page
-        element: <LoginPage />,
-      
-        
+        path: 'login',
+        element: <LoginPage />
       },
       {
-        path: 'product', // Contact page
-        element: <ProductPage/>
+        path: 'product',
+        element: <ProductPage />
       },
       {
-        path: ':productId', // Route for individual product detail
-        element: <Detail/>
+        path: ':productId',
+        element: <Detail />
       }
     ]
   }
 ]);
+
