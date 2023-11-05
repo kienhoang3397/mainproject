@@ -2,14 +2,14 @@ import React from 'react';
 import clsx from 'clsx';
 import styles from './Button.module.css';
 
-function Btn({ disable, variant2, defaultValue, content, width, height }) {
+function Btn({ disable, variant2, defaultValue, content, width, height, handleBtn }) {
     const buttonStyle = {
         width: width || styles.defaultWidth,
         height: height || styles.defaultHeight,
     };
 
     return (
-        <button
+        <button onClick={handleBtn}
             className={clsx(styles.btn, {
                 [styles.disable]: disable,
                 [styles.variant2]: variant2,

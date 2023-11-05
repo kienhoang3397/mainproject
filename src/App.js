@@ -10,25 +10,24 @@ import Detai from "./pages/Product/Details/Detai";
 import Test from "./assets/Test";
 import Login from "./pages/Login/Login";
 import ProductPage from "./pages/Product/ProductPage/ProductPage";
+import RegTest from "./pages/Login/RegTest";
+import CartPage from "./pages/Cart/CartPage";
+import UserNav from "./common/layouts/navbar/UserNav/UserNav";
+import Couter from "./common/components/Buttons/Couter/Couter";
 
 function App() {
-
-
   return (
- 
+    <>
+    <div className="ctn">
+    {/* <UserNav/> */}
+    {/* <CartPage/> */}
 
-<>
-<RouterProvider router={router}/>
-{/* <Test/> */}
-
-</>
-
-
-
-
-
-
-
+    </div>
+      <RouterProvider router={router} />
+      {/* <RegTest/> */}
+      {/* <Couter/> */}
+    
+    </>
   )
 }
 

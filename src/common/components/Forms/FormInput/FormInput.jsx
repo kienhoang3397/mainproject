@@ -42,7 +42,7 @@ export function FormInputDefault({placeholder}) {
     <div className={styles.form}>
      
       <ConfigProvider theme={theme}>
-        <Input placeholder={placeholder} className={styles.input} />
+        <Input   placeholder={placeholder} className={styles.input} />
       </ConfigProvider>
     </div>
   );

@@ -27,7 +27,7 @@ function HomePage(props) {
 
 
         <article className={styles.article}>
-          <section>
+          <section className={styles.articleContainer}>
             <p className={styles.text1}>
               Discover Most<br></br> Affordable<br></br>  Apple products
             </p>

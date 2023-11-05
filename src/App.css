@@ -1,9 +1,5 @@
 
 
-.App-link {
-  color: #61dafb;
-}
-
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
@@ -15,5 +11,5 @@
 @import url(/src/common/styles/_global.css);
 @import url(/src/common/styles/variables.css);
 @import url(/src/common/styles/fonrt.css);
-@import url("https://cdn.jsdelivr.net/gh/jgthms/minireset.css@master/minireset.min.css");
-@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+/* @import url("https://cdn.jsdelivr.net/gh/jgthms/minireset.css@master/minireset.min.css");
+@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap'); */

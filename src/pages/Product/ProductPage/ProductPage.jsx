@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import ProductListingCard from '../../../common/components/Cards/ProductListingCard/ProductListingCard';
 import NavSearchProduct from '../../../common/layouts/navbar/NavSearchProduct/NavSearchProduct';
@@ -7,25 +7,48 @@ import Sidebar from '../../../common/components/Side/Sidebar/Sidebar';
 import styles from './ProductPage.module.css';
 
 function ProductPage() {
-  
-  const [selectedCategories, setSelectedCategories] = useState([]);
+    const [selectedCategories, setSelectedCategories] = useState([]);
   const [query, setQuery] = useState('');
-  const [priceFilterVal, setPriceFilterVal] = useState([0, 2000]);
-  const [priceFilterVal2, setPriceFilterVal2] = useState([0, 2000]);
+  const [priceFilterVal, setPriceFilterVal] = useState([0, 50000]);
+  const [priceFilterVal2, setPriceFilterVal2] = useState([0, 50000]);
 
   const handleInputChange = (event) => {
     setQuery(event.target.value);
-    
-  };
-  const handleUpdatePrice2 = ([valueMin, valueMax]) => {
-    if (priceFilterVal2[0] === valueMin && priceFilterVal2[1] === valueMax) {
+    console.log(dataProductPages)
+ 
 
-      setPriceFilterVal2([0, 2000]);
+  
+  };
+
+  const handleUpdatePrice2 = ([valueMin, valueMax]) => {
+    const newPriceFilterVal2 = [valueMin, valueMax];
+  
+    // Kiểm tra từng phần tử trong newPriceFilterVal2
+    const checkPrice = newPriceFilterVal2.every((price, index) => price === priceFilterVal2[index]);
+  
+    if (checkPrice) {
+      // Nếu mảng newPriceFilterVal2 tồn tại trong mảng priceFilterVal2
+      setPriceFilterVal2([0,50000]);
     } else {
-      // Otherwise, set the new selected range
-      setPriceFilterVal2([valueMin, valueMax]);
+      // Nếu không tồn tại, gán newPriceFilterVal2 cho priceFilterVal2
+      setPriceFilterVal2(newPriceFilterVal2);
     }
-    // console.log(priceFilterVal2);
+  };
+  
+  
+  
+  const handleChange = (event) => {
+    const newCategory = event.target.value;
+    const checked = selectedCategories.includes(newCategory);
+
+    if (checked) {
+      
+      setSelectedCategories(selectedCategories.filter((category) => category !== newCategory));
+    } else {
+      
+      setSelectedCategories([...selectedCategories, newCategory]);
+    }
+
   };
 
   const handleUpdatePrice = (value) => {
@@ -35,19 +58,6 @@ function ProductPage() {
   };
   
 
-  const handleChange = (event) => {
-    const newCategory = event.target.value;
-    const checked = selectedCategories.includes(newCategory);
-
-    if (checked) {
-      // If category is already selected, remove it
-      setSelectedCategories(selectedCategories.filter((category) => category !== newCategory));
-    } else {
-      // If category is not selected, add it
-      setSelectedCategories([...selectedCategories, newCategory]);
-    }
-
-  };
 
   function filteredData(products, selected, query, priceFilterVal, priceFilterVal2) {
     let filteredProducts = products;
@@ -97,10 +107,12 @@ function ProductPage() {
       <section className={styles.productRow}>
         <div className={styles.leftContentProductPage}>
           <Sidebar
-            priceFilterVal={priceFilterVal}
+            priceFilterVal2={priceFilterVal2}
+            priceFilterVal1={priceFilterVal}
             handleChange={handleChange}
             handleUpdatePrice={handleUpdatePrice}
             handleUpdatePrice2={handleUpdatePrice2}
+        
           />
         </div>
         <section className={styles.rightContentProductPage}>

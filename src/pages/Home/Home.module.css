@@ -10,7 +10,7 @@
   position: relative;
 }
 
-section {
+.articleContainer {
   display: flex;
   flex-direction: column;
 }
@@ -91,7 +91,7 @@ input {
   line-height: 125.5%;
 }
 
-section {
+.articleContainer {
   gap: 25px;
 }
 

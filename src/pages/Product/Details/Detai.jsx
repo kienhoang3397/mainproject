@@ -6,54 +6,69 @@ import Couter from '../../../common/components/Buttons/Couter/Couter'
 import Btn from '../../../common/components/Buttons/Button'
 import AsNavFor from '../../../common/components/Sliders/Detail/DetailSlider'
 import DetailSlide from '../../../common/components/Sliders/Detail/DetailSlider'
-import { PiMedalDuotone, PiHandshakeLight, PiHeadphonesLight ,PiCreditCardLight} from 'react-icons/pi';
-import {BsTruck} from 'react-icons/bs'
-import { useParams } from 'react-router-dom'
+import { PiMedalDuotone, PiHandshakeLight, PiHeadphonesLight, PiCreditCardLight } from 'react-icons/pi';
+import { BsTruck } from 'react-icons/bs'
+import { Link, useParams } from 'react-router-dom'
 import { dataProductPages } from '../../../common/datas/ProductListingData'
+import { useDispatch, useSelector } from 'react-redux'
+import useSelection from 'antd/es/table/hooks/useSelection'
+import cartSlice, { addtoCart } from '../../../redux/slice/cartSlice'
+import Counter from '../../../common/components/Buttons/Couter/Couter'
 
 
 function Detail() {
-    const {productId} = useParams()
-    const abc = dataProductPages.find(prod => prod.id === productId);
-   
+    const { productId } = useParams()
+    const product = dataProductPages.find(prod => prod.id === productId);
+
+    const dispatch = useDispatch();
+
+    const cartSlice = useSelector(state => state.cart.carts)
+    console.log(product)
+    const send = (e) => {
+        dispatch(addtoCart(e))
+
+    }
+
+
 
     return (
         <>
+            <div>{cartSlice.length}</div>
             <div className='detailContainer'>
                 <DetailSlide />
                 <section className='detailDescription'>
-                <div className='ratingDetail'>
-                            <div className='startRatingDetail'>
-                                <AiFillStar className='ratingStar' />
-                                <AiFillStar className='ratingStar' />
-                                <AiFillStar className='ratingStar' />
-                                <AiFillStar className='ratingStarNoFill' />
-                                <AiFillStar className='ratingStarNoFill' />
+                    <div className='ratingDetail'>
+                        <div className='startRatingDetail'>
+                            <AiFillStar className='ratingStar' />
+                            <AiFillStar className='ratingStar' />
+                            <AiFillStar className='ratingStar' />
+                            <AiFillStar className='ratingStarNoFill' />
+                            <AiFillStar className='ratingStarNoFill' />
 
-                            </div>
-                            <p className='contentHeadingDetail'>4.7 Star Rating</p>
-                            <p className='contentHeadingDetailFBack'>(10 User feedback)</p>
                         </div>
-                 
-                       
-                        <h1 className='nameProductDetail'>{abc.name}</h1>
+                        <p className='contentHeadingDetail'>4.7 Star Rating</p>
+                        <p className='contentHeadingDetailFBack'>(10 User feedback)</p>
+                    </div>
 
-                   
+
+                    <h1 className='nameProductDetail'>{product.name}</h1>
+
+
                     <section className='propertyDetail'>
                         <div className='rowPropDetail'>
-                            <div>ID: <span className='bold'>{abc.id}</span></div>
-                            <div><span>Availability: <span className='bold'>{abc.stock > 0 ? 'In Stock' : "Not Available"} </span></span></div>
+                            <div>ID: <span className='bold'>{product.id}</span></div>
+                            <div><span>Availability: <span className='bold'>{product.stock > 0 ? 'In Stock' : "Not Available"} </span></span></div>
                         </div>
                         <div className='rowPropDetail'>
                             <div>Brand: <span className='bold'>Apple</span></div>
-                            <div><span>Category: <span className='bold'>In {abc.category}</span></span></div>
+                            <div><span>Category: <span className='bold'>In {product.category}</span></span></div>
                         </div>
 
                     </section>
                     <section className='priceDetailField'>
-                        <div className='priceDetail'>₹{abc.price}</div>
-                        <del className='delPriceDetail'>₹{abc.price + (abc.price * 0.25)}</del>
-                        <section className='badgeField'><div className='badge'>{abc.discount*100}% OFF</div></section>
+                        <div className='priceDetail'>₹{product.price}</div>
+                        <del className='delPriceDetail'>₹{product.price + (product.price * 0.25)}</del>
+                        <section className='badgeField'><div className='badge'>{product.discount * 100}% OFF</div></section>
                     </section>
                     <div className='devider'></div>
                     <div className='dropMenuDetailContainer'>
@@ -62,8 +77,9 @@ function Detail() {
                         <DropMenuCustom item1={123412124} />
                     </div>
                     <div className='btnDetail'>
-                        <Couter />
-                        <Btn variant2={true} content={'Add to cart'} />
+                        <Btn handleBtn={() => send(product)} variant2 content={'Add to Cart'}></Btn>
+
+                        <Link to={'/shoppingcart'}>  <Btn variant2 content={'Clickme to Cart'} />  </Link>
                     </div>
                     <div className='btnDetail'><Btn defaultValue content={'Buy Now'} />
                         <svg xmlns="http://www.w3.org/2000/svg" width="53" height="52" viewBox="0 0 53 52" fill="none">
@@ -85,46 +101,46 @@ function Detail() {
 
             <div className='productInfomation'>
                 <section className='tabInfoDetail'>
-                    <p className='tabContent'>Description</p>
-                    <p className='tabContent'>Review</p>
+                    <p className='tproductontent'>Description</p>
+                    <p className='tproductontent'>Review</p>
                 </section>
                 <div className='lineGreyW'></div>
                 <section className='contentInfoDetail'>
                     <div className='decriptionInfoDetail'>
                         <p className='titleInfoDetail'>Description</p>
                         <p className='contentDecriptionInfoDetail'>The most powerful MacBook Pro ever is here. With the b
-                            lazing-fast M1 Pro or M1 Max<br/>chip — the first Apple silicon designed for
-                            pros — you get groundbreaking performance<br/> and amazing battery life. Add
-                            to that a stunning Liquid Retina XDR display, the best<br/> camera and audio
-                            ever in a Mac notebook, and all the ports you need. The first notebook<br/>
-                            of its kind, this MacBook Pro is a beast. M1 Pro takes the<br/> exceptional
+                            lazing-fast M1 Pro or M1 Max<br />chip — the first Apple silicon designed for
+                            pros — you get groundbreaking performance<br /> and amazing battery life. Add
+                            to that a stunning Liquid Retina XDR display, the best<br /> camera and audio
+                            ever in a Mac notebook, and all the ports you need. The first notebook<br />
+                            of its kind, this MacBook Pro is a beast. M1 Pro takes the<br /> exceptional
                             performance of the M1 architecture to a whole new level for pro users.</p>
                         <p className='contentDecriptionInfoDetail'>Even the most ambitious projects are easily handled with up to 10
-                            CPU cores, up to 16<br/> GPU cores, a 16‑core Neural Engine, and dedicated
-                            encode and decode media engines<br/>     that support H.264, HEVC, and ProRes codecs.</p>
+                            CPU cores, up to 16<br /> GPU cores, a 16‑core Neural Engine, and dedicated
+                            encode and decode media engines<br />     that support H.264, HEVC, and ProRes codecs.</p>
 
 
                     </div>
                     <div className='featureInfoDetail'>
                         <p className='titleInfoDetail'>Feature</p>
                         <main className='featureContainer'>
-                            <h4 className='featureContent'><PiMedalDuotone className='iconFeatureContainer'/><span className='contentFeature'>Free 1 Year Warranty</span></h4>
-                            <h4 className='featureContent'><BsTruck  className='iconFeatureContainer'/> <span className='contentFeature'>Free Shipping & Fasted Delivery</span></h4>
-                            <h4 className='featureContent'><PiHandshakeLight  className='iconFeatureContainer'/><span className='contentFeature'>100% Money-back guarantee</span></h4>
-                            <h4 className='featureContent'><PiHeadphonesLight  className='iconFeatureContainer'/><span className='contentFeature'>24/7 Customer support</span></h4>
-                            <h4 className='featureContent'><PiCreditCardLight  className='iconFeatureContainer'/><span className='contentFeature'>Secure payment method</span></h4>
+                            <h4 className='featureContent'><PiMedalDuotone className='iconFeatureContainer' /><span className='contentFeature'>Free 1 Year Warranty</span></h4>
+                            <h4 className='featureContent'><BsTruck className='iconFeatureContainer' /> <span className='contentFeature'>Free Shipping & Fasted Delivery</span></h4>
+                            <h4 className='featureContent'><PiHandshakeLight className='iconFeatureContainer' /><span className='contentFeature'>100% Money-back guarantee</span></h4>
+                            <h4 className='featureContent'><PiHeadphonesLight className='iconFeatureContainer' /><span className='contentFeature'>24/7 Customer support</span></h4>
+                            <h4 className='featureContent'><PiCreditCardLight className='iconFeatureContainer' /><span className='contentFeature'>Secure payment method</span></h4>
                         </main>
 
                     </div>
                     <div className='lineGreyH'></div>
                     <div className='shippingInfoDetai'>
-                    <p className='titleInfoDetail'>Shipping Information</p>
-                    <main className='shippingContainer'> 
+                        <p className='titleInfoDetail'>Shipping Information</p>
+                        <main className='shippingContainer'>
                             <h4 className='shippingContent'><span className='textShippingContainer'>Courier:<span className='contentshipping'> 2 - 4 days, free shipping</span> </span></h4>
                             <h4 className='shippingContent'><span className='textShippingContainer'>Local Shipping: <span className='contentshipping'> up to one week, $19.00</span></span></h4>
                             <h4 className='shippingContent'><span className='textShippingContainer'>UPS Ground Shipping:   <span className='contentshipping'> 4 - 6 days, $29.00</span> </span></h4>
                             <h4 className='shippingContent'><span className='textShippingContainer'>Unishop Global Export: <span className='contentshipping'> 3 - 4 days, $39.00</span></span></h4>
-                           
+
                         </main>
                     </div>
                 </section>
