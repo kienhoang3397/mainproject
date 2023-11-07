@@ -21,7 +21,7 @@ const theme = {
 
 
 
-function FormInput({ placeholder = 'PlaceHolder', title = 'Text' }) {
+function FormInput({ placeholder = 'PlaceHolder', title = 'Text', val, handleChange }) {
   return (
     <div className={styles.form}>
       <p className={styles.title}>{title}</p>
@@ -29,52 +29,67 @@ function FormInput({ placeholder = 'PlaceHolder', title = 'Text' }) {
         <Input
           className={styles.input}
           placeholder={placeholder}
+          value={val}
+          onChange={handleChange}
         />
       </ConfigProvider>
     </div>
   );
 }
 
+
 export default FormInput;
 
-export function FormInputDefault({placeholder}) {
+export function FormInputDefault({ placeholder, val, handleChange }) {
   return (
     <div className={styles.form}>
-     
       <ConfigProvider theme={theme}>
-        <Input   placeholder={placeholder} className={styles.input} />
+        <Input
+          placeholder={placeholder}
+          className={styles.input}
+          value={val}
+          onChange={handleChange}
+        />
       </ConfigProvider>
     </div>
   );
 }
 
-export function FormInputPassword() {
+
+export function FormInputPassword({ title, val, handleChange }) {
   return (
     <div className={styles.form}>
-      <p className={styles.title}>Password</p>
+      <p className={styles.title}>{title}</p>
       <ConfigProvider theme={theme}>
-        <Input.Password placeholder='Enter your password' className={styles.input} prefix={<LockOutlined className={styles.icon} />} />
+        <Input.Password
+          placeholder='Enter your password'
+          className={styles.input}
+          prefix={<LockOutlined className={styles.icon} />}
+          value={val}
+          onChange={handleChange}
+        />
       </ConfigProvider>
     </div>
   );
 }
 
-export function FormInputEmail({ dark, light }) {
+
+export function FormInputEmail({ dark, light, val, handleChange }) {
   const inputClasses = clsx(styles.input, {
     [styles.dark]: dark,
     [styles.light]: light,
   });
-  return (
 
+  return (
     <div className={styles.form}>
       <p className={styles.title}>Email</p>
       <ConfigProvider theme={theme}>
         <Input
           className={inputClasses}
-
           placeholder='Enter Your Mail'
           prefix={<MailOutlined className={styles.icon} />}
-
+          value={val}
+          onChange={handleChange}
         />
       </ConfigProvider>
     </div>
@@ -82,71 +97,66 @@ export function FormInputEmail({ dark, light }) {
 }
 
 
-export function FormInputUsername({ dark, light }) {
+
+export function FormInputUsername({ dark, light, val, handleChange }) {
   const inputClasses = clsx(styles.input, {
     [styles.dark]: dark,
     [styles.light]: light,
   });
-
-
 
   return (
     <div className={styles.form}>
       <p className={styles.title}>Username</p>
       <ConfigProvider theme={theme}>
         <Input
+          value={val}
+          onChange={handleChange}
           className={inputClasses}
           placeholder='Enter Your Username'
           prefix={<UserOutlined className={styles.icon} />}
-
         />
       </ConfigProvider>
     </div>
   );
 }
 
-export function FormInputPhoneNumber({ dark, light }) {
+export function FormInputPhoneNumber({ dark, light, title, val, handleChange }) {
   const inputClasses = clsx(styles.input, {
     [styles.dark]: dark,
     [styles.light]: light,
   });
 
-
-
   return (
     <div className={styles.form}>
-      <p className={styles.title}>Phone Number</p>
+      <p className={styles.title}>{title}</p>
       <ConfigProvider theme={theme}>
         <Input
           className={inputClasses}
           placeholder='Enter Your PhoneNumber'
           prefix={<PhoneOutlined className={styles.icon} />}
-
+          value={val}
+          onChange={handleChange}
         />
       </ConfigProvider>
     </div>
   );
 }
-export function FormInputSearch({ dark, light }) {
- 
-  
 
+export function FormInputSearch({ dark, light, val, handleChange }) {
   const inputClasses = clsx(styles.input, {
     [styles.dark]: dark,
     [styles.light]: light,
   });
 
-
-
   return (
     <div className={styles.form}>
-
       <ConfigProvider theme={theme}>
         <Input
           className={inputClasses}
           placeholder='Search.....'
           suffix={<SearchOutlined className={styles.icon} />}
-
+          value={val}
+          onChange={handleChange}
         />
       </ConfigProvider>
     </div>

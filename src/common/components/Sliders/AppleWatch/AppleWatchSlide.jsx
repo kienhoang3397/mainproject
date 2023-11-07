@@ -2,10 +2,9 @@ import React from 'react';
 import Slider from 'react-slick';
 import { ArrowBtnLeft, ArrowBtnRight } from '../../Buttons/Button';
 import { newestCollections } from '../../../datas/NewestCollection';
-import NewestCollection from '../../MappingComponents/NewestCollection/NewestCollection';
+import NewestCollection, { NewestCollectionRep } from '../../MappingComponents/NewestCollection/NewestCollection';
 import bannerAppleWatch from '../../../../assets/image/AppleWatchs/tile_s9__cqgqgjzc261y_large.png';
-import leftImg from '../../../../assets/image/AppleWatchs/tile_watch_se__cuswe7ukqd6q_large.png'
-import rightImg from '../../../../assets/image/AppleWatchs/tile_why_watch__ft68r958qmye_large.png'
+
 import styles from './AppleWatchSlide.module.css';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
@@ -30,29 +29,49 @@ function SamplePrevArrow(props) {
 }
 
 function AppleWatch() {
+
   const settings = {
-    autoplay: true,
-      speed: 2000,
-      autoplaySpeed: 1500,
-      cssEase: "linear",
-    infinite: true,
+    dots: true,
+    infinite: false,
+    speed: 500,
     slidesToShow: 4,
-    slidesToScroll: 1,
-    nextArrow: <SampleNextArrow />,
-    prevArrow: <SamplePrevArrow />,
+    slidesToScroll: 4,
+    initialSlide: 0,
+    nextArrow: <SampleNextArrow/>,
+    prevArrow: <SamplePrevArrow/>,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 3,
+          infinite: true,
+          dots: true,
+        },
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+          initialSlide: 2,
+        },
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
+    ],
   };
 
   return (
-    <section className={styles.bg}>
-      <div className={styles.containerWatchSlide}>
-        <div className={styles.banner}>
-          <div className={styles.leftBannerImg}><img src={leftImg} alt="" /></div>
 
-          <p className={styles.text}>Apple Watch</p>
-          <div className={styles.rightBannerImg}> <img src={rightImg} alt="" /></div>
+    <div className={styles.bg}>
+  
 
-        </div>
-      </div>
       <Slider {...settings} className={styles.container}>
         {appleWatchs.map((newest) => (
           <div key={newest.id} className={styles.containerNewest}>
@@ -60,9 +79,14 @@ function AppleWatch() {
           </div>
         ))}
       </Slider>
+    </div>
 
-    </section>
+
+
+
+
   );
 }
+
 
 export default AppleWatch;

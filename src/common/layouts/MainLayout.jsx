@@ -6,10 +6,10 @@ import Footer from './footer/Footer'
 function MainLayout() {
   return (
     <>
-    <BeforeLoginNav darkNav/>
+    {/* <BeforeLoginNav darkNav/> */}
        <Outlet></Outlet>
-  
-    <Footer/>  
+{/*   
+    <Footer/>   */}
     </>
   )
 }

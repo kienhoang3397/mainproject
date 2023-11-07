@@ -11,7 +11,7 @@ const cartSlice = createSlice({
 
     addtoCart: (state, action) => {
       const itemIndex = state.carts.findIndex((item) => item.id === action.payload.id);
-      console.log(itemIndex)
+      // console.log(itemIndex)
       if (itemIndex >= 0) {
 
         state.carts[itemIndex].qnty += 1;
@@ -25,18 +25,16 @@ const cartSlice = createSlice({
       state.carts = state.carts.filter(item => item.id !== action.payload.id);
     },
     removeSingleIteams: (state, action) => {
-      const IteamIndex_dec = state.carts.findIndex((iteam) => iteam.id === action.payload.id);
+      const iteamIndex_dec = state.carts.findIndex((item) => item.id === action.payload.id);
 
-      if (state.carts[IteamIndex_dec].qnty >= 1) {
-        state.carts[IteamIndex_dec].qnty -= 1
+      if (state.carts[iteamIndex_dec].qnty >= 1) {
+        state.carts[iteamIndex_dec].qnty -= 1
       }
 
     },
 
 
-    // removeItemformCart: (state,action) => {
-    //     return state.filter(item => item.id !== action.payload.id);
-    // }
+
   }
 })
 export default cartSlice.reducer

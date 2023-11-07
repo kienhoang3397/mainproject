@@ -20,7 +20,7 @@ function ProductListingCard(props, { checked }) {
                     <AiFillStar className={styles.ratingStarNoFill} />
                     <span className={styles.ratingTime}> (784) </span>
                   </div>
-                  <Link  style={{ textDecoration: 'none'}} to={`/${id}`}>
+                  <Link  style={{ textDecoration: 'none'}} to={`/product/${id}`}>
                     <h1 className={styles.name}>{name}</h1>
                   </Link>
 

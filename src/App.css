@@ -8,6 +8,7 @@
     transform: rotate(360deg);
   }
 }
+
 @import url(/src/common/styles/_global.css);
 @import url(/src/common/styles/variables.css);
 @import url(/src/common/styles/fonrt.css);

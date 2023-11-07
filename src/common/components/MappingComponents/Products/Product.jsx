@@ -1,6 +1,7 @@
 import React from 'react'
 import styles from './product.module.css'
-import { trendings } from '../../../datas/Product'
+import { trendings } from '../../../datas/Trending'
+
 
 function Product(props) {
     const { image, name } = props

@@ -2,13 +2,27 @@
     align-items: center;
     display: flex;
     flex-direction: column;
+
    
 }
+
 .color {
     margin-bottom: 10px;
+    width: 104px;
+    height: 14px;
+    flex-shrink: 0;  
 }
 .img{
-   max-width: 200px;
+
+    width: 216px;
+    height: 254px;
+    flex-shrink: 0;
    margin-bottom: 22px;
+  
+}
+.imgRep{
+    width: 100px;
+    height: 100px;
+    margin-bottom: 22px;
 }
 

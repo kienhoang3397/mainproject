@@ -13,11 +13,12 @@
     align-items: center;
     justify-content: center;
     width: 613px;
-    height: 616px;
+  
     flex-shrink: 0;
     border-radius: 20px;
     border: 1px solid var(--Border-Color, #E4E7E9);
     gap: 10px;
+    
 }
 
 .textLogin {
