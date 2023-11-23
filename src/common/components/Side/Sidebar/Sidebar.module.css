@@ -14,7 +14,11 @@
     background-color: #333;
     border-color: #333;
   }
-  
+  .priceFilters{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
 .sideBar{
     display: flex;
     width: 150px;
@@ -22,6 +26,7 @@
     flex-direction: column;
     align-items: flex-start;
     gap: 20px;
+    background-color: var(--BG, #F5F5F7);
 }
 .titleCategory{
     color: var(--Font-Color-Black, #8B8E99);

@@ -67,7 +67,7 @@ function AboutPage() {
         </div>
      
       </header>
-      <Link to={('login')}>saasgasgsag</Link>
+    
 
     </div>
   )

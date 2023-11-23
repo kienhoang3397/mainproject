@@ -31,7 +31,7 @@ function SamplePrevArrow(props) {
 function AppleWatch() {
 
   const settings = {
-    dots: true,
+    dots: false,
     infinite: false,
     speed: 500,
     slidesToShow: 4,
@@ -46,7 +46,8 @@ function AppleWatch() {
           slidesToShow: 3,
           slidesToScroll: 3,
           infinite: true,
-          dots: true,
+          dots: false
+         
         },
       },
       {
@@ -55,6 +56,8 @@ function AppleWatch() {
           slidesToShow: 2,
           slidesToScroll: 2,
           initialSlide: 2,
+          infinite: true,
+          dots: true,
         },
       },
       {
@@ -62,6 +65,8 @@ function AppleWatch() {
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
+          infinite: true,
+          dots: true,
         },
       },
     ],

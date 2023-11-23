@@ -17,8 +17,11 @@ import AppleWatch, { AppleWatchRep } from '../../common/components/Sliders/Apple
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchTodos } from '../../redux/slice/todolist';
 import NewestHomePage from '../../common/components/Sliders/NewestHomePage/NewestHomePage';
+import { useNavigate } from 'react-router-dom';
+import { getAllUser } from '../../redux/slice/apiRequest';
 
 function HomePage(props) {
+ 
 
 
 

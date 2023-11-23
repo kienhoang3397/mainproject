@@ -9,10 +9,12 @@
 }
 
 .rightContentProductPage {
- 
+ display: flex  ;
+ flex-direction: column;
+ gap: 30px;
     background: var(--BG, #F5F5F7);
    
-    gap: 30px;
+   
 }
 
 .leftContentProductPage {
@@ -27,6 +29,7 @@
     padding: 33px 70px;
     display: flex;
     flex-direction: row;
+    gap: 20px;
  
     
   

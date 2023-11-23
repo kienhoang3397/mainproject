@@ -28,7 +28,7 @@ export function SamplePrevArrow(props) {
 
 function Iphone() {
   const settings = {
-    dots: true,
+    dots: false,
     infinite: false,
     speed: 500,
     slidesToShow: 4,
@@ -43,7 +43,7 @@ function Iphone() {
           slidesToShow: 3,
           slidesToScroll: 3,
           infinite: true,
-          dots: true,
+          
         },
       },
       {
@@ -52,6 +52,7 @@ function Iphone() {
           slidesToShow: 2,
           slidesToScroll: 2,
           initialSlide: 2,
+          dots: true,
         },
       },
       {
@@ -59,6 +60,7 @@ function Iphone() {
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
+          dots: true,
         },
       },
     ],

@@ -40,9 +40,10 @@ function FormInput({ placeholder = 'PlaceHolder', title = 'Text', val, handleCha
 
 export default FormInput;
 
-export function FormInputDefault({ placeholder, val, handleChange }) {
+export function FormInputDefault({title, placeholder, val, handleChange }) {
   return (
     <div className={styles.form}>
+      <p className={styles.title}>{title}</p>
       <ConfigProvider theme={theme}>
         <Input
           placeholder={placeholder}

@@ -1,159 +1,70 @@
-// import React, { useEffect, useState } from 'react';
+// import React, { useEffect } from 'react';
+// import { getAllProducts } from '../redux/slice/apiRequest';
 // import { useDispatch, useSelector } from 'react-redux';
-// import { deleteTodo, fetchTodos, postTodos } from '../redux/slice/todolist';
-
-// export function useTodoList() {
-//     const todoList = useSelector((state) => state.todoList);
-//     const dispatch = useDispatch();
-//     const [formData, setFormData] = useState({ name: '', status: '' });
-
-//     // useEffect(() => {
-//     //     // Fetch initial data, if needed
-//     // }, []);
-
-//     if (!todoList) {
-//         return {
-//             data: [],
-//             isLoading: false,
-//             handleAddItem: () => { },
-//             handleRefechData: () => { },
-//         };
-//     }
-
-//     const { isLoading, data } = todoList;
-
-//     const handleAddItem = () => {
-//         dispatch(postTodos(formData)); 
-//         setFormData({ name: '', status: '' });
-//     }
-
-//     const handleRefechData = () => {
-//         dispatch(fetchTodos());
-//     }
-  
-
-//     return {
-//         data,
-//         isLoading,
-//         handleAddItem,
-//         handleRefechData,
-//         formData,
-//         setFormData,
-//     };
-// }
 
 // function Test() {
-//     const dispatch = useDispatch();
-//     const todoList = useSelector((state) => state.todoList);
-//     const { handleAddItem, handleRefechData, formData, setFormData } = useTodoList();
-    
-//     const handleDeleteItem = (itemId) => {
-//         dispatch(deleteTodo(itemId)); // Dispatch the delete action with the item ID
-//     }
+//   const productList = useSelector((state) => state.product.product.allProduct);
+//   const dispatch = useDispatch();
 
-//     useEffect(() => {
-//         console.log(todoList.data);
-//     }, [todoList.data]);
+//   useEffect(() => {
+//     getAllProducts(dispatch);
+//   }, []);
 
-//     const handleSubmit = (e) => {
-//         e.preventDefault();
-//         handleAddItem();
-//     }
-
-//     return (
-//         <>
-//             <button onClick={handleRefechData}>Refresh Data</button>
-//             <form onSubmit={handleSubmit}>
-//                 <input
-//                     type="text"
-//                     placeholder="Name"
-//                     value={formData.name}
-//                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-//                 />
-//                 <input
-//                     type="text"
-//                     placeholder="Status"
-//                     value={formData.status}
-//                     onChange={(e) => setFormData({ ...formData, status: e.target.value })}
-//                 />
-//                 <button type="submit">Add Item</button>
-//             </form>
-//             <ul>
-//                 {todoList.data.map(item => (
-//                     <li key={item.id}>
-//                         {item.name} - {item.status}
-//                         <button onClick={() => handleDeleteItem(item.id)}>Delete</button>
-//                     </li>
-//                 ))}
-//             </ul>
-//         </>
-//     );
+//   return (
+//     <div>
+//       {productList.map((product) => (
+//         <div key={product.id}>{product.name}</div>
+//       ))}
+//     </div>
+//   );
 // }
 
-
 // export default Test;
+import React, { useState } from 'react';
 
-import axios from 'axios';
-import React, { useState, useEffect } from 'react';
-import httpService from '../services/httpService';
+const Test = () => {
+  const [formData, setFormData] = useState({
+    subjects: [], // Mảng lưu trữ các môn học được chọn
+  });
 
-function Test() {
-  // const handleFetchTodos = async () => {
-  //   const data = await fetch(`https://fe21-db.vercel.app/todo/`, {
-  //     method: "GET",
-  //     headers: {
-  //       Accept: "application/json",
-  //     },
-  //   });
-  //   const json = await data.json();
-  //   setData(json);
-  // };
+  const subjectsList = ['Math', 'Science', 'History', 'English']; // Thay đổi danh sách môn học theo nhu cầu
 
-  // const handlePostTodos = async (params) => {
-  
-  //  await fetch(`https://fe21-db.vercel.app/todo/create`, {
+  const handleCheckboxChange = (subject) => {
+    const updatedSubjects = [...formData.subjects];
 
-  //     method: "POST",
-  //     headers: {
-  //       Accept: "application/json",
-  //       "Content-Type": "application/json",
-  //     },
-  //     body: JSON.stringify(params),
-  //   });
-  //   handleFetchTodos();
-  // };
+    if (updatedSubjects.includes(subject)) {
+      // Nếu môn học đã được chọn, loại bỏ khỏi danh sách
+      updatedSubjects.splice(updatedSubjects.indexOf(subject), 1);
+    } else {
+      // Nếu môn học chưa được chọn, thêm vào danh sách
+      updatedSubjects.push(subject);
+    }
 
-  // const [data, setData] = useState([]);
-
-  // useEffect(() => {
-  //   handleFetchTodos();
-  // }, []);
- const [dataAPI, setDataAPI] = useState([]);
-
-  const getList = async () => {
-    const  data  = await httpService.get('/fact')
-    console.log(data)
-    console.log(data)
-    setDataAPI(data);
+    setFormData({
+      ...formData,
+      subjects: updatedSubjects,
+    });
   };
-
-  const handlePostTodos = async (item) => {
-    await axios.post('https://fe21-db.vercel.app/todo/create', item);
-    
-    getList();
-  };
-
-  useEffect(() => {
-    getList();
-  }, []);
 
   return (
-    <>
-      <button onClick={() => handlePostTodos({ name: 'Kien28/10', status: 'Completed' })}>Add</button>
-    
-    </>
+    <div className="subject">
+      <p className='titleSubject'>Select Subject?</p>
+      {/* Render checkboxes dynamically */}
+      {subjectsList.map((subject) => (
+        <label key={subject} className="checkBoxField">
+          <p className='contentCheckBox'>{subject}</p>
+          <input
+            type="checkbox"
+            value={subject}
+            checked={formData.subjects.includes(subject)}
+            onChange={() => handleCheckboxChange(subject)}
+          />
+          <span className="checkmark"></span>
+        </label>
+      ))}
+    </div>
   );
-}
-export default Test;
+};
 
+export default Test;
 

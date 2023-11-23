@@ -1,5 +1,5 @@
-import React from 'react';
-import FormInput, { FormInputEmail, FormInputPhoneNumber } from '../../common/components/Forms/FormInput/FormInput';
+import React, { useState } from 'react';
+import FormInput, { FormInputDefault, FormInputEmail, FormInputPhoneNumber } from '../../common/components/Forms/FormInput/FormInput';
 import "./Contact.css"
 import ContactHorizontal from '../../common/components/Items/ContactHorizontal';
 import { PiPhoneCallFill } from "react-icons/pi";
@@ -7,9 +7,45 @@ import { IoMdMail } from "react-icons/io";
 import { FaLocationDot } from "react-icons/fa6";
 import Btn from '../../common/components/Buttons/Button';
 
-
-
 function ContactPage() {
+  const [formData, setFormData] = useState({
+    firstName: '',
+    secondName: '',
+    email: '',
+    phoneNumber: '',
+    subjects: [],
+    message: '',
+  });
+
+  const [isSubmitted, setIsSubmitted] = useState(false);
+
+  const handleInputChange = (name, value) => {
+    setFormData({ ...formData, [name]: value });
+    console.log(formData)
+
+  };
+
+  const handleCheckboxChange = (value) => {
+    const updatedSubjects = formData.subjects.includes(value)
+      ? formData.subjects.filter((subject) => subject !== value)
+      : [...formData.subjects, value];
+
+    setFormData({ ...formData, subjects: updatedSubjects });
+  };
+
+  const subjectsList = ['General Inquiry', 'Subject 1', 'Subject 2', 'Subject 3'];
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // Add your logic for form submission here
+    setIsSubmitted(true);
+    setTimeout(() => {
+      setIsSubmitted(false);
+    }, 5000);
+
+  }
+
+
   return (
     <div className="bg">
       <main className="contactContainer">
@@ -40,48 +76,75 @@ function ContactPage() {
           <figure><ContactHorizontal light /></figure>
 
         </section>
-
         <section className="rightContent">
-          <section className="formContact">
-            <FormInput title={'First Name'} placeholder={'Enter your First Name'} />
-            <FormInput title={'Second Name'} placeholder={'Enter your Second Name'} />
-            <FormInputEmail title="Email" placeholder="Enter your email" />
-            <FormInputPhoneNumber title="Phone Number" placeholder="Enter your phone number" />
-          </section>
-          <section>
-          <div className='subject'>
-            <span className='titleSubject'>Select Subject?</span>
-            <div className="checkBoxContainer">
-              <label className="checkBoxField">
-                <p className='contentCheckBox'>General Inquiry</p>
-                <input type="checkbox"  />
-                <span className="checkmark"></span>
-              </label>
+          <form className="FormContact" onSubmit={handleSubmit}>
+            <div className='formContact'>
+              <FormInputDefault
+                title={'First Name'}
+                placeholder={'Enter your First Name'}
+                value={formData.firstName}
+                handleChange={(e) => handleInputChange('firstName', e.target.value)}
+              />
+              <FormInputDefault
+                title={'Second Name'}
+                placeholder={'Enter your Second Name'}
+                value={formData.secondName}
+                handleChange={(e) => handleInputChange('secondName', e.target.value)}
+              />
+              <FormInputEmail
+                title="Email"
+                placeholder="Enter your email"
+                value={formData.email}
+                handleChange={(e) => handleInputChange('email', e.target.value)}
+              />
+              <FormInputPhoneNumber
+                title="Phone Number"
+                placeholder="Enter your phone number"
+                value={formData.phoneNumber}
+                handleChange={(e) => handleInputChange('phoneNumber', e.target.value)}
+              />
+            </div>
+            <p className='titleSubject'>Select Subject?</p>
+            <div className="subject">
 
-              <label className="checkBoxField">
-                <p className='contentCheckBox'>General Inquiry</p>
-                <input type="checkbox" />
-                <span className="checkmark"></span>
-              </label>
 
-              <label className="checkBoxField">
-                <p className='contentCheckBox'>General Inquiry</p>
-                <input type="checkbox" />
-                <span className="checkmark"></span>
-              </label>
-
-              <label className="checkBoxField">
-                <p className='contentCheckBox'>General Inquiry</p>
-                <input type="checkbox" />
-                <span className="checkmark"></span>
-              </label>
+              {subjectsList.map((subject) => (
+                <label key={subject} className="checkBoxField">
+                  <p className='contentCheckBox'>{subject}</p>
+                  <input
+                    type="checkbox"
+                    value={subject}
+                    checked={formData.subjects.includes(subject)}
+                    onChange={() => handleCheckboxChange(subject)}
+                  />
+                  <span className="checkmark"></span>
+                </label>
+              ))}
             </div>
 
-          </div>
-          <FormInput title={'Massage'} placeholder={'Write your message..'} />
-          <Btn defaultValue content={'Send Message'} width={'200px'}/>
-          </section>
-          
+            <FormInputDefault
+              title={'Message'}
+              placeholder={'Write your message..'}
+              value={formData.message}
+              handleChange={(e) => handleInputChange('message', e.target.value)}
+            />
+
+            <Btn defaultValue content={'Submit'} type={'submit'}>
+              Submit
+            </Btn>
+          </form>
+
+          {isSubmitted && (
+            <div className="alert-container show">
+              <p>Form submitted successfully!</p>
+              <p>First Name: {formData.firstName}</p>
+              <p>Second Name: {formData.secondName}</p>
+              <p>Email: {formData.email}</p>
+              <p>Phone Number: {formData.phoneNumber}</p>
+              <p>Subjects: {formData.subjects.join(', ')}</p>
+              <p>Message: {formData.message}</p>
+            </div>
+          )}
 
         </section>
 

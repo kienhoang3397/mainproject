@@ -2,19 +2,27 @@ import React, { useEffect, useState } from 'react';
 
 import ProductListingCard from '../../../common/components/Cards/ProductListingCard/ProductListingCard';
 import NavSearchProduct from '../../../common/layouts/navbar/NavSearchProduct/NavSearchProduct';
-import { dataProductPages } from '../../../common/datas/ProductListingData';
+import {  } from '../../../common/datas/ProductListingData';
 import Sidebar from '../../../common/components/Side/Sidebar/Sidebar';
 import styles from './ProductPage.module.css';
+import { useDispatch, useSelector } from 'react-redux';
+import { getAllProducts } from '../../../redux/slice/apiRequest';
 
 function ProductPage() {
+  const productList = useSelector((state) => state.product.product.allProduct);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    getAllProducts(dispatch);
+  }, []);
     const [selectedCategories, setSelectedCategories] = useState([]);
   const [query, setQuery] = useState('');
-  const [priceFilterVal, setPriceFilterVal] = useState([0, 50000]);
-  const [priceFilterVal2, setPriceFilterVal2] = useState([0, 50000]);
+  const [priceFilterVal, setPriceFilterVal] = useState([0, 500000]);
+  const [priceFilterVal2, setPriceFilterVal2] = useState([0, 500000]);
 
   const handleInputChange = (event) => {
     setQuery(event.target.value);
-    console.log(dataProductPages)
+  
  
 
   
@@ -23,14 +31,14 @@ function ProductPage() {
   const handleUpdatePrice2 = ([valueMin, valueMax]) => {
     const newPriceFilterVal2 = [valueMin, valueMax];
   
-    // Kiểm tra từng phần tử trong newPriceFilterVal2
+  
     const checkPrice = newPriceFilterVal2.every((price, index) => price === priceFilterVal2[index]);
   
     if (checkPrice) {
-      // Nếu mảng newPriceFilterVal2 tồn tại trong mảng priceFilterVal2
+ 
       setPriceFilterVal2([0,50000]);
     } else {
-      // Nếu không tồn tại, gán newPriceFilterVal2 cho priceFilterVal2
+     
       setPriceFilterVal2(newPriceFilterVal2);
     }
   };
@@ -100,7 +108,7 @@ function ProductPage() {
   }
 
 
-  const result = filteredData(dataProductPages, selectedCategories, query, priceFilterVal, priceFilterVal2);
+  const result = filteredData(productList, selectedCategories, query, priceFilterVal, priceFilterVal2);
 
   return (
     <div>

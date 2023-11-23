@@ -1,7 +1,7 @@
 .textContainer{
     display: flex;
  
-    justify-content: center;
+   
     align-items: center;
     gap: 2px;
     flex-shrink: 0;
@@ -20,7 +20,7 @@
     display: flex;
 width: 44px;
 height: 44px;
-justify-content: center;
+
 align-items: center;
 flex-shrink: 0;
 color: var(--Font-Color-Black, #8B8E99)
