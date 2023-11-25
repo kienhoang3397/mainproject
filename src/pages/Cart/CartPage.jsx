@@ -53,7 +53,7 @@ function CartPage() {
                                 return (
                                     <section className={styles.productRow} key={item.id}>
                                         <section className={styles.product}>
-                                            <div onClick={handleRemoveFromCart} className={styles.iconProduct}><svg className={styles.icon} onClick={() => dispatch(removeItemformCart({ id: item.id }))} xmlns="http://www.w3.org/2000/svg" width="24" height="21" viewBox="0 0 24 21" fill="none">
+                                            <div onClick={handleRemoveFromCart(item._id)} className={styles.iconProduct}><svg className={styles.icon} onClick={() => dispatch(removeItemformCart({ id: item.id }))} xmlns="http://www.w3.org/2000/svg" width="24" height="21" viewBox="0 0 24 21" fill="none">
                                                 <path d="M11.5264 19.9307C16.4969 19.9307 20.5264 15.9012 20.5264 10.9307C20.5264 5.9601 16.4969 1.93066 11.5264 1.93066C6.5558 1.93066 2.52637 5.9601 2.52637 10.9307C2.52637 15.9012 6.5558 19.9307 11.5264 19.9307Z" stroke="#8B8E99" stroke-width="1.5" stroke-miterlimit="10" />
                                                 <path d="M14.5264 7.93066L8.52637 13.9307" stroke="#8B8E99" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                                                 <path d="M14.5264 13.9307L8.52637 7.93066" stroke="#8B8E99" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />

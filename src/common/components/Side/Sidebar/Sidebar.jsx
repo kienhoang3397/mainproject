@@ -14,15 +14,15 @@ function Sidebar({ handleChange, handleUpdatePrice, priceFilterVal2, priceFilter
       <div className={styles.categorySection}>
         <h1 className={styles.titleCategory}>CATEGORY</h1>
         <label className={styles.checkBoxField}>
-          <input className={styles.checkboxxx} type='checkbox' onChange={handleChange} value={'IPhone'} />
+          <Checkbox   className={styles.checkboxxx} type='checkbox' onChange={handleChange} value={'IPhone'} />
           <p className={styles.contentCheckBox}>Iphone</p>
         </label>
         <label className={styles.checkBoxField}>
-          <input className={styles.checkboxxx} type='checkbox' onChange={handleChange} value={'Apple Watch'} />
+          <Checkbox className={styles.checkboxxx} type='checkbox' onChange={handleChange} value={'Apple Watch'} />
           <p className={styles.contentCheckBox}>AppleWatch</p>
         </label>
         <label className={styles.checkBoxField}>
-          <input className={styles.checkboxxx} type='checkbox' onChange={handleChange} value={'MacBook'} />
+          <Checkbox className={styles.checkboxxx} type='checkbox' onChange={handleChange} value={'MacBook'} />
           <p className={styles.contentCheckBox}>MacBook</p>
         </label>
       </div>
@@ -39,7 +39,7 @@ function Sidebar({ handleChange, handleUpdatePrice, priceFilterVal2, priceFilter
       <section className={styles.priceFilters}>
         <h1 className={styles.titleCategory}>PRICE FILTERS</h1>
         <label className={styles.checkBoxField}>
-          <input
+          <Checkbox
             className={styles.checkboxxx}
             type='checkbox'
             onChange={() => handleUpdatePrice2([0, 50000])}
@@ -48,7 +48,7 @@ function Sidebar({ handleChange, handleUpdatePrice, priceFilterVal2, priceFilter
           <p className={styles.contentCheckBox}>All</p>
         </label>
         <label className={styles.checkBoxField}>
-          <input
+          <Checkbox
             className={styles.checkboxxx}
             type='checkbox'
             onChange={() => handleUpdatePrice2([0, 10000])}
@@ -57,7 +57,7 @@ function Sidebar({ handleChange, handleUpdatePrice, priceFilterVal2, priceFilter
           <p className={styles.contentCheckBox}>Under 10000₹</p>
         </label>
         <label className={styles.checkBoxField}>
-          <input
+          <Checkbox
             className={styles.checkboxxx}
             type='checkbox'
             onChange={() => handleUpdatePrice2([10000, 20000])}
@@ -66,7 +66,7 @@ function Sidebar({ handleChange, handleUpdatePrice, priceFilterVal2, priceFilter
           <p className={styles.contentCheckBox}>10000₹ - 20000₹</p>
         </label>
         <label className={styles.checkBoxField}>
-          <input
+          <Checkbox
             className={styles.checkboxxx}
             type='checkbox'
             onChange={() => handleUpdatePrice2([20000, 30000])}
@@ -75,7 +75,7 @@ function Sidebar({ handleChange, handleUpdatePrice, priceFilterVal2, priceFilter
           <p className={styles.contentCheckBox}>20000₹ - 30000₹</p>
         </label>
         <label className={styles.checkBoxField}>
-          <input
+          <Checkbox
             className={styles.checkboxxx}
             type='checkbox'
             onChange={() => handleUpdatePrice2([40000, 50000])}

@@ -3,6 +3,8 @@ import { LockOutlined, MailOutlined, PhoneOutlined, SearchOutlined, UserOutlined
 import { ConfigProvider, Input, Space } from 'antd';
 import styles from './FormInput.module.css';
 import clsx from 'clsx';
+import { FaEye } from "react-icons/fa";
+import { FaEyeSlash } from "react-icons/fa6";
 
 const theme = {
   components: {
@@ -40,7 +42,7 @@ function FormInput({ placeholder = 'PlaceHolder', title = 'Text', val, handleCha
 
 export default FormInput;
 
-export function FormInputDefault({title, placeholder, val, handleChange }) {
+export function FormInputDefault({ title, placeholder, val, handleChange }) {
   return (
     <div className={styles.form}>
       <p className={styles.title}>{title}</p>
@@ -120,7 +122,51 @@ export function FormInputUsername({ dark, light, val, handleChange }) {
     </div>
   );
 }
+export const FormInputt = ({ placeholder, dark, light, label, name, type, register, value, onChange, errorMessage, prefix }) => {
+  const inputClasses = clsx(styles.input, {
+    [styles.dark]: dark,
+    [styles.light]: light,
+  });
+  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
 
+  const togglePasswordVisibility = () => {
+    setIsPasswordVisible((prev) => !prev);
+  };
+
+  return (
+    <div className={styles.form}>
+
+      <label className={styles.label} >
+        <p className={styles.title} >{label}</p>
+        <div className={styles.inputContainer}>
+
+          <span className={styles.icon}>{prefix}</span>
+          <input
+            className={inputClasses}
+            name={name}
+            type={isPasswordVisible ? 'text' : type}
+            {...register(name, { required: true })}
+            value={value}
+            onChange={onChange}
+            placeholder={placeholder}
+          />
+          {type === 'password' && (
+          
+            <button
+              className={styles.toggleButton}
+              onClick={togglePasswordVisibility}
+            > {isPasswordVisible ? <FaEye /> : <FaEyeSlash />}</button>
+             
+             
+          )}
+          <div className={styles.error}>{errorMessage}</div>
+        </div>
+      </label>
+
+    </div>
+
+  );
+};
 export function FormInputPhoneNumber({ dark, light, title, val, handleChange }) {
   const inputClasses = clsx(styles.input, {
     [styles.dark]: dark,

@@ -5,7 +5,33 @@
     align-items: center;
     gap: 30px;
     margin-bottom: 160px;
+    width: 100%;
     margin-top: 60px;
+}
+.theme {
+    display: flex;
+    align-items: center;
+}
+.form{
+    width: 100%
+}
+.label{
+    width: 100%;
+}
+.imgLogin {
+    width: 50%;
+}
+
+  
+ 
+
+.text {
+    color: var(--Font-Color-Black, #8B8E99);
+    font-family: Poppins;
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
 }
 .formLogin {
     display: flex;
@@ -13,11 +39,12 @@
     align-items: center;
     justify-content: center;
     width: 613px;
-  
+  width: 50%;
     flex-shrink: 0;
     border-radius: 20px;
     border: 1px solid var(--Border-Color, #E4E7E9);
     gap: 10px;
+    padding: 50px;
     
 }
 
@@ -30,6 +57,8 @@
     font-style: normal;
     font-weight: 700;
     line-height: 32px;
+
+    align-self: flex-start;
     /* 133.333% */
 }
 
@@ -44,21 +73,6 @@
     line-height: 24px;
     /* 150% */
 }
-
-.shapeForm {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: row;
-
-}
-
-.shapeW {
-    width: 100%;
-    height: 2px;
-    background: #E4E7E9;
-}
-
 .shapeFormText {
     color: var(--Font-Color-Black, #8B8E99);
     text-align: center;
@@ -68,7 +82,30 @@
     font-weight: 400;
     line-height: normal;
 }
+.shapeForm {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
 
+}
+
+.shapeForm {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    gap: 10px;
+    width: 100%;
+    margin: 10px 0;
+
+}
+
+.shapeW {
+    width: 100%;
+    height: 1px;
+    background: #E4E7E9;
+}
 .googleSignup {
     display: flex;
     align-items: center;
@@ -114,7 +151,7 @@
 
 .signupNow {
     color: var(--Blue-BG, #3858D6);
-
+    text-decoration: none;
     /* Text md / Semibold */
     font-family: Inter;
     font-size: 16px;

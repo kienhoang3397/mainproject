@@ -14,7 +14,7 @@ const userController = {
             const user = await User.findById(req.params.id)
             res.status(200).json('Delete sucsses')
         } catch(err){
-            res.status(500).json(err)
+            res.status(500).json('Khong dc')
         }
     }
 }

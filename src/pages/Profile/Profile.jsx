@@ -1,22 +1,25 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { deleteUser, getAllUser, refreshToken } from '../../redux/slice/apiRequest';
+import { deleteUser, getAllUser, logOutUser, refreshToken } from '../../redux/slice/apiRequest';
 import axios from 'axios';
-
+import styles from './Profile.module.css'
 import { jwtDecode } from 'jwt-decode';
 import { loginSuccsess } from '../../redux/slice/authSlice';
 
 function Profile() {
+  const [isSubmitted, setIsSubmitted] = useState(false);
   let axiosJWT = axios.create();
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const user = useSelector((state) => state.auth.login?.currentUser);
   const userList = useSelector((state) => state.users?.allUser);
   const msg = useSelector((state) => state.users?.msg);
+  const msg2 = useSelector((state) => state.auth.logout?.msg);
+  
 
   const handleDeleteUser = (id) => {
-    deleteUser(user?.accessToken, dispatch, id, axiosJWT)
+    deleteUser(user?.accessToken, dispatch, id)
   };
 
   // axiosJWT.interceptors.request.use(
@@ -59,9 +62,19 @@ function Profile() {
   // };
   
   useEffect(() => {
+    if(!user){
+      navigate('login')
+    }
     getAllUser(user?.accessToken, dispatch);
     
   }, []);
+  const handleLogOut = ()=>{
+    logOutUser(user?.accessToken, dispatch, user?.id, navigate)
+    setIsSubmitted(true);
+    setTimeout(() => {
+      setIsSubmitted(false);
+    }, 5000);
+  }
 
   return (
     <div>
@@ -74,6 +87,12 @@ function Profile() {
         
       ))}
       {msg}
+      <button onClick={handleLogOut}>Logout</button>
+      {isSubmitted && (
+            <div className={styles.alertContainer}>
+            {msg2}
+            </div>
+          )}
     </div>
   );
 }

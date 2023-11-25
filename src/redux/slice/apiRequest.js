@@ -1,7 +1,7 @@
 import axios from "axios";
 import { getProductError, getProductStart, getProductSuccess, addProductStart, addProductSuccsess, addProductFailed, deleteProductStart, deleteProductSuccsess, deleteProductFailed, updateProductStart, updateProductSuccsess, updateProductFailed } from "./productSlice";
-import { loginFailed, loginStart, loginSuccsess, registerFailed, registerStart, registerSuccsess } from "./authSlice"
-import { deleteUserFailed, deleteUsersStart, deleteUsersSuccsess, getUserFailed, getUsersStart, getUsersSuccsess} from "./userSlice";
+import { loginFailed, loginStart, loginSuccess, loginSuccsess, logoutFailed, logoutSuccess, registerFailed, registerStart, registerSuccess, registerSuccsess } from "./authSlice"
+import { deleteUserFailed, deleteUsersStart, deleteUsersSuccsess, getUserFailed, getUsersStart, getUsersSuccsess } from "./userSlice";
 
 export const getAllProducts = async (dispatch) => {
     dispatch(getProductStart());
@@ -39,10 +39,10 @@ export const updateProduct = async (product, id, dispatch) => {
     dispatch(updateProductStart());
     try {
         const res = await axios.put(`http://localhost:3000/${id}`, product);
-        dispatch(updateProductSuccsess(res.data)); 
+        dispatch(updateProductSuccsess(res.data));
     } catch (err) {
         console.error('Error updating product:', err);
-        dispatch(updateProductFailed(err.message)); 
+        dispatch(updateProductFailed(err.message));
     }
 };
 
@@ -51,20 +51,31 @@ export const updateProduct = async (product, id, dispatch) => {
 export const loginUser = async (user, dispatch, navigate) => {
     dispatch(loginStart());
     try {
-        const res = await axios.post("http://localhost:3000/v1/auth/login", user)
-        dispatch(loginSuccsess(res.data))
-        navigate("/home")
-
+      const res = await axios.post("http://localhost:3000/v1/auth/login", user);
+      dispatch(loginSuccess(res.data));
+      navigate("/");
+    } catch (error) {
+      console.error("Error logging in:", error);
+      if (error.response) {
+       
+        dispatch(loginFailed(error.response.data)); 
+      } else if (error.request) {
+        
+        console.error("No response received:", error.request);
+        dispatch(loginFailed("No response received"));
+      } else {
+      
+        console.error("Error setting up the request:", error.message);
+        dispatch(loginFailed(error.message));
+      }
     }
-    catch (err) {
-        dispatch(loginFailed())
-    }
-}
+  };
+  
 export const registerUser = async (user, dispatch, navigate) => {
     dispatch(registerStart());
     try {
         await axios.post("http://localhost:3000/v1/auth/register", user)
-        dispatch(registerSuccsess())
+        dispatch(registerSuccess())
         navigate("/login")
 
     }
@@ -73,31 +84,59 @@ export const registerUser = async (user, dispatch, navigate) => {
     }
 }
 export const getAllUser = async (accessToken, dispatch) => {
-    dispatch(getUsersStart()); 
+    dispatch(getUsersStart());
     try {
-      const res = await axios.get("http://localhost:3000/v1/user/", {
-        headers: { token: `Bearer ${accessToken}` },
-      });
-      dispatch(getUsersSuccsess(res.data));
+        const res = await axios.get("http://localhost:3000/v1/user/", {
+            headers: { token: `Bearer ${accessToken}` },
+        });
+        dispatch(getUsersSuccsess(res.data));
     } catch (error) {
-      console.error("Error fetching user data:", error);
-      dispatch(getUserFailed());
+        console.error("Error fetching user data:", error);
+        dispatch(getUserFailed());
     }
-  };
-  export const deleteUser = async (accessToken, dispatch, id,axiosJWT) => {
-    dispatch(deleteUsersStart()); 
+};
+export const deleteUser = async (accessToken, dispatch, id, axiosJWT) => {
+    dispatch(deleteUsersStart());
     try {
-      const res = await axiosJWT.delete("http://localhost:3000/v1/user/"+ id, {
-        headers: { token: `Bearer ${accessToken}` },
-      });
-      dispatch(deleteUsersSuccsess(res.data));
+        const res = await axios.delete(`http://localhost:3000/v1/user/${id}`, {
+            headers: { token: `Bearer ${accessToken}` },
+        });
+        dispatch(deleteUsersSuccsess(res.data));
     } catch (error) {
-      console.error("Error fetching user data:", error);
-      dispatch(deleteUserFailed());
+        console.error("Error deleting user:", error);
+        if (error.response) {
+            dispatch(deleteUserFailed(error.response.data)); 
+        } else if (error.request) {
+            console.error("No response received:", error.request);
+            dispatch(deleteUserFailed("No response received"));
+        } else {
+            dispatch(deleteUserFailed(error.message));
+        }
     }
-  };
+};
+export const logOutUser = async (accessToken, dispatch, id, navigate) => {
+    dispatch(loginStart());
+    try {
+        const res = await axios.post("http://localhost:3000/v1/auth/logout" , id,{
+            headers: { token: `Bearer ${accessToken}` },
+        });
+        dispatch(logoutSuccess(res.data));
+        navigate("/")
+    } catch (error) {
+        console.error("Error deleting user:", error);
+        if (error.response) {
+            dispatch(logoutFailed(error.response.data)); 
+        } else if (error.request) {
+            console.error("No response received:", error.request);
+            dispatch(logoutFailed("No response received"));
+        } else {
+            dispatch(logoutFailed(error.message));
+        }
+    }
+};
 
 
 
-  
-  
+
+
+

@@ -17,13 +17,16 @@ import Counter from '../../../common/components/Buttons/Couter/Couter'
 
 
 function Detail() {
+    const productList = useSelector((state) => state.product.product?.allProduct);
     const { productId } = useParams()
-    const product = dataProductPages.find(prod => prod.id === productId);
+    const product = productList.find(prod => prod._id === productId);
+
+
 
     const dispatch = useDispatch();
 
-    const cartSlice = useSelector(state => state.cart.carts)
-    console.log(product)
+
+
     const send = (e) => {
         dispatch(addtoCart(e))
 

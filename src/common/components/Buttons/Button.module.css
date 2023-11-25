@@ -1,12 +1,13 @@
 @import url('/src/common/styles/variables.css');
 .btn{
-    height: 51.923px;
+   
+    width: 100%;
 }
 .defaultValue {
     background-color: var(--blue-BG);
     color: #ffffff;
    
-    height: 52px;
+    height: 47px;
     text-align: center;
     color: #FFF;
     text-align: center;

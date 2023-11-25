@@ -47,7 +47,13 @@ export const sideProductConfig = {
     Rate: {
       
       colorText: 'red',
-    }
+    },
+    Badge: {
+     dotSize: 3,
+     colorError: 'blue',
+     indicatorHeight: 13,
+     colorBorderBg: 'none'
+    },
   },
 }
 

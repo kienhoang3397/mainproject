@@ -2,23 +2,29 @@ import React, { useEffect, useState } from 'react';
 
 import ProductListingCard from '../../../common/components/Cards/ProductListingCard/ProductListingCard';
 import NavSearchProduct from '../../../common/layouts/navbar/NavSearchProduct/NavSearchProduct';
-import {  } from '../../../common/datas/ProductListingData';
+import { dataProductPages } from '../../../common/datas/ProductListingData';
 import Sidebar from '../../../common/components/Side/Sidebar/Sidebar';
 import styles from './ProductPage.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllProducts } from '../../../redux/slice/apiRequest';
+import { useNavigate } from 'react-router-dom';
 
 function ProductPage() {
   const productList = useSelector((state) => state.product.product.allProduct);
+  const user = useSelector((state) => state.auth.login?.currentUser);
+  const navigate = useNavigate()
   const dispatch = useDispatch();
 
   useEffect(() => {
+    if(!user){
+      navigate('/login')
+    }
     getAllProducts(dispatch);
   }, []);
     const [selectedCategories, setSelectedCategories] = useState([]);
   const [query, setQuery] = useState('');
-  const [priceFilterVal, setPriceFilterVal] = useState([0, 500000]);
-  const [priceFilterVal2, setPriceFilterVal2] = useState([0, 500000]);
+  const [priceFilterVal, setPriceFilterVal] = useState([0, 5000000]);
+  const [priceFilterVal2, setPriceFilterVal2] = useState([0, 5000000]);
 
   const handleInputChange = (event) => {
     setQuery(event.target.value);
@@ -93,16 +99,17 @@ function ProductPage() {
       filteredProducts = filteredProducts.filter((product) =>
         product.name.toLowerCase().includes(query.toLowerCase())
       );
+      
     }
 
-    return filteredProducts.map(({ id, image, price, name, delprice }) => (
+    return filteredProducts.map(({ _id , image, price, name, delprice }) => (
       <ProductListingCard
         image={image}
         price={price}
         name={name}
         delprice={delprice}
-        key={id}
-        id={id}
+        key={_id}
+        id={_id}
       />
     ));
   }

@@ -4,16 +4,18 @@ import Logo from '../../assets/image/Logo #8B8E99 1 (1).png'
 import Theme from '../../common/components/Themes/Theme'
 import ContactHorizontal, { ContactVertical } from '../../common/components/Items/ContactHorizontal'
 import { Link } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 
 
 
 function AboutPage() {
+  const user = useSelector((state) => state.auth.login.currentUser?.user);
   return (
     <div className={styles.bg}>
       <header className={styles.header}>
         <p className={styles.title}>About the ex.iphones.</p>
         <div className={styles.adminAndDate}>
-          <p className={styles.admin}>Feyz Ibrahim</p>
+          <p className={styles.admin}>Hoang Kien</p>
           <svg xmlns="http://www.w3.org/2000/svg" width="20" height="40" viewBox="0 0 2 40" fill="none">
             <path d="M1 0V40" stroke="black" stroke-opacity="0.1" />
           </svg>

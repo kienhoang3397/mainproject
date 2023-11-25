@@ -33,6 +33,7 @@ const authController = {
         username: req.body.username,
         email: req.body.email,
         password: req.body.password, 
+        phonenumber: req.body.phonenumber
       });
 
       // Save user to DB
@@ -47,11 +48,11 @@ const authController = {
       const user = await User.findOne({ username: req.body.username });
   
       if (!user) {
-        return res.status(404).json("Wrong Username!");
+        return res.status(404).json("Wrong Username or Password!");
       }
   
       if (req.body.password !== user.password) {
-        return res.status(404).json("Wrong Password!");
+        return res.status(404).json("Wrong Username or Password!");
       }
   
       const accessToken = authController.generateAccessToken(user);

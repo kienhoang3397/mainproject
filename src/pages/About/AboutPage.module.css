@@ -1,6 +1,4 @@
-.bg {
-    background: var(--BG);
-}
+
 .header {
     display: flex;
     flex-direction: column;

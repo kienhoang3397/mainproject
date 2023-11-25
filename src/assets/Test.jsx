@@ -22,47 +22,19 @@
 // export default Test;
 import React, { useState } from 'react';
 
-const Test = () => {
-  const [formData, setFormData] = useState({
-    subjects: [], // Mảng lưu trữ các môn học được chọn
-  });
-
-  const subjectsList = ['Math', 'Science', 'History', 'English']; // Thay đổi danh sách môn học theo nhu cầu
-
-  const handleCheckboxChange = (subject) => {
-    const updatedSubjects = [...formData.subjects];
-
-    if (updatedSubjects.includes(subject)) {
-      // Nếu môn học đã được chọn, loại bỏ khỏi danh sách
-      updatedSubjects.splice(updatedSubjects.indexOf(subject), 1);
-    } else {
-      // Nếu môn học chưa được chọn, thêm vào danh sách
-      updatedSubjects.push(subject);
-    }
-
-    setFormData({
-      ...formData,
-      subjects: updatedSubjects,
-    });
-  };
-
+const Test = ({ label, name, type, register, value, onChange, errorMessage }) => {
   return (
-    <div className="subject">
-      <p className='titleSubject'>Select Subject?</p>
-      {/* Render checkboxes dynamically */}
-      {subjectsList.map((subject) => (
-        <label key={subject} className="checkBoxField">
-          <p className='contentCheckBox'>{subject}</p>
-          <input
-            type="checkbox"
-            value={subject}
-            checked={formData.subjects.includes(subject)}
-            onChange={() => handleCheckboxChange(subject)}
-          />
-          <span className="checkmark"></span>
-        </label>
-      ))}
-    </div>
+    <label>
+      {label}:
+      <input
+        name={name}
+        type={type}
+        {...register(name, { required: true })}
+        value={value}
+        onChange={onChange}
+      />
+      <div style={{ color: "red" }}>{errorMessage}</div>
+    </label>
   );
 };
 

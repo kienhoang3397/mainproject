@@ -28,17 +28,17 @@ function BeforeLoginNav({ darkNav, lightNav }) {
   return (
     <div className={styles.navField}>
       {user ? (
-        <nav className={styles.nav}>
-          <div className={styles.logo}>
+        <nav className={navClasses}>
+          <Link to={'/'} className={styles.logo}>
 
             <Theme greyText />
-          </div>
+          </Link>
 
           <div className={styles.router}>
-            <Link className={styles.item} to={'/home'}>
-              Home <FontAwesomeIcon icon={faChevronDown} />
+            <Link className={styles.item} to={'/'}>
+              Home 
             </Link>
-            <p className={styles.item}>|</p>
+            <p className={styles.item}>Product <FontAwesomeIcon icon={faChevronDown} /></p>
             <p className={styles.item}>Origial Products</p>
           </div>
           
@@ -47,13 +47,13 @@ function BeforeLoginNav({ darkNav, lightNav }) {
 
       ) : (
         <nav className={navClasses}>
-          <Link to={'/home'} className={styles.logo}>
+          <Link to={'/'} className={styles.logo}>
             <div className={styles.logo} />
             <Theme greyText />
           </Link>
 
           <div className={styles.router}>
-            <Link className={styles.item} to={'/home'}>
+            <Link className={styles.item} to={'/'}>
               Home
             </Link>
             <Link className={styles.item} to={'/contact'}>

@@ -1,48 +1,72 @@
 import React, { useState } from 'react';
-import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut } from 'firebase/auth';
-
-import Theme from '../../../common/components/Themes/Theme';
-import { auth } from '../../../firebase';
-import Logo from '../../../common/components/Logos/Logo';
-import { FormInputEmail, FormInputPassword, FormInputPhoneNumber, FormInputUsername } from '../../../common/components/Forms/FormInput/FormInput';
-import Btn from '../../../common/components/Buttons/Button';
+import { useForm } from 'react-hook-form';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
-import styles from './RegPage.module.css';
 import { registerUser } from '../../../redux/slice/apiRequest';
-import { useDispatch } from 'react-redux';
+import Logo from '../../../common/components/Logos/Logo';
+import { FormInputEmail, FormInputPassword, FormInputPhoneNumber, FormInputUsername, FormInputt } from '../../../common/components/Forms/FormInput/FormInput';
+import Btn from '../../../common/components/Buttons/Button';
+import { MdOutlineEmail } from "react-icons/md";
+import { RiLockPasswordLine } from "react-icons/ri";
+import { FiUser } from "react-icons/fi";
+import { BsTelephone } from "react-icons/bs";
+import { auth } from '../../../firebase';
+import { DevTool } from '@hookform/devtools';
+import styles from './RegPage.module.css';
+import { ZodResolver, zodResolver } from '@hookform/resolvers/zod';
+import { string, z } from 'zod';
+import { message } from 'antd';
+import Test from '../../../assets/Test';
+import { AiFillPhone } from 'react-icons/ai';
+
+const schema = z.object({
+    username: string().min(6, { message: 'Tên người dùng ít nhất phải có 6 ký tự.' }).max(20, { message: 'Tên người dùng không được quá 20 ký tự.' }),
+    email: string().email('Email không hợp lệ.').min(1, { message: 'Email không được để trống.' }).max(50, { message: 'Email không được quá 50 ký tự.' }),
+    password: string().min(4, { message: 'Tên người dùng ít nhất phải có 4 ký tự.' }),
+    phonenumber: string()
+        .min(1, { message: 'Số điện thoại không được để trống.' })
+        .refine((value) => /^\d+$/.test(value), {
+            message: 'Số điện thoại chỉ được chứa các chữ số.',
+        })
+});
+
 
 function RegPage() {
-    const [emailVal, setEmailVal] = useState('');
-    const [usernameVal, setUsernameVal] = useState('');
-    const [passwordVal, setPasswordVal] = useState('');
 
-    const dispatch = useDispatch(); // Corrected: Added parentheses
-    const navigate = useNavigate(); // Corrected: Added parentheses
+    const [userData, setUserData] = useState({
+        username: '',
+        email: '',
+        password: '',
+        phonenumber: '',
+    });
+    const { register, handleSubmit, control, formState: { errors } } = useForm({ resolver: zodResolver(schema) });
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
 
-    const handleChangeEmail = (event) => {
-        const email = event.target.value;
-        setEmailVal(email);
+    const onSubmit = (data) => {
+        console.log(data);
+        handleReg(data);
     };
 
-    const handleChangePassword = (event) => {
-        const password = event.target.value;
-        setPasswordVal(password);
-    };
+    const handleChange = (event) => {
+        const { name, value } = event.target;
+        setUserData((prevUserData) => ({
+            ...prevUserData,
+            [name]: value,
+        }));
 
-    const handleChangeUsername = (event) => {
-        const username = event.target.value;
-        setUsernameVal(username);
     };
 
     const handleReg = () => {
         const newUser = {
-            username: usernameVal,
-            password: passwordVal,
-            email: emailVal
+            username: userData.username,
+            password: userData.password,
+            email: userData.email,
+            phonenumber: userData.phonenumber,
         };
+
         registerUser(newUser, dispatch, navigate);
     };
-
 
     return (
         <div className={styles.loginPageContainer}>
@@ -50,16 +74,80 @@ function RegPage() {
                 <img src="https://i.ibb.co/hFXwLcv/imgLogin.png" alt="" />
             </section>
             <section className={styles.formLogin}>
-                <Theme greyText width={'1000px'} height={'100px'} />
+                <div className={styles.theme}>
+                    <Logo greyLogo width={'44px'} height={'44px'} /> <p className={styles.text}>ex.iphones.</p>
+                </div>
                 <p className={styles.textLogin}>Sign Up</p>
-                <FormInputUsername val={usernameVal} handleChange={handleChangeUsername} />
-                <FormInputEmail val={emailVal} handleChange={handleChangeEmail} />
-                <FormInputPassword val={passwordVal} handleChange={handleChangePassword} title={'Password'} />
 
-                <Btn defaultValue handleBtn={handleReg} content={'Sign Up'} />
+                <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
+                    <label>
+                        <FormInputt
+                            prefix={<FiUser />}
+                            placeholder={'Enter your name '}
+                            label="Username"
+                            name="username"
+                            type="text"
+                            register={register}
+                            value={userData.username}
+                            onChange={handleChange}
+                            errorMessage={errors?.username?.message}
+                        />
+                    </label>
+
+                    <label>
+                        <FormInputt
+                            prefix={<MdOutlineEmail />}
+                            placeholder={"example@email.com"}
+                            label="Email"
+                            name="email"
+                            type="text"
+                            register={register}
+                            value={userData.email}
+                            onChange={handleChange}
+                            errorMessage={errors?.email?.message}
+                        />
+                    </label>
+
+                    <label>
+                        <FormInputt
+                            prefix={<RiLockPasswordLine />}                        
+                            placeholder={'Enter your password '}
+                            label="Password"
+                            name="password"
+                            type="password"
+                            register={register}
+                            value={userData.password}
+                            onChange={handleChange}
+                            errorMessage={errors?.password?.message}
+                        />
+                    </label>
+
+                    <label>
+                        <FormInputt
+                        prefix={<BsTelephone />}
+                        placeholder={'Enter your phone number'}
+                            label={"Phone Number (Optional)"}
+                            name="phonenumber"
+                            type="tel"
+                            register={register}
+                            value={userData.phonenumber}
+                            onChange={handleChange}
+                            errorMessage={errors?.phonenumber?.message}
+                        />
+                    </label>
+
+                    <Btn defaultValue content={'Sign Up'} type="submit"></Btn>
+                    
+                </form>
+
+                <DevTool control={control} />
+
+
+
+
                 <section className={styles.questionSignup}>
                     <p className={styles.question}>Already have an account?</p>
-                    <p className={styles.signupNow}>Login Now</p>
+                    <Link to={"/login"} className={styles.signupNow}>Login Now</Link>
                 </section>
                 <section className={styles.shapeForm}>
                     <div className={styles.shapeW}></div>
@@ -80,7 +168,7 @@ function RegPage() {
                             </clipPath>
                         </defs>
                     </svg>
-                    <p className={styles.googleSignupContent}>Continue with Google</p>
+                    <p className={styles.googleSignupContent}>Continue with Google ( Coming soon... )</p>
                 </section>
             </section>
         </div>

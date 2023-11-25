@@ -20,6 +20,11 @@ const userSchema = new mongoose.Schema(
       require: true,
       min: 6,
     },
+    phonenumber:{
+      type: Number,
+      require: true,
+      min: 8,
+    },
     isAdmin: {
       type: Boolean,
       default: false,

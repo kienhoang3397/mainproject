@@ -10,7 +10,7 @@ const cartSlice = createSlice({
 
 
     addtoCart: (state, action) => {
-      const itemIndex = state.carts.findIndex((item) => item.id === action.payload.id);
+      const itemIndex = state.carts.findIndex((item) => item._id === action.payload._id);
       // console.log(itemIndex)
       if (itemIndex >= 0) {
 
@@ -22,10 +22,10 @@ const cartSlice = createSlice({
       }
     },
     removeItemformCart: (state, action) => {
-      state.carts = state.carts.filter(item => item.id !== action.payload.id);
+      state.carts = state.carts.filter(item => item._id !== action.payload._id);
     },
     removeSingleIteams: (state, action) => {
-      const iteamIndex_dec = state.carts.findIndex((item) => item.id === action.payload.id);
+      const iteamIndex_dec = state.carts.findIndex((item) => item._id === action.payload._id);
 
       if (state.carts[iteamIndex_dec].qnty >= 1) {
         state.carts[iteamIndex_dec].qnty -= 1
