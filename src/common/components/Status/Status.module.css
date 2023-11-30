@@ -1,0 +1,12 @@
+.defaultColor{
+    color: gray;
+}
+.status{
+    display: flex;
+align-content: center;
+font-family: Poppins;
+font-size: 14px;
+font-style: normal;
+font-weight: 600;
+line-height: 125.5%; /* 17.57px */
+}

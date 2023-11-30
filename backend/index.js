@@ -26,7 +26,8 @@ app.use(express.json());
 // //ROUTES
 app.use("/v1/auth", authRoute);
 app.use("/v1/user", userRoute);
-app.use(productRoute)
+app.use("/product",productRoute)
+// app.use('/carts',require("./routers/cart"))
 
 
 // Call the function to insert data

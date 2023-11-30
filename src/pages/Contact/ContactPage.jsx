@@ -21,7 +21,7 @@ function ContactPage() {
 
   const handleInputChange = (name, value) => {
     setFormData({ ...formData, [name]: value });
-    console.log(formData)
+   
 
   };
 

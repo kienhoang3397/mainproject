@@ -6,6 +6,7 @@ import selectedCategoriesSlice from './slice/check';
 import priceFilter from "./slice/priceFilter";
 import selectedPrice from './slice/priceFilter';
 import cartSlice from "./slice/cartSlice";
+import wishSlice from "./slice/wishlist";
 import productRuducer from "./slice/productSlice";
 import authReducer from "./slice/authSlice"
 import userReducer from "./slice/userSlice"
@@ -20,7 +21,8 @@ export default configureStore({
     cart: cartSlice,
     product: productRuducer,
     auth: authReducer,
-    users: userReducer
+    users: userReducer,
+    wishlist: wishSlice
    
     
   },

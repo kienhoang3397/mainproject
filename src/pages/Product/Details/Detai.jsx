@@ -14,24 +14,34 @@ import { useDispatch, useSelector } from 'react-redux'
 import useSelection from 'antd/es/table/hooks/useSelection'
 import cartSlice, { addtoCart } from '../../../redux/slice/cartSlice'
 import Counter from '../../../common/components/Buttons/Couter/Couter'
+import { addProductToCart } from '../../../redux/slice/UserFeatureApi'
 
 
 function Detail() {
     const productList = useSelector((state) => state.product.product?.allProduct);
     const { productId } = useParams()
     const product = productList.find(prod => prod._id === productId);
+    const token = useSelector((state) => state.auth?.login?.currentUser?.accessToken);
 
-
-
+    const cartSlice = useSelector(state => state.cart.carts)
     const dispatch = useDispatch();
 
 
 
-    const send = (e) => {
-        dispatch(addtoCart(e))
-
+    const send = () => {
+        // Pass product and token to addProductToCart function
+        addProductToCart(product, token)
+            .then((res) => {
+                console.log(res.data);
+                // You can dispatch an action here if needed
+                // dispatch(addToCartSuccess(res.data));
+            })
+            .catch((err) => {
+                console.error('Error adding product to cart:', err);
+                // You can dispatch an action here if needed
+                // dispatch(addToCartFailure(err.message));
+            });
     }
-
 
 
     return (
@@ -80,7 +90,7 @@ function Detail() {
                         <DropMenuCustom item1={123412124} />
                     </div>
                     <div className='btnDetail'>
-                        <Btn handleBtn={() => send(product)} variant2 content={'Add to Cart'}></Btn>
+                        <Btn handleBtn={() => send()} variant2 content={'Add to Cart'}></Btn>
 
                         <Link to={'/shoppingcart'}>  <Btn variant2 content={'Clickme to Cart'} />  </Link>
                     </div>

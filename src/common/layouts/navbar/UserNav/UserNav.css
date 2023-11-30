@@ -1,0 +1,130 @@
+.SidebarDashboardUser {
+    display: flex;
+
+
+}
+
+.SidebarDashboardUser {
+    display: flex;
+    background-color: var(--border-color);
+}
+
+.siderUser {
+    display: flex;
+    width: 223px;
+    padding: 25px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 25px;
+    flex-shrink: 0;
+    align-self: stretch;
+    border-right: 1px solid var(--Border-Color, #c6d1d6);
+}
+
+.mainMenuUser {
+    height: fit-content;
+    padding: 16px 0px;
+    border-radius: 4px;
+    border: 1px solid var(--gray-100, #E4E7E9);
+    background: var(--gray-00, #FFF);
+    box-shadow: 0px 8px 40px 0px rgba(0, 0, 0, 0.08);
+}
+
+.menuItemUser {
+    display: flex;
+    width: 264px;
+    height: 40px;
+    padding: 10px 154px 10px 19px;
+    align-items: flex-start;
+    gap: 14.07px;
+}
+
+.menuUser {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 17px;
+    align-self: stretch;
+}
+
+.menuTitleUser {
+    color: var(--Blue-BG, #3858D6);
+    font-family: Poppins;
+    font-size: 11px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 11px;
+    /* 100% */
+    letter-spacing: 1px;
+}
+
+.menuItemUser>* {
+    color: var(--Font-Color-Black, #8B8E99);
+    transition: color 0.2s ease;
+}
+
+.menuItemUser {
+
+    display: flex;
+    text-decoration: none;
+    height: 42px;
+    padding: 11px 75px 11px 16px;
+    align-items: center;
+    gap: 9.07px;
+    cursor: pointer;
+}
+
+.menuItemUser.active>* {
+    color: white;
+}
+
+.menuItemUser.active {
+    background-color: var(--blue-BG)
+}
+
+
+
+.menuIconUser {
+    width: 22.93px;
+    height: 20px;
+    flex-shrink: 0;
+    color: var(--Font-Color-Black, #8B8E99);
+}
+
+.menuIconDashUser {
+    font-size: 16px;
+    flex-shrink: 0;
+    color: var(--Font-Color-Black, #8B8E99);
+}
+
+
+.menuContentUser {
+    color: var(--Font-Color-Black, #8B8E99);
+    font-family: Poppins;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 500;
+    /* 100% */
+    letter-spacing: 0.5px;
+}
+
+.confirmationDialog {
+
+  position: fixed;
+    top: 50%;
+    left: 50%;
+    z-index: 10000;
+    transform: translate(-50%, -50%);
+    background-color: rgba(56, 88, 214, 0.4); /* #3858D6 with 70% opacity */
+    border: 2px solid #3858D6 ;
+    border-radius: 5px;
+    padding: 15px;
+    width: 30%;
+    height: 30%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+}
+
+

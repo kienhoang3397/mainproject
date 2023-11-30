@@ -29,10 +29,11 @@ const Test = ({ label, name, type, register, value, onChange, errorMessage }) =>
       <input
         name={name}
         type={type}
-        {...register(name, { required: true })}
+        
         value={value}
         onChange={onChange}
       />
+      asgasga
       <div style={{ color: "red" }}>{errorMessage}</div>
     </label>
   );

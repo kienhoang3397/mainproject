@@ -20,14 +20,16 @@ function LoginPage() {
     const [isSubmitted, setIsSubmitted] = useState(false);
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const [userData, setUserData] = useState({ username: '', password: '' });
+   
     const msg = useSelector((state) => state.auth?.login.msg);
+    const [userData, setUserData] = useState({ username: '', password: '' });
     const handleChange = (event) => {
         const { name, value } = event.target;
         setUserData((prevData) => ({
             ...prevData,
             [name]: value,
         }));
+        console.log(userData)
     };
 
     const { register, handleSubmit, formState: { errors } } = useForm({ resolver: zodResolver(schema) });

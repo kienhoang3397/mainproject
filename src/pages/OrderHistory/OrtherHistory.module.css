@@ -1,0 +1,195 @@
+.table {
+    width: 100%;
+}
+
+.container {
+    width: 100%;
+}
+
+.settingHeading {
+    color: var(--gray-900, #191C1F);
+    padding: 20px 24px;
+    /* Body/Large/500 */
+    font-family: Public Sans;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 24px;
+    /* 133.333% */
+}
+
+.fieldSettingHeading {
+
+    border-radius: 4px 4px 0px 0px;
+    border-bottom: 1px solid var(--gray-100, #E4E7E9);
+    background: var(--gray-00, #FFF);
+
+}
+
+.trTableWL {
+
+
+    padding: 10px 24px;
+    align-items: center;
+    gap: 24px;
+    /* border: 1px solid var(--Border-Color, #E4E7E9); */
+    background: var(--BG, #F5F5F7);
+}
+
+.productSvgg {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+
+}
+
+.productSvg {
+    padding: 24px;
+    padding-left: 0;
+}
+
+/* WishList.module.css */
+
+
+
+.thTableWL {
+    padding: 11px 24px 11px 0px;
+    display: table-cell;
+    color: var(--Font-Color-Black, #8B8E99);
+    font-family: Public Sans;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 150%;
+    /* 18px */
+
+}
+
+.trBody {
+
+    background-color: #FFFFFF;
+
+}
+
+.trBody:not(:last-child) {
+    border-bottom: 1.5px solid #E4E7E9;
+}
+
+.date {
+    color: var(--gray-600, #5F6C72);
+
+    /* Body/Small/400 */
+    font-family: Public Sans;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 20px;
+    /* 142.857% */
+}
+
+.total {
+    color: var(--gray-700, #475156);
+
+    /* Body/Small/400 */
+    font-family: Public Sans;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 20px;
+    /* 142.857% */
+}
+
+.product {
+    display: flex;
+    align-items: center;
+
+}
+
+
+
+.productInfo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+}
+
+.productContent {
+
+
+    overflow: hidden;
+    color: var(--Default-Text-Color, #191C1F);
+    text-overflow: ellipsis;
+
+    /* Body/Small/400 */
+    font-family: Public Sans;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 20px;
+
+    white-space: nowrap;
+    /* Ngăn chặn ngắn dòng nếu nội dung quá nhiều */
+
+}
+
+.delPrice {
+
+    color: var(--Font-Color-Black, #8B8E99);
+    font-family: Public Sans;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 20px;
+    /* 142.857% */
+    text-decoration-line: strikethrough;
+
+}
+
+.status {
+    color: var(--primary-500, #FA8232);
+
+    /* Body/Small/600 */
+    font-family: Public Sans;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 20px;
+    /* 142.857% */
+}
+
+.test {
+    display: flex;
+    align-items: center;
+}
+
+.detail {
+    display: flex;
+    padding-right: 0px;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    flex: 1 0 0;
+}
+.detailContent{
+    color: var(--Blue-BG, #3858D6);
+
+/* Body/Small/600 */
+font-family: Public Sans;
+font-size: 14px;
+font-style: normal;
+font-weight: 600;
+line-height: 20px; /* 142.857% */
+}
+
+.arrow {
+    color: var(--Blue-BG, #3858D6);
+    display: flex;
+    width: 22.93px;
+    height: 20px;
+    padding: 7.675px 5.055px 4.375px 4.125px;
+    justify-content: center;
+    align-items: center;    
+}

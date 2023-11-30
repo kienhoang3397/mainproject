@@ -4,31 +4,34 @@ const userSchema = new mongoose.Schema(
   {
     username: {
       type: String,
-      require: true,
+      required: true,
       min: 6,
       max: 20,
       unique: true,
     },
     email: {
       type: String,
-      require: true,
+      required: true,
       max: 50,
-      unique: true,
     },
     password: {
       type: String,
-      require: true,
+      required: true,
       min: 6,
     },
-    phonenumber:{
+    phonenumber: {
       type: Number,
-      require: true,
+      required: true,
       min: 8,
     },
-    isAdmin: {
-      type: Boolean,
-      default: false,
-    },
+    cart: [
+      {
+        product: { type: mongoose.Schema.Types.ObjectId, ref: 'Product' },
+        quantity: { type: Number, default: 1 },
+        price: { type: Number, default: 0 }, 
+        amount: { type: Number, default: 0 }, 
+      },
+    ],
   },
   { timestamps: true }
 );

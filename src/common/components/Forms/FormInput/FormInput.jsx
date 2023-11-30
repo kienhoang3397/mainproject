@@ -122,11 +122,19 @@ export function FormInputUsername({ dark, light, val, handleChange }) {
     </div>
   );
 }
-export const FormInputt = ({ placeholder, dark, light, label, name, type, register, value, onChange, errorMessage, prefix }) => {
+
+
+export const FormInputt = ({ defaultValue, placeholder, fontFamily, dark, light, label, name, type, register, val, onChange, errorMessage, prefix }) => {
   const inputClasses = clsx(styles.input, {
     [styles.dark]: dark,
     [styles.light]: light,
   });
+
+  const titleClasses = clsx(styles.title, {
+    [styles.darkTitle]: dark, // Add a new darkTitle class
+    [styles.light]: light,
+  });
+
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
 
   const togglePasswordVisibility = () => {
@@ -134,39 +142,60 @@ export const FormInputt = ({ placeholder, dark, light, label, name, type, regist
   };
 
   return (
-    <div className={styles.form}>
+    <div className={clsx(styles.form, { [styles.dark]: dark, [styles.light]: light })}>
 
-      <label className={styles.label} >
-        <p className={styles.title} >{label}</p>
+      <label className={titleClasses}>
+        <p className={titleClasses}>{label}</p>
         <div className={styles.inputContainer}>
 
           <span className={styles.icon}>{prefix}</span>
           <input
+            defaultValue={defaultValue}
             className={inputClasses}
             name={name}
             type={isPasswordVisible ? 'text' : type}
             {...register(name, { required: true })}
-            value={value}
+            value={val}
             onChange={onChange}
             placeholder={placeholder}
           />
           {type === 'password' && (
-          
             <button
               className={styles.toggleButton}
               onClick={togglePasswordVisibility}
             > {isPasswordVisible ? <FaEye /> : <FaEyeSlash />}</button>
-             
-             
           )}
           <div className={styles.error}>{errorMessage}</div>
         </div>
       </label>
 
     </div>
-
   );
 };
+
+export function FormInputtFrame({ dark, light, label, content }) {
+  const containerClasses = clsx(styles.form, {
+    [styles.dark]: dark,
+    [styles.light]: light,
+  });
+
+  return (
+    <div className={containerClasses}>
+      <p className={styles.titleFrame}>{label}</p>
+      <div className={styles.inputContainerFrame}>
+        <div className={styles.input}>
+          {content || 'Null'}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+
+
+
+
+
 export function FormInputPhoneNumber({ dark, light, title, val, handleChange }) {
   const inputClasses = clsx(styles.input, {
     [styles.dark]: dark,

@@ -2,39 +2,34 @@ const mongoose = require("mongoose");
 
 const userSchema = new mongoose.Schema(
     {
-        qnty: {
-            type: Number,
-            require: true,
-        },
+     
         image: {
             type: String,
-            require: true,
+            required: true,
             max: 50,
             unique: true,
         },
         name: {
             type: String,
-            require: true,
+            required: true,
             min: 6,
         },
         price: {
             type: Number,
-            require: true
+            required: true
         },
         stock: {
             type: Number,
-            require: true
+            required: true
         },
-        discord: {
+        discount: {
             type: Number,
-            require: true,
+            required: true,
         },
         category: {
             type: String,
-            require: true
+            required: true
         }
-
-
     },
     { timestamps: true }
 );

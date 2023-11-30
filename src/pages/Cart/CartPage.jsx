@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import styles from './CartPage.module.css'
 import { AiOutlineCloseCircle } from 'react-icons/ai'
 import Couter from '../../common/components/Buttons/Couter/Couter'
@@ -8,8 +8,9 @@ import { useDispatch, useSelector } from 'react-redux'
 import { addtoCart, removeItemformCart, removeSingleIteams } from '../../redux/slice/cartSlice'
 
 function CartPage() {
+    const cart = useSelector((state) => state.auth.login.currentUser.user?.cart);
     const cartSlice = useSelector(state => state.cart.carts)
-    console.log(cartSlice)
+    useEffect(() => { console.log(cart) }, [])
 
     const dispatch = useDispatch()
     const handleIncrement = (e) => {
@@ -19,7 +20,7 @@ function CartPage() {
         dispatch(removeSingleIteams(e))
     }
     const handleRemoveFromCart = (e) => {
-        dispatch(removeItemformCart(e))
+        dispatch(removeItemformCart(e));
     }
 
 
@@ -30,7 +31,30 @@ function CartPage() {
 
     return (
         <div className={styles.container}>
-            <main className={styles.containerCartPage}>
+
+
+            {cart.map((item) => (
+                <div key={item.productId} className={styles.cartItem}>
+                    <div className={styles.itemImage}>
+                        <img src={item.image} alt={item.name} />
+                    </div>
+                    <div className={styles.itemDetails}>
+                        <h3>{item.name}</h3>
+                        <p>Price: ${item.price}</p>
+                        <Couter
+                            value={item.qnty}
+                            onIncrement={() => handleIncrement(item)}
+                            onDecrement={() => handleDecrement(item)}
+                        />
+                        <Btn onClick={() => handleRemoveFromCart(item)}>Remove</Btn>
+                    </div>
+                    <div className={styles.itemTotal}>
+                        <p>Total: ${(item.price * item.quantity).toFixed(2)}</p>
+                        {totalPrice += item.price * item.quantity}
+                    </div>
+                </div>
+            ))}
+            {/* <main className={styles.containerCartPage}>
                 <div className={styles.cartFullContainer}>
                     <section className={styles.title}>
                         <section className={styles.heading}>
@@ -51,9 +75,9 @@ function CartPage() {
                                 totalPrice += subtotal * qnty
                                 total += totalPrice
                                 return (
-                                    <section className={styles.productRow} key={item.id}>
+                                    <section className={styles.productRow} key={item._id}>
                                         <section className={styles.product}>
-                                            <div onClick={handleRemoveFromCart(item._id)} className={styles.iconProduct}><svg className={styles.icon} onClick={() => dispatch(removeItemformCart({ id: item.id }))} xmlns="http://www.w3.org/2000/svg" width="24" height="21" viewBox="0 0 24 21" fill="none">
+                                            <div  className={styles.iconProduct}><svg className={styles.icon} onClick={() => handleRemoveFromCart({ _id: item._id })} xmlns="http://www.w3.org/2000/svg" width="24" height="21" viewBox="0 0 24 21" fill="none">
                                                 <path d="M11.5264 19.9307C16.4969 19.9307 20.5264 15.9012 20.5264 10.9307C20.5264 5.9601 16.4969 1.93066 11.5264 1.93066C6.5558 1.93066 2.52637 5.9601 2.52637 10.9307C2.52637 15.9012 6.5558 19.9307 11.5264 19.9307Z" stroke="#8B8E99" stroke-width="1.5" stroke-miterlimit="10" />
                                                 <path d="M14.5264 7.93066L8.52637 13.9307" stroke="#8B8E99" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                                                 <path d="M14.5264 13.9307L8.52637 7.93066" stroke="#8B8E99" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
@@ -129,7 +153,7 @@ function CartPage() {
                     </div></aside>
 
 
-            </main>
+            </main> */}
 
 
 

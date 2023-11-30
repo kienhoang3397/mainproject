@@ -20,6 +20,7 @@ const cartSlice = createSlice({
         const temp = { ...action.payload, qnty: 1 };
         state.carts = [...state.carts, temp];
       }
+      
     },
     removeItemformCart: (state, action) => {
       state.carts = state.carts.filter(item => item._id !== action.payload._id);

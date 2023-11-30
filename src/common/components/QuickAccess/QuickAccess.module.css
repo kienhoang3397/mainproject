@@ -1,17 +1,25 @@
 .container {
     display: flex;
-   
-  
+
+
     justify-content: center;
     align-items: flex-end;
     gap: 28.625px;
     flex-shrink: 0;
 }
-.item{
+.icon2{
     color: #8B8E99;
     font-size: 20px;
     display: flex;
     align-items: center;
-flex-shrink: 0;
-cursor: pointer;
+    flex-shrink: 0;
+    cursor: pointer;
+}
+.item {
+    color: #8B8E99;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+    cursor: pointer;
 }

@@ -71,6 +71,8 @@ const productController = {
       res.status(500).json(err);
     }
   },
+
+
 };
 
 module.exports = productController;

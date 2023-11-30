@@ -5,18 +5,13 @@
     position: relative;
 }
 
-.title {
-    margin-bottom: 5px;
-}
+
 
 .input-container {
     position: relative;
 }
 
-.input {
-    padding-right: 30px;
-    /* Adjust the padding to accommodate the button */
-}
+
 
 .toggle-button {
     position: absolute;
@@ -35,7 +30,7 @@
 
 .input {
     display: flex;
-
+    padding-right: 30px;
     align-items: center;
     gap: 8px;
     width: 100%;
@@ -44,6 +39,26 @@
     caret-color: var(--font-color-black);
     color: var(--Font-Color-Black, #8B8E99);
     font-family: Inter;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 24px;
+    /* 150% */
+
+    /* Màu của dấu nhấp nháy */
+
+}
+.inputFrame {
+    display: flex;
+    padding-right: 30px;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+
+    outline: none;
+   caret-color: black;
+   color: black;
+   font-family: 'Public Sans';
     font-size: 16px;
     font-style: normal;
     font-weight: 400;
@@ -62,7 +77,7 @@
 
     color: var(--Font-Color-Black, #8B8E99);
     font-family: Inter;
-    font-size: 16px;
+    font-size: 14px;
     font-style: normal;
     font-weight: 400;
     line-height: 24px;
@@ -87,12 +102,23 @@
 }
 
 .title {
+    width: 100%;
     color: var(--font-color-black);
     font-family: 'Inter', sans-serif;
     font-size: 14px;
     font-style: normal;
     font-weight: 500;
     line-height: 20px;
+    margin-bottom: 5px;
+}
+.titleFrame {
+    color: black;
+    font-family: 'Public Sans';
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 20px;
+    margin-bottom: 5px;
 }
 
 .icon {
@@ -100,9 +126,20 @@
     display: flex;
     align-items: center;
 }
-
+/* Add this style definition to your CSS file */
+.darkTitle {
+    color: black; /* Set the desired color for dark mode */
+  }
+  
 .dark {
     background-color: transparent;
+
+    font-family: 'Public Sans';
+
+    /* Additional styles for dark mode */
+    & .input::placeholder {
+        font-family: 'Public Sans';
+    }
 }
 
 .light {
@@ -115,7 +152,17 @@
 }
 
 
-
+.inputContainerFrame{
+      border-radius: 8px;
+    border: 1px solid var(--Border-Color, #E4E7E9);
+    background: #FFF;
+    box-shadow: 0px 1px 2px 0px rgba(16, 24, 40, 0.05);
+    display: flex;
+    padding: 10px 14px;
+    align-items: center;
+    gap: 8px;
+    align-self: stretch;
+}
 .inputContainer {
     border-radius: 8px;
     border: 1px solid var(--Border-Color, #E4E7E9);

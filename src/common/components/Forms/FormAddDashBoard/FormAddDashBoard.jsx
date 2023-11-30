@@ -34,7 +34,7 @@ const dispatch = useDispatch();
 
     const handleInputChange = (name, value) => {
         setFormData((prevData) => ({ ...prevData, [name]: value }));
-        console.log(formData);
+      
     };
 
     return (

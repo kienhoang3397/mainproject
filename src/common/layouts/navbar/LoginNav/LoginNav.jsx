@@ -38,7 +38,7 @@ function BeforeLoginNav({ darkNav, lightNav }) {
             <Link className={styles.item} to={'/'}>
               Home 
             </Link>
-            <p className={styles.item}>Product <FontAwesomeIcon icon={faChevronDown} /></p>
+            <Link to={'product'} className={styles.item}>Product <FontAwesomeIcon icon={faChevronDown} /></Link>
             <p className={styles.item}>Origial Products</p>
           </div>
           
