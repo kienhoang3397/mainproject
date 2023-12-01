@@ -10,7 +10,7 @@ import { addtoCart, removeItemformCart, removeSingleIteams } from '../../redux/s
 function CartPage() {
     const cart = useSelector((state) => state.auth.login.currentUser.user?.cart);
     const cartSlice = useSelector(state => state.cart.carts)
-    useEffect(() => { console.log(cart) }, [])
+   
 
     const dispatch = useDispatch()
     const handleIncrement = (e) => {
@@ -33,27 +33,28 @@ function CartPage() {
         <div className={styles.container}>
 
 
-            {cart.map((item) => (
-                <div key={item.productId} className={styles.cartItem}>
-                    <div className={styles.itemImage}>
-                        <img src={item.image} alt={item.name} />
-                    </div>
-                    <div className={styles.itemDetails}>
-                        <h3>{item.name}</h3>
-                        <p>Price: ${item.price}</p>
-                        <Couter
-                            value={item.qnty}
-                            onIncrement={() => handleIncrement(item)}
-                            onDecrement={() => handleDecrement(item)}
-                        />
-                        <Btn onClick={() => handleRemoveFromCart(item)}>Remove</Btn>
-                    </div>
-                    <div className={styles.itemTotal}>
-                        <p>Total: ${(item.price * item.quantity).toFixed(2)}</p>
-                        {totalPrice += item.price * item.quantity}
-                    </div>
-                </div>
-            ))}
+             {cart.map((item) => (
+                 <div key={item.productId} className={styles.cartItem}>
+                     <div className={styles.itemImage}>
+                         <img src={item.image} alt={item.name} />
+                     </div>
+                     <div className={styles.itemDetails}>
+                         <h3>{item.name}</h3>
+                         <p>Price: ${item.price}</p>
+                         <Couter
+                             value={item.quantity}
+                             onIncrement={() => handleIncrement(item)}
+                             onDecrement={() => handleDecrement(item)}
+                         />
+                         <Btn onClick={() => handleRemoveFromCart(item)}>Remove</Btn>
+                     </div>
+                     <div className={styles.itemTotal}>
+                         <p>Total: ${(item.price * item.quantity).toFixed(2)}</p>
+                         {totalPrice += item.price * item.quantity}
+                     </div>
+                 </div>
+             ))}
+
             {/* <main className={styles.containerCartPage}>
                 <div className={styles.cartFullContainer}>
                     <section className={styles.title}>
@@ -91,7 +92,7 @@ function CartPage() {
 
 
                                         </section>
-                                        <Couter kienhoang={item.qnty} handleCouterDecrease={() => handleDecrement(item)} handleCouterIncrease={() => handleIncrement(item)} />
+                                        <Couter value={item.qnty} handleCouterDecrease={() => handleDecrement(item)} handleCouterIncrease={() => handleIncrement(item)} />
                                         <p className={styles.totalPrice}>₹{totalPrice}</p>
 
                                     </section>

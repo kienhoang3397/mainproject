@@ -18,30 +18,21 @@ import { addProductToCart } from '../../../redux/slice/UserFeatureApi'
 
 
 function Detail() {
-    const productList = useSelector((state) => state.product.product?.allProduct);
     const { productId } = useParams()
-    const product = productList.find(prod => prod._id === productId);
-    const token = useSelector((state) => state.auth?.login?.currentUser?.accessToken);
+    const product = dataProductPages.find(prod => prod.id === productId);
 
-    const cartSlice = useSelector(state => state.cart.carts)
+ 
+
     const dispatch = useDispatch();
 
+    const cartSlice = useSelector(state => state.cart?.carts)
+    console.log(cartSlice._id)
+  
+    const send = (e) => {
+     
 
-
-    const send = () => {
-        // Pass product and token to addProductToCart function
-        addProductToCart(product, token)
-            .then((res) => {
-                console.log(res.data);
-                // You can dispatch an action here if needed
-                // dispatch(addToCartSuccess(res.data));
-            })
-            .catch((err) => {
-                console.error('Error adding product to cart:', err);
-                // You can dispatch an action here if needed
-                // dispatch(addToCartFailure(err.message));
-            });
     }
+
 
 
     return (

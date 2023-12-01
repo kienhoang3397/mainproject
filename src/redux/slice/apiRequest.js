@@ -130,6 +130,42 @@ export const logOutUser = async ( dispatch, id, navigate, accessToken) => {
         }
     }
 };
+export const addToCart = async (productId, accessToken, quantity) => {
+    try {
+        const res = await axios.post(
+            "http://localhost:3000/v1/user/add-to-cart",
+            { productId, quantity },
+            {
+                headers: { Authorization: `Bearer ${accessToken}` },
+            }
+        );
+
+        // Handle the response as needed
+        console.log("Response:", res.data);
+        // You might want to dispatch an action or handle the response in some way
+
+    } catch (error) {
+        console.error("Error adding to cart:", error);
+
+        // Handle different types of errors
+        if (error.response) {
+            // The request was made and the server responded with a status code
+            // that falls out of the range of 2xx
+            console.error("Response data:", error.response.data);
+            console.error("Response status:", error.response.status);
+            console.error("Response headers:", error.response.headers);
+            // You might want to dispatch an action or handle the error in some way
+        } else if (error.request) {
+            // The request was made but no response was received
+            console.error("No response received:", error.request);
+            // You might want to dispatch an action or handle the error in some way
+        } else {
+            // Something happened in setting up the request that triggered an Error
+            console.error("Error message:", error.message);
+            // You might want to dispatch an action or handle the error in some way
+        }
+    }
+};
 
 
 
