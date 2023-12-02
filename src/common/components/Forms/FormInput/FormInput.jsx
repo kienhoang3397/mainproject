@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
 import { LockOutlined, MailOutlined, PhoneOutlined, SearchOutlined, UserOutlined } from '@ant-design/icons';
-import { ConfigProvider, Input, Space } from 'antd';
-import styles from './FormInput.module.css';
+import { ConfigProvider, Input } from 'antd';
 import clsx from 'clsx';
+import React, { useState } from 'react';
 import { FaEye } from "react-icons/fa";
 import { FaEyeSlash } from "react-icons/fa6";
+import styles from './FormInput.module.css';
 
 const theme = {
   components: {

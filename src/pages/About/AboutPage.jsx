@@ -1,10 +1,8 @@
 import React from 'react'
-import styles from './AboutPage.module.css'
-import Logo from '../../assets/image/Logo #8B8E99 1 (1).png'
-import Theme from '../../common/components/Themes/Theme'
-import ContactHorizontal, { ContactVertical } from '../../common/components/Items/ContactHorizontal'
-import { Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
+import Logo from '../../assets/image/Logo #8B8E99 1 (1).png'
+import { ContactVertical } from '../../common/components/Items/ContactHorizontal'
+import styles from './AboutPage.module.css'
 
 
 

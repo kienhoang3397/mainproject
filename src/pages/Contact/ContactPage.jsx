@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import FormInput, { FormInputDefault, FormInputEmail, FormInputPhoneNumber } from '../../common/components/Forms/FormInput/FormInput';
-import "./Contact.css"
-import ContactHorizontal from '../../common/components/Items/ContactHorizontal';
-import { PiPhoneCallFill } from "react-icons/pi";
-import { IoMdMail } from "react-icons/io";
 import { FaLocationDot } from "react-icons/fa6";
+import { IoMdMail } from "react-icons/io";
+import { PiPhoneCallFill } from "react-icons/pi";
 import Btn from '../../common/components/Buttons/Button';
+import { FormInputDefault, FormInputEmail, FormInputPhoneNumber } from '../../common/components/Forms/FormInput/FormInput';
+import ContactHorizontal from '../../common/components/Items/ContactHorizontal';
+import "./Contact.css";
 
 function ContactPage() {
   const [formData, setFormData] = useState({

@@ -3,25 +3,28 @@ import React, { useEffect, useState } from 'react';
 import ProductListingCard from '../../../common/components/Cards/ProductListingCard/ProductListingCard';
 import NavSearchProduct from '../../../common/layouts/navbar/NavSearchProduct/NavSearchProduct';
 
-import Sidebar from '../../../common/components/Side/Sidebar/Sidebar';
-import styles from './ProductPage.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllProducts } from '../../../redux/slice/apiRequest';
 import { useNavigate } from 'react-router-dom';
+import Sidebar from '../../../common/components/Side/Sidebar/Sidebar';
 import { dataProductPages } from '../../../common/datas/ProductListingData';
+import store from '../../../redux/store';
+import { productsFetch } from '../../../redux/slice/productApiSlice';
+import styles from './ProductPage.module.css';
 
 function ProductPage() {
-  const productList = useSelector((state) => state.product.product.allProduct);
+  const productList = useSelector((state) => state.productsApi?.product?.items);
+//  console.log(productList)
   const user = useSelector((state) => state.auth.login?.currentUser);
   const navigate = useNavigate()
   const dispatch = useDispatch();
 
-  // useEffect(() => {
-  //   if(!user){
-  //     navigate('/login')
-  //   }
-  //   getAllProducts(dispatch);
-  // }, []);
+  useEffect(() => {
+    if(!user){
+      navigate('/login')
+    }
+     store.dispatch(productsFetch())
+  }, []);
   const [selectedCategories, setSelectedCategories] = useState([]);
   const [query, setQuery] = useState('');
   const [priceFilterVal, setPriceFilterVal] = useState([0, 5000000]);
@@ -103,20 +106,20 @@ function ProductPage() {
 
     }
 
-    return filteredProducts.map(({ id, image, price, name, delprice }) => (
+    return filteredProducts.map(({ _id, image, price, name, delprice }) => (
       <ProductListingCard
         image={image}
         price={price}
         name={name}
         delprice={delprice}
-        key={id}
-        id={id}
+        key={_id}
+        id={_id}
       />
     ));
   }
 
 
-  const result = filteredData(dataProductPages, selectedCategories, query, priceFilterVal, priceFilterVal2);
+  const result = filteredData(productList, selectedCategories, query, priceFilterVal, priceFilterVal2);
 
   return (
     <div>

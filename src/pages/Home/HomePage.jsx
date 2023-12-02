@@ -1,24 +1,19 @@
-import React, { useEffect } from 'react'
+import React from 'react';
 
-import styles from './Home.module.scss'
+import styles from './Home.module.scss';
 
 import { SearchOutlined } from '@ant-design/icons';
-import inphone1 from '../../assets/image/iphone1.png'
-import figure from '../../assets/image/figure.png'
-import imgNews from '../../assets/image/newletter.png'
+import leftImg from '../../assets/image/AppleWatchs/tile_watch_se__cuswe7ukqd6q_large.png';
+import rightImg from '../../assets/image/AppleWatchs/tile_why_watch__ft68r958qmye_large.png';
+import figure from '../../assets/image/figure.png';
+import inphone1 from '../../assets/image/iphone1.png';
+import imgNews from '../../assets/image/newletter.png';
 import Btn from '../../common/components/Buttons/Button';
 import { Products } from '../../common/components/MappingComponents/Products/Product';
-import Theme from '../../common/components/Themes/Theme';
-import leftImg from '../../assets/image/AppleWatchs/tile_watch_se__cuswe7ukqd6q_large.png'
-import rightImg from '../../assets/image/AppleWatchs/tile_why_watch__ft68r958qmye_large.png'
-import HomeSlide, { IphoneRep } from '../../common/components/Sliders/Iphone/IphoneSlide';
+import AppleWatch from '../../common/components/Sliders/AppleWatch/AppleWatchSlide';
 import Iphone from '../../common/components/Sliders/Iphone/IphoneSlide';
-import AppleWatch, { AppleWatchRep } from '../../common/components/Sliders/AppleWatch/AppleWatchSlide';
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchTodos } from '../../redux/slice/todolist';
 import NewestHomePage from '../../common/components/Sliders/NewestHomePage/NewestHomePage';
-import { useNavigate } from 'react-router-dom';
-import { getAllUser } from '../../redux/slice/apiRequest';
+import Theme from '../../common/components/Themes/Theme';
 
 function HomePage(props) {
  

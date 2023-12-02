@@ -1,8 +1,7 @@
+import clsx from 'clsx';
 import React from 'react';
-import clsx from 'clsx'; 
-import styles from './Theme.module.css';
 import Logo from '../Logos/Logo';
-import { AiFillApple } from 'react-icons/ai';
+import styles from './Theme.module.css';
 
 
 function Theme({  textInv, whiteText, greyText, width, height }) {

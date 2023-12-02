@@ -1,15 +1,15 @@
+import { zodResolver } from '@hookform/resolvers/zod';
 import React, { useState } from 'react';
-import Logo from '../../../common/components/Logos/Logo';
-import styles from './LoginPage.module.css';
-import { FormInputt } from '../../../common/components/Forms/FormInput/FormInput';
-import Btn from '../../../common/components/Buttons/Button';
-import { Link, useNavigate } from 'react-router-dom';
+import { useForm } from 'react-hook-form';
 import { RiLockPasswordLine } from "react-icons/ri";
 import { useDispatch, useSelector } from 'react-redux';
-import { loginUser } from '../../../redux/slice/apiRequest';
-import { useForm } from 'react-hook-form';
+import { Link, useNavigate } from 'react-router-dom';
 import { string, z } from 'zod';
-import { zodResolver } from '@hookform/resolvers/zod';
+import Btn from '../../../common/components/Buttons/Button';
+import { FormInputt } from '../../../common/components/Forms/FormInput/FormInput';
+import Logo from '../../../common/components/Logos/Logo';
+import { loginUser } from '../../../redux/slice/apiRequest';
+import styles from './LoginPage.module.css';
 
 const schema = z.object({
     username: string().min(6, { message: 'Tên người dùng ít nhất phải có 6 ký tự.' }).max(20, { message: 'Tên người dùng không được quá 20 ký tự.' }),
@@ -29,7 +29,7 @@ function LoginPage() {
             ...prevData,
             [name]: value,
         }));
-        console.log(userData)
+       
     };
 
     const { register, handleSubmit, formState: { errors } } = useForm({ resolver: zodResolver(schema) });

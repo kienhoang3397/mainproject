@@ -1,9 +1,9 @@
 import React from 'react'
-import styles from './Footer.module.css'
-import { FormInputEmail, FormInputUsername } from '../../components/Forms/FormInput/FormInput'
 import Btn from '../../components/Buttons/Button'
+import { FormInputEmail, FormInputUsername } from '../../components/Forms/FormInput/FormInput'
+import ContactHorizontal from '../../components/Items/ContactHorizontal'
 import Logo from '../../components/Logos/Logo'
-import ContactHorizontal, { ContactVertical } from '../../components/Items/ContactHorizontal'
+import styles from './Footer.module.css'
 
 
 function Footer() {

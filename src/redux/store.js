@@ -1,29 +1,32 @@
 import { configureStore } from "@reduxjs/toolkit";
+import authReducer from "./slice/authSlice";
 
-import todoListReducer from "./slice/todolist";
-import searchSlice from "./slice/search";
 import selectedCategoriesSlice from './slice/check';
-import priceFilter from "./slice/priceFilter";
 import selectedPrice from './slice/priceFilter';
-import cartSlice from "./slice/cartSlice";
-import wishSlice from "./slice/wishlist";
 import productRuducer from "./slice/productSlice";
-import authReducer from "./slice/authSlice"
-import userReducer from "./slice/userSlice"
+import searchSlice from "./slice/search";
+import userReducer from "./slice/userSlice";
+import wishSlice from "./slice/wishlist";
+import productApiReducer from './slice/productApiSlice'
+import cartApiReducer from './slice/cartApiSlice'
+import user from './slice/userApiSlice'
+import thunk from "redux-thunk";
+import userApiSlice from "./slice/userApiSlice";
 
 export default configureStore({
   reducer: {
-    
-    // todoList: todoListReducer,
     search: searchSlice,
     selectedCategoriesz: selectedCategoriesSlice,
-    selectedPrice: selectedPrice, // Correção da chave aqui
-    cart: cartSlice,
+    selectedPrice: selectedPrice,
+   
     product: productRuducer,
     auth: authReducer,
     users: userReducer,
-    wishlist: wishSlice
-   
-    
+    wishlist: wishSlice,
+    productsApi: productApiReducer,
+    cartsApi: cartApiReducer,
+    userApi: userApiSlice
   },
-});
+  middleware: [thunk],
+})
+

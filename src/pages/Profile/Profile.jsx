@@ -1,15 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
+import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate, useParams } from 'react-router-dom';
-import { getAllUser, updateUser } from '../../redux/slice/apiRequest';
 import Btn from '../../common/components/Buttons/Button';
 import { FormInputt, FormInputtFrame } from '../../common/components/Forms/FormInput/FormInput';
-import { useForm } from 'react-hook-form';
+import { updateUser } from '../../redux/slice/apiRequest';
 
-import styles from './Profile.module.css';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { Alert, AlertTitle } from '@mui/material';
 import * as yup from 'yup';
-import { Alert, AlertTitle, Stack } from '@mui/material';
+import styles from './Profile.module.css';
 
 
 // First form schema without currentPassword

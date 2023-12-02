@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
-import { useForm, Controller } from 'react-hook-form';
-import styles from './FormAddDashBoard.css';
-import { addProduct } from '../../../../redux/slice/apiRequest';
+import { Controller, useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
-import { FormInputDefault } from '../FormInput/FormInput';
+import { addProduct } from '../../../../redux/slice/apiRequest';
 import Btn from '../../Buttons/Button';
+import { FormInputDefault } from '../FormInput/FormInput';
 
 function FormAddDashBoard() {
 const dispatch = useDispatch();

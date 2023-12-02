@@ -1,9 +1,8 @@
-import React from 'react'
-import styles from './DropMenuSort.module.css'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faChevronDown } from '@fortawesome/free-solid-svg-icons'
-import clsx from 'clsx';
-import { Button, ConfigProvider, Dropdown, Input } from 'antd';
+import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Dropdown } from 'antd';
+import React from 'react';
+import styles from './DropMenuSort.module.css';
 
 
 

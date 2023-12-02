@@ -1,5 +1,5 @@
-import React from 'react';
 import clsx from 'clsx';
+import React from 'react';
 import styles from './Button.module.css';
 
 function Btn({ disable, variant2, defaultValue, content, width, height, handleBtn, type }) {
@@ -35,7 +35,7 @@ export function ArrowBtnLeft() {
                 </g>
                 <defs>
                     <filter id="filter0_d_16_440" x="0" y="0"  filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
-                        <feFlood flood-opacity="0" result="BackgroundImageFix" />
+                        <feFlood floodOpacity="0" result="BackgroundImageFix" />
                         <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha" />
                         <feOffset dx="2" dy="4" />
                         <feGaussianBlur stdDeviation="6" />
@@ -60,7 +60,7 @@ export function ArrowBtnRight() {
                 </g>
                 <defs>
                     <filter id="filter0_d_16_442" x="0" y="0"  filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
-                        <feFlood flood-opacity="0" result="BackgroundImageFix" />
+                        <feFlood floodOpacity="0" result="BackgroundImageFix" />
                         <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha" />
                         <feOffset dx="2" dy="4" />
                         <feGaussianBlur stdDeviation="6" />

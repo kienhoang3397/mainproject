@@ -1,8 +1,8 @@
-import React from 'react'
-import styles from './DropMenuProfile.module.css'
+import React from 'react';
+import styles from './DropMenuProfile.module.css';
 
-import clsx from 'clsx';
 import { HistoryOutlined, LogoutOutlined, UserOutlined } from '@ant-design/icons';
+import clsx from 'clsx';
 
 function DropMenuProfile({dark, light}) {
   const  DropMenuProfileClasses = clsx(styles.container, {

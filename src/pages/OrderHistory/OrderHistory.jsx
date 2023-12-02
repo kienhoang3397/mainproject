@@ -1,11 +1,9 @@
 import React from 'react';
-import styles from './OrtherHistory.module.css';
-import Btn from '../../common/components/Buttons/Button';
-import Status from '../../common/components/Status/Status';
-import { useDispatch, useSelector } from 'react-redux';
-import { addToWishlist, removeItemformWishlist } from '../../redux/slice/wishlist';
-import { addtoCart } from '../../redux/slice/cartSlice';
 import { FaArrowRight } from "react-icons/fa6";
+import { useDispatch, useSelector } from 'react-redux';
+
+import { removeItemformWishlist } from '../../redux/slice/wishlist';
+import styles from './OrtherHistory.module.css';
 
 function OrtherHistory() {
   const dispatch = useDispatch()
@@ -14,7 +12,7 @@ function OrtherHistory() {
     dispatch(removeItemformWishlist(e));
   }
   const send = (e) => {
-    dispatch(addtoCart(e))
+    // dispatch(addtoCart(e))
 
 
   }

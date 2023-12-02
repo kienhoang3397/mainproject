@@ -1,11 +1,6 @@
-import styles from './Sidebar.module.css';
-import { Checkbox, ConfigProvider, Slider } from 'antd';
-import { sideProductConfig } from '../../../config/configANT';
-import { useDispatch, useSelector } from 'react-redux';
-import { addCategory, removeCategory } from '../../../../redux/slice/check';
+import { Checkbox, Slider } from 'antd';
 import { FormInputDefault } from '../../Forms/FormInput/FormInput';
-import { categoryproductpage, dataProductPages } from '../../../datas/ProductListingData';
-import priceFilter from '../../../../redux/slice/priceFilter';
+import styles from './Sidebar.module.css';
 
 function Sidebar({ handleChange, handleUpdatePrice, priceFilterVal2, priceFilterVal, handleUpdatePrice2, handleChangeMinPrice }) {
   return (

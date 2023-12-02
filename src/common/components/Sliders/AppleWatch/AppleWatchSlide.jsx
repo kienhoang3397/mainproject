@@ -1,14 +1,12 @@
 import React from 'react';
 import Slider from 'react-slick';
 import { ArrowBtnLeft, ArrowBtnRight } from '../../Buttons/Button';
-import { newestCollections } from '../../../datas/NewestCollection';
-import NewestCollection, { NewestCollectionRep } from '../../MappingComponents/NewestCollection/NewestCollection';
-import bannerAppleWatch from '../../../../assets/image/AppleWatchs/tile_s9__cqgqgjzc261y_large.png';
+import NewestCollection from '../../MappingComponents/NewestCollection/NewestCollection';
 
-import styles from './AppleWatchSlide.module.css';
-import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+import 'slick-carousel/slick/slick.css';
 import { appleWatchs } from '../../../datas/AppleWatch';
+import styles from './AppleWatchSlide.module.css';
 
 function SampleNextArrow(props) {
   const { onClick } = props;

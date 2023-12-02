@@ -6,6 +6,7 @@ import { dataProductPages } from "../../common/datas/ProductListingData";
 
 
 
+
 export const getAllProducts = async (dispatch) => {
     dispatch(getProductStart());
     try {
@@ -64,26 +65,26 @@ export const updateUser = async (user, id, dispatch) => {
 export const loginUser = async (user, dispatch, navigate) => {
     dispatch(loginStart());
     try {
-      const res = await axios.post("http://localhost:3000/v1/auth/login", user);
-      dispatch(loginSuccess(res.data));
-      navigate("/");
+        const res = await axios.post("http://localhost:3000/v1/auth/login", user);
+        dispatch(loginSuccess(res.data));
+        navigate("/");
     } catch (error) {
-      console.error("Error logging in:", error);
-      if (error.response) {
-       
-        dispatch(loginFailed(error.response.data)); 
-      } else if (error.request) {
-        
-        console.error("No response received:", error.request);
-        dispatch(loginFailed("No response received"));
-      } else {
-      
-        console.error("Error setting up the request:", error.message);
-        dispatch(loginFailed(error.message));
-      }
+        console.error("Error logging in:", error);
+        if (error.response) {
+
+            dispatch(loginFailed(error.response.data));
+        } else if (error.request) {
+
+            console.error("No response received:", error.request);
+            dispatch(loginFailed("No response received"));
+        } else {
+
+            console.error("Error setting up the request:", error.message);
+            dispatch(loginFailed(error.message));
+        }
     }
-  };
-  
+};
+
 export const registerUser = async (user, dispatch, navigate) => {
     dispatch(registerStart());
     try {
@@ -110,10 +111,10 @@ export const getAllUser = async (accessToken, dispatch) => {
 };
 
 
-export const logOutUser = async ( dispatch, id, navigate, accessToken) => {
+export const logOutUser = async (dispatch, id, navigate, accessToken) => {
     dispatch(logoutStart());
     try {
-        const res = await axios.post("http://localhost:3000/v1/auth/logout" , id,{
+        const res = await axios.post("http://localhost:3000/v1/auth/logout", id, {
             headers: { token: `Bearer ${accessToken}` },
         });
         dispatch(logoutSuccess(res.data));
@@ -121,7 +122,7 @@ export const logOutUser = async ( dispatch, id, navigate, accessToken) => {
     } catch (error) {
         console.error("Error deleting user:", error);
         if (error.response) {
-            dispatch(logoutFailed(error.response.data)); 
+            dispatch(logoutFailed(error.response.data));
         } else if (error.request) {
             console.error("No response received:", error.request);
             dispatch(logoutFailed("No response received"));
@@ -130,42 +131,26 @@ export const logOutUser = async ( dispatch, id, navigate, accessToken) => {
         }
     }
 };
-export const addToCart = async (productId, accessToken, quantity) => {
+export const getUserApi = async (accessToken) => {
     try {
-        const res = await axios.post(
-            "http://localhost:3000/v1/user/add-to-cart",
-            { productId, quantity },
-            {
-                headers: { Authorization: `Bearer ${accessToken}` },
-            }
-        );
 
-        // Handle the response as needed
-        console.log("Response:", res.data);
-        // You might want to dispatch an action or handle the response in some way
+        const res = await axios.get("http://localhost:3000/v1/user/info", {
+            headers: { token: `Bearer ${accessToken}` },
+        });
 
+      
+        console.log(res.data);
+        return res.data;
     } catch (error) {
-        console.error("Error adding to cart:", error);
-
-        // Handle different types of errors
-        if (error.response) {
-            // The request was made and the server responded with a status code
-            // that falls out of the range of 2xx
-            console.error("Response data:", error.response.data);
-            console.error("Response status:", error.response.status);
-            console.error("Response headers:", error.response.headers);
-            // You might want to dispatch an action or handle the error in some way
-        } else if (error.request) {
-            // The request was made but no response was received
-            console.error("No response received:", error.request);
-            // You might want to dispatch an action or handle the error in some way
-        } else {
-            // Something happened in setting up the request that triggered an Error
-            console.error("Error message:", error.message);
-            // You might want to dispatch an action or handle the error in some way
-        }
+        
+        console.error('Error fetching user data:', error);
+        throw error;
     }
 };
+
+
+  
+
 
 
 

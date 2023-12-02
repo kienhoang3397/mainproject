@@ -1,21 +1,34 @@
-import React from 'react';
-import styles from './QuickAccess.module.css';
-import { ShoppingCartOutlined, HeartOutlined, UserOutlined } from '@ant-design/icons';
-import { Link } from 'react-router-dom';
-import { useSelector } from 'react-redux';
-import { Badge } from 'antd';
-import { MdOutlineShoppingCart } from 'react-icons/md';
-import { TbHeartSearch } from 'react-icons/tb';
+import { UserOutlined } from "@ant-design/icons";
+import { Badge } from "antd";
+import React, { useEffect, useState } from "react";
+import { MdOutlineShoppingCart } from "react-icons/md";
+import { TbHeartSearch } from "react-icons/tb";
+import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+import styles from "./QuickAccess.module.css";
+import { fetchUser } from "../../../redux/slice/userApiSlice";
 
 function QuickAccess() {
-  const cartlength = useSelector(state => state.cart.carts);
-  const wishlistlength = useSelector(state => state.wishlist.wishlists);
-  const user = useSelector(state => state.auth.login.currentUser?.user);
+  const cartlength = useSelector((state) => state.userApi?.user.cart);
+  const dispatch = useDispatch();
+  const wishlistlength = useSelector((state) => state.wishlist.wishlists);
+  const user = useSelector(
+    (state) => state.auth.login.currentUser?.accessToken
+  );
+
+  // const [cartLength, setCartLength] = useState(0); // Local state to track cart length
+
+  // // Fetch user data including the cart
+    useEffect(() => {
+      dispatch(fetchUser(user));
+    }, []);
+
+
 
   return (
     <div className={styles.container}>
       <Link to="/shoppingcart" className={styles.item}>
-        <Badge count={cartlength.length}>
+        <Badge count={cartlength?.length}>
           <MdOutlineShoppingCart className={styles.icon2} />
         </Badge>
       </Link>
@@ -26,7 +39,7 @@ function QuickAccess() {
         </Badge>
       </Link>
 
-      <Link to="/profile" className={styles.item}>
+      <Link to="/user/profile" className={styles.item}>
         <UserOutlined className={styles.icon} />
       </Link>
     </div>

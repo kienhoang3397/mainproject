@@ -1,8 +1,7 @@
 import React from 'react';
 import Slider from 'react-slick';
 import { trendings } from '../../../datas/Trending';
-import Product, { Products } from '../../MappingComponents/Products/Product';
-import { SampleNextArrow, SamplePrevArrow } from '../Iphone/IphoneSlide';
+import Product from '../../MappingComponents/Products/Product';
 import styles from './NewestHomePage.module.css';
 
 function NewestHomePage() {

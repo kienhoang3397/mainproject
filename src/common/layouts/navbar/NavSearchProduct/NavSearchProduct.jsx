@@ -1,11 +1,8 @@
-import React, { useState } from 'react'
-import FormInput, { FormInputSearch } from '../../../components/Forms/FormInput/FormInput'
-import DropMenuSort from '../../../components/DropMenu/DropMenuSort/DropMenuSort'
-import './NavSearchProduct.css'
-import { ConfigProvider, Input } from 'antd';
-import { useDispatch } from 'react-redux';
-import { setSearch } from '../../../../redux/slice/search';
+import { Input } from 'antd';
+import React from 'react';
+import DropMenuSort from '../../../components/DropMenu/DropMenuSort/DropMenuSort';
 import { dataProductPages } from '../../../datas/ProductListingData';
+import './NavSearchProduct.css';
 
 function NavSearchProduct({ handleInputChange, query, productCur, ascending, descending, handlePriceSort}) {
 

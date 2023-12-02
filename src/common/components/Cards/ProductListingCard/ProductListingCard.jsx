@@ -1,8 +1,7 @@
 import React from 'react'
-import styles from './ProductListingCard.module.css'
 import { AiFillStar } from 'react-icons/ai'
 import { Link } from 'react-router-dom'
-import { dataProductPages } from '../../../datas/ProductListingData'
+import styles from './ProductListingCard.module.css'
 
 function ProductListingCard(props, { checked }) {
     const { image, name, price, delprice, id } = props

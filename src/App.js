@@ -1,13 +1,8 @@
 
 import "./index.css";
 
-import {  RouterProvider, useNavigate } from "react-router-dom";
+import { RouterProvider } from "react-router-dom";
 import { router } from "./router";
-import Test from "./assets/Test";
-import DashBoard from "./pages/DashBoard/DashBoard";
-import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
-import { getAllUser } from "./redux/slice/apiRequest";
 
 
 

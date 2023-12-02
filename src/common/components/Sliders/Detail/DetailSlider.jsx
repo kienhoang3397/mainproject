@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Slider from "react-slick";
 import styles from './DetaiSlider.module.css';
-import { SampleNextArrow, SamplePrevArrow } from "../Iphone/IphoneSlide";
 
 
 export function SampleNextArrowDetail(props) {

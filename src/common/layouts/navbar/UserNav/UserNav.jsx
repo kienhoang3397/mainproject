@@ -1,18 +1,16 @@
 import React, { useState } from 'react';
-import { NavLink, useNavigate } from 'react-router-dom';
-import { RxDashboard } from 'react-icons/rx';
 import {
   AiOutlineClockCircle,
-  AiOutlineHeart,
   AiOutlineShoppingCart,
-  AiOutlineUser,
-  AiOutlineWallet,
+  AiOutlineUser
 } from 'react-icons/ai';
-import { FiLogOut } from 'react-icons/fi';
-import './UserNav.css';
-import { logOutUser } from '../../../../redux/slice/apiRequest';
-import { useDispatch, useSelector } from 'react-redux';
 import { BiHeart } from 'react-icons/bi';
+import { FiLogOut } from 'react-icons/fi';
+import { RxDashboard } from 'react-icons/rx';
+import { useDispatch, useSelector } from 'react-redux';
+import { NavLink, useNavigate } from 'react-router-dom';
+import { logOutUser } from '../../../../redux/slice/apiRequest';
+import './UserNav.css';
 
 function UserNav() {
   const dispatch = useDispatch()

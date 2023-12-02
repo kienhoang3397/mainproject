@@ -1,10 +1,10 @@
 import React from 'react';
-import styles from './WishList.module.css';
+import { useDispatch, useSelector } from 'react-redux';
 import Btn from '../../common/components/Buttons/Button';
 import Status from '../../common/components/Status/Status';
-import { useDispatch, useSelector } from 'react-redux';
-import { addToWishlist, removeItemformWishlist } from '../../redux/slice/wishlist';
-import { addtoCart } from '../../redux/slice/cartSlice';
+
+import { removeItemformWishlist } from '../../redux/slice/wishlist';
+import styles from './WishList.module.css';
 
 function WishList() {
   const dispatch = useDispatch()
@@ -13,7 +13,7 @@ function WishList() {
     dispatch(removeItemformWishlist(e));
 }
 const send = (e) => {
-  dispatch(addtoCart(e))
+  // dispatch(addtoCart(e))
  
 
 }
@@ -36,10 +36,10 @@ function formatDate(date) {
 }
 
 
-const currentDate = getCurrentDate();
-const formattedDateString = formatDate(currentDate);
+// const currentDate = getCurrentDate();
+// const formattedDateString = formatDate(currentDate);
 
-console.log(formattedDateString); // Output: Current date and time in the format "Dec 30, 2023 07:52"
+// console.log(formattedDateString); // Output: Current date and time in the format "Dec 30, 2023 07:52"
 
 
   return (

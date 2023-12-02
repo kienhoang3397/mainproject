@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { useForm, Controller } from 'react-hook-form';
-import { addProduct, updateProduct } from '../../../../redux/slice/apiRequest';
+import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
-import { FormInputDefault } from '../FormInput/FormInput';
-import Btn from '../../Buttons/Button';
 import { useParams } from 'react-router-dom';
+import { updateProduct } from '../../../../redux/slice/apiRequest';
+import Btn from '../../Buttons/Button';
+import { FormInputDefault } from '../FormInput/FormInput';
 
 function FormUpdateProduct() {
     const params = useParams();

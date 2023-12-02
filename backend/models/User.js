@@ -27,7 +27,17 @@ const userSchema = new mongoose.Schema(
     cart: [
       {
         product: { type: mongoose.Schema.Types.ObjectId, ref: 'Product' },
-        quantity: { type: Number, default: 1 },
+        quantity: { type: Number, default: 0 },
+        price: { type: Number, default: 0 }, 
+        amount: { type: Number, default: 0 }, 
+        image: { type: String },
+        name: { type: String },
+      },
+    ],
+    wishlist: [
+      {
+        product: { type: mongoose.Schema.Types.ObjectId, ref: 'Wishlist' },
+        quantity: { type: Number, default: 0 },
         price: { type: Number, default: 0 }, 
         amount: { type: Number, default: 0 }, 
       },

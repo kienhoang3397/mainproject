@@ -1,14 +1,12 @@
-import React, { useEffect } from 'react';
-import Theme from '../../../components/Themes/Theme';
-import Logo from '../../../components/Logos/Logo';
-import styles from './LoginNav.module.css';
-import QuickAccess from '../../../components/QuickAccess/QuickAccess';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import clsx from 'clsx';
-import { Link, useNavigate } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { getAllUser, refreshToken } from '../../../../redux/slice/apiRequest';
+import React from 'react';
+import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
+import QuickAccess from '../../../components/QuickAccess/QuickAccess';
+import Theme from '../../../components/Themes/Theme';
+import styles from './LoginNav.module.css';
 
 
 

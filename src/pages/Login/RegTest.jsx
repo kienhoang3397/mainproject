@@ -1,5 +1,5 @@
+import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut } from 'firebase/auth';
 import React, { useState } from 'react';
-import { createUserWithEmailAndPassword,onAuthStateChanged,signInWithEmailAndPassword, signOut} from 'firebase/auth';
 import { auth } from '../../firebase';
 
 function RegTest() {

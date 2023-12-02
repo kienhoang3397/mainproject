@@ -1,12 +1,12 @@
 import React from 'react';
 import Slider from 'react-slick';
-import { ArrowBtnLeft, ArrowBtnRight } from '../../Buttons/Button';
 import { newestCollections } from '../../../datas/NewestCollection';
-import NewestCollection, { NewestCollectionRep } from '../../MappingComponents/NewestCollection/NewestCollection';
+import { ArrowBtnLeft, ArrowBtnRight } from '../../Buttons/Button';
+import NewestCollection from '../../MappingComponents/NewestCollection/NewestCollection';
 
-import styles from './IphoneSlide.module.css';
-import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+import 'slick-carousel/slick/slick.css';
+import styles from './IphoneSlide.module.css';
 
 export function SampleNextArrow(props) {
   const { onClick } = props;

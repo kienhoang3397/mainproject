@@ -1,8 +1,7 @@
 import React from 'react'
-import { Link, Outlet } from 'react-router-dom'
-import BeforeLoginNav from '../navbar/LoginNav/LoginNav'
+import { Outlet } from 'react-router-dom'
 import Footer from '../footer/Footer'
-import SidebarDashboard from '../../components/Side/SidebarDashboard/SidebarDashboard'
+import BeforeLoginNav from '../navbar/LoginNav/LoginNav'
 
 function MainLayout() {
   return (

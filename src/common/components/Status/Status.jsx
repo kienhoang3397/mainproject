@@ -1,5 +1,4 @@
 import React from 'react';
-import clsx from 'clsx';
 import styles from './Status.module.css';
 
 function Status({ disable, variant2, defaultValue, content, color, height, handleBtn, type }) {

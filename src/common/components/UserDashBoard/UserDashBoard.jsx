@@ -1,9 +1,9 @@
-import React from 'react'
-import styles from './UserDashBoard.module.css'
+import React from 'react';
 import { BsRocket } from "react-icons/bs";
-import Btn from '../Buttons/Button';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import Btn from '../Buttons/Button';
+import styles from './UserDashBoard.module.css';
 
 function UserDashBoard() {
     const user = useSelector((state) => state.auth.login.currentUser?.user);
