@@ -97,7 +97,6 @@ const userController = {
       res.status(500).json({ error: "Internal Server Error" });
     }
   },
-
   removeFromCart: async (req, res) => {
     const { productId } = req.body;
     const userId = req.user ? req.user.id : null;
@@ -115,7 +114,6 @@ const userController = {
       );
 
       if (existingProductIndex !== -1) {
-        // Remove the product from the cart array
         user.cart.splice(existingProductIndex, 1);
 
         user.totalAmount = user.cart.reduce(
@@ -125,14 +123,12 @@ const userController = {
 
         await user.save();
 
-        // Respond with success message and updated user
         return res.json({
           message: "Product removed from the cart successfully.",
           user,
         });
       }
 
-      // If the product is not in the cart, respond with an error message
       return res.status(404).json({ error: "Product not found in the cart" });
     } catch (error) {
       console.error("Error removing product from cart:", error.message);
@@ -156,7 +152,6 @@ const userController = {
       );
 
       if (existingProductIndex !== -1) {
-        // Decrease the quantity of the product in the cart
         if (user.cart[existingProductIndex].quantity > 0) {
           user.cart[existingProductIndex].quantity -= 1;
 
@@ -167,20 +162,17 @@ const userController = {
 
           await user.save();
 
-          // Respond with success message and updated user
           return res.json({
             message: "Product quantity decreased in the cart successfully.",
             user,
           });
         } else {
-          // If the quantity is already zero, respond with a message
           return res
             .status(400)
             .json({ error: "Product quantity is already zero" });
         }
       }
 
-      // If the product is not in the cart, respond with an error message
       return res.status(404).json({ error: "Product not found in the cart" });
     } catch (error) {
       console.error(
@@ -190,6 +182,88 @@ const userController = {
       return res.status(500).json({ error: "Internal Server Error" });
     }
   },
+  addToWishlist: async (req, res) => {
+    const { productId } = req.body;
+    const userId = req.user ? req.user.id : null;
+
+    try {
+      const user = await User.findById(userId);
+
+      if (!user) {
+        return res.status(404).json({ error: "User not found" });
+      }
+
+      const product = await Product.findById(productId);
+
+      if (!product) {
+        return res.status(404).json({ error: "Product not found" });
+      }
+
+      const existingProductIndex = user.wishlist.findIndex(
+        (item) =>
+          item.product && item.product.toString() === productId.toString()
+      );
+
+      if (existingProductIndex !== -1) {
+        return res
+          .status(400)
+          .json({ error: "Product already exists in the wishlist" });
+      } else {
+        user.wishlist.push({
+          product: productId,
+          image: product.image,
+          name: product.name,
+          price: product.price,
+          stock: product.stock,
+        });
+      }
+
+      await user.save();
+
+      res.json({
+        message: "Product added to the wishlist successfully.",
+        user,
+      });
+    } catch (error) {
+      console.error("Error adding product to wishlist:", error.message);
+      res.status(500).json({ error: "Internal Server Error" });
+    }
+  },
+  removeFromWishlist: async (req, res) => {
+    const { productId } = req.body;
+    const userId = req.user ? req.user.id : null;
+
+    try {
+      const user = await User.findById(userId);
+
+      if (!user) {
+        return res.status(404).json({ error: "User not found" });
+      }
+
+      const existingProductIndex = user.wishlist.findIndex(
+        (item) =>
+          item.product && item.product.toString() === productId.toString()
+      );
+
+      if (existingProductIndex !== -1) {
+        user.wishlist.splice(existingProductIndex, 1);
+
+        await user.save();
+
+        return res.json({
+          message: "Product removed from the wishlist successfully.",
+          user,
+        });
+      }
+
+      return res
+        .status(404)
+        .json({ error: "Product not found in the wishlist" });
+    } catch (error) {
+      console.error("Error removing product from wishlist:", error.message);
+      return res.status(500).json({ error: "Internal Server Error" });
+    }
+  },
 };
 
-module.exports = userController;
+  (module.exports = userController);

@@ -10,8 +10,9 @@ import { fetchUser } from "../../../redux/slice/userApiSlice";
 
 function QuickAccess() {
   const cartlength = useSelector((state) => state.userApi?.user.cart);
+  const wishlistlength = useSelector((state) => state.userApi?.user.wishlist);
   const dispatch = useDispatch();
-  const wishlistlength = useSelector((state) => state.wishlist.wishlists);
+ 
   const user = useSelector(
     (state) => state.auth.login.currentUser?.accessToken
   );
@@ -34,7 +35,7 @@ function QuickAccess() {
       </Link>
 
       <Link to="/user/wishlist" className={styles.item}>
-        <Badge count={wishlistlength.length}>
+        <Badge count={wishlistlength?.length}>
           <TbHeartSearch className={styles.icon2} />
         </Badge>
       </Link>

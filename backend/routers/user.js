@@ -33,5 +33,15 @@ router.post(
   middleWareController.verifyToken,
   userController.decreaseQuantity
 );
+router.post(
+  "/add-to-wishlist",
+  middleWareController.verifyToken,
+  userController.addToWishlist
+);
+router.post(
+  "/removeFromWishList",
+  middleWareController.verifyToken,
+  userController.removeFromWishlist
+);
 
 module.exports = router;

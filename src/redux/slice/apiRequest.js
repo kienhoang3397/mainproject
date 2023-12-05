@@ -1,8 +1,7 @@
 import axios from "axios";
-import { getProductError, getProductStart, getProductSuccess, addProductStart, addProductSuccsess, addProductFailed, deleteProductStart, deleteProductSuccsess, deleteProductFailed, updateProductStart, updateProductSuccsess, updateProductFailed } from "./productSlice";
-import { loginFailed, loginStart, loginSuccess, loginSuccsess, logoutFailed, logoutStart, logoutSuccess, registerFailed, registerStart, registerSuccess, registerSuccsess } from "./authSlice"
-import { deleteUserFailed, deleteUsersStart, deleteUsersSuccsess, getUserFailed, getUsersStart, getUsersSuccess, getUsersSuccsess, updateUserFailed, updateUserStart, updateUserSuccess } from "./userSlice";
-import { dataProductPages } from "../../common/datas/ProductListingData";
+import { loginFailed, loginStart, loginSuccess, logoutFailed, logoutStart, logoutSuccess, registerFailed, registerStart, registerSuccess } from "./authSlice";
+import { addProductFailed, addProductStart, addProductSuccsess, deleteProductFailed, deleteProductStart, deleteProductSuccsess, getProductError, getProductStart, getProductSuccess, updateProductFailed, updateProductStart, updateProductSuccsess } from "./productSlice";
+import { getUserFailed, getUsersStart, getUsersSuccess, updateUserFailed, updateUserStart, updateUserSuccess } from "./userSlice";
 
 
 

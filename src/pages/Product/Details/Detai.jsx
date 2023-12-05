@@ -18,6 +18,7 @@ import "./Detail.css";
 import store from "../../../redux/store";
 import { addToCart } from "../../../redux/slice/cartApiSlice";
 import { fetchUser } from "../../../redux/slice/userApiSlice";
+import { addTowishlist } from "../../../redux/slice/wishlistApiSlice";
 
 function Detail() {
   const { productId } = useParams();
@@ -33,26 +34,34 @@ function Detail() {
     (state) => state.auth.login.currentUser?.accessToken
   );
 
-  const handleAddToCart = () => {
-    const quantity = 1;
+ const handleAddToCart = () => {
+   const quantity = 1;
 
-    // Dispatch addToCart action
-    dispatch(addToCart({ productId, quantity, token }))
-      .then(() => {
-        // Fetch user data including the cart after adding to the cart
-        dispatch(fetchUser(token));
-      })
-      .catch((error) => {
-        // Handle any errors that occurred during addToCart or fetchUser
-        console.error("Error adding to cart:", error);
-      });
-  };
+   dispatch(addToCart({ productId, quantity, token }))
+     .then(() => {
+       dispatch(fetchUser(token));
+     })
+     .catch((error) => {
+       console.error("Error adding to cart:", error);
+     });
+ };
+
+ const handleAddToWishList = () => {
+   dispatch(addTowishlist({ productId, token }))
+     .then(() => {
+       dispatch(fetchUser(token));
+     })
+     .catch((error) => {
+       console.error("Error adding to wishlist:", error);
+     });
+ };
+
 
   return (
     <>
       <div className="detailContainer">
         <DetailSlide />
-       
+
         <section className="detailDescription">
           <div className="ratingDetail">
             <div className="startRatingDetail">
@@ -109,15 +118,20 @@ function Detail() {
             <DropMenuCustom item1={123412124} />
           </div>
           <div className="btnDetail"></div>
-            <Btn
-              defaultValue
-              content={" Add to Cart"}
-              handleBtn={() => handleAddToCart(product._id, 1)}
-            ></Btn>
+          <Btn
+            defaultValue
+            content={" Add to Cart"}
+            handleBtn={() => handleAddToCart(product._id, 1)}
+          ></Btn>
+          <Btn
+            defaultValue
+            content={" Add to WishList"}
+            handleBtn={() => handleAddToWishList(product._id)}
+          ></Btn>
 
-        <Link to={"/shoppingcart"}>
-          <Btn variant2 content={"Click me to Cart"} />
-        </Link>
+          <Link to={"/shoppingcart"}>
+            <Btn variant2 content={"Click me to Cart"} />
+          </Link>
 
           <div className="btnDetail">
             <Btn defaultValue content={"Buy Now"} />
@@ -152,7 +166,7 @@ function Detail() {
           </div>
         </section>
       </div>
-      
+
       <div className="productInfomation">
         <section className="tabInfoDetail">
           <p className="tproductontent">Description</p>

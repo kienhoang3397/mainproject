@@ -1,0 +1,130 @@
+.headingTitle {
+  color: var(--neutral-black-black-500, #1d1f2c);
+margin-bottom: 24px;
+  /* Display M/Semibold */
+ font-family: 'Public Sans', sans-serif;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 32px; /* 133.333% */
+  letter-spacing: 0.24px;
+}
+.container {
+ 
+padding: 32px 25px;
+flex-direction: column;
+align-items: flex-start;
+gap: 25px;
+flex: 1 0 0;
+align-self: stretch;
+}
+.productSetting{
+    display: flex;
+    gap: 10px;
+}
+.leftForm{
+    display: flex;
+flex-direction: column;
+align-items: flex-start;
+gap: 24px;
+flex: 1 0 0;
+}
+.containerForm {
+  
+  padding: 24px;
+ 
+  gap: 14px;
+  align-self: stretch;
+  border-radius: 12px;
+  background: var(--neutral-white, #fff);
+
+  /* Soft Shadow */
+  box-shadow: 0px 4px 30px 0px rgba(46, 45, 116, 0.05);
+}
+.containerHeadingTitle{
+  display: flex;
+  justify-content: space-between;
+}
+.containerfieldInput{
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.formTitle {
+  color: var(--neutral-black-black-500, #1d1f2c);
+margin-bottom: 14px;
+  /* Text XL/Semibold */
+  font-family: 'Public Sans', sans-serif;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 28px; /* 155.556% */
+  letter-spacing: 0.18px;
+
+}
+.icon{
+      color: var(--neutral-black-black-300, #777980);
+}
+.fieldInput {
+  gap: 3px;
+  display: flex;
+  flex-direction: column;
+}
+.label {
+  color: var(--neutral-black-black-300, #777980);
+
+  /* Text M/Medium */
+  font-family: 'Public Sans', sans-serif;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 20px; /* 142.857% */
+  letter-spacing: 0.07px;
+}
+.inputTextArea {
+  display: flex;
+  padding: 8px 12px;
+  align-items: center;
+  gap: 4px;
+  align-self: stretch;
+  border-radius: 8px;
+  border: 1px solid var(--neutral-gray-gray-100, #e0e2e7);
+  background: var(--neutral-gray-gray-25, #f9f9fc);
+  color: var(--neutral-black-black-500, #1d1f2c);
+
+  /* Text M/Regular */
+   font-family: 'Public Sans', sans-serif;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px; /* 142.857% */
+  letter-spacing: 0.07px;
+}
+.inputAntd{
+ font-family: 'Public Sans', sans-serif;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: bold;
+  line-height: 20px; /* 142.857% */
+  letter-spacing: 0.07px;
+  background: var(--neutral-gray-gray-25, #f9f9fc);
+}
+.errorMessage {
+    color: red;
+     font-family: 'Public Sans', sans-serif;
+
+  font-style: normal;
+  font-weight: bold;
+  line-height: 20px; /* 142.857% */
+  letter-spacing: 0.07px;
+    font-size: 10px;
+    
+}
+.alert {
+  position: fixed;
+  top: 7%;
+  right: 1%;
+  z-index: 1000;
+  animation: slideInDown 1.5s ease; /* Adjust the animation duration and timing function as needed */
+}

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Btn from "../../common/components/Buttons/Button";
 import Couter from "../../common/components/Buttons/Couter/Couter";
@@ -16,15 +16,21 @@ import {
 import Status from "../../common/components/Status/Status";
 
 import { removeItemformWishlist } from "../../redux/slice/wishlist";
+import { Checkbox } from "antd";
 // Import your Redux actions here
 // import { incrementQuantity, decrementQuantity, removeFromCart } from 'your-redux-actions';
 
 function CartPage() {
   const dispatch = useDispatch();
+  const [standardShipping, setStandardShipping] = useState(false);
+  const [expressShipping, setExpressShipping] = useState(false);
   const cart = useSelector((state) => state.userApi?.user.cart);
   const token = useSelector(
     (state) => state.auth.login.currentUser?.accessToken
   );
+  const formatNumberWithCommas = (number) => {
+    return number.toLocaleString("en-US");
+  };
 
   const handleIncrement = (productId) => {
     const quantity = 1;
@@ -57,7 +63,57 @@ function CartPage() {
         console.error("Error removing from cart:", error);
       });
   };
+const calculateSubtotal = () => {
+  if (!cart || !Array.isArray(cart)) {
+    return formatNumberWithCommas(0);
+  }
 
+  const subtotal = cart.reduce((accumulator, item) => {
+    const updatedAmount = item.quantity * item.price;
+    return accumulator + updatedAmount;
+  }, 0);
+
+  return formatNumberWithCommas(subtotal);
+};
+
+
+
+  const calculateTax = () => {
+    const subtotal = parseFloat(calculateSubtotal().replace(/,/g, "")) || 0;
+    const taxRate = 0.04;
+    const tax = subtotal * taxRate;
+    return formatNumberWithCommas(tax);
+  };
+   const calculateShipping = () => {
+     let shippingCost = 0;
+     if (standardShipping) {
+       shippingCost += 1000;
+     }
+     if (expressShipping) {
+       shippingCost += 1700;
+     }
+     return formatNumberWithCommas(shippingCost);
+  };
+const calculateTotal = () => {
+  const subtotal = parseFloat(calculateSubtotal().replace(/,/g, "")) || 0;
+  const shipping = parseFloat(calculateShipping().replace(/,/g, "")) || 0;
+  const tax = parseFloat(calculateTax().replace(/,/g, "")) || 0;
+
+  const total = subtotal + shipping + tax;
+  return formatNumberWithCommas(total);
+};
+
+
+  // Function to handle changes in shipping option
+ const handleCheckboxChange = (shippingType) => {
+   if (shippingType === "standard") {
+     setStandardShipping(!standardShipping);
+     setExpressShipping(false);
+   } else if (shippingType === "express") {
+     setExpressShipping(!expressShipping);
+     setStandardShipping(false);
+   }
+ }; 
 
   return (
     <div className={styles.container}>
@@ -138,7 +194,7 @@ function CartPage() {
                       }
                     />
                   </td>
-                  <td className={styles.productSvg}>{item.amount}</td>
+                  <p className={styles.price}>₹{item.amount}</p>
                 </tr>
               ))}
             </tbody>
@@ -150,34 +206,71 @@ function CartPage() {
             <section className={styles.heading}>
               <p className={styles.contentCardTotalHeading}>Card Totals</p>
             </section>
-            <div className={styles.total}>
-              <section className={styles.containerDetailTotal}>
+            <section className={styles.itemTotalCart}>
+              <div className={styles.total}>
+                <section className={styles.containerDetailTotal}>
+                  <div className={styles.detailTotal}>
+                    <p className={styles.contentTotal}>Sub-total</p>
+                    <p className={styles.detailContentTotal}>
+                      ₹{calculateSubtotal()}
+                    </p>
+                  </div>
+                </section>
+              </div>
+              <div className={styles.detailTotal}>
+                <p className={styles.contentTotal}>Discount</p>
+                <p className={styles.detailContentTotal}>₹999</p>
+              </div>
+              <div className={styles.detailTotal}>
+                <p className={styles.contentTotal}>Tax ( 4% )</p>
+                <p className={styles.detailContentTotal}>
+                  ₹{calculateTax(calculateSubtotal())}
+                </p>
+              </div>
+            </section>
+
+            <section className={styles.lineTotal}></section>
+            <section className={styles.itemTotalCart}>
+              <div className={styles.detailTotal}>
+                <p className={styles.contentTotal}>Shipping</p>
+              </div>
+              <div className={styles.containerCheckbox}>
                 <div className={styles.detailTotal}>
-                  <p className={styles.contentTotal}>Sub-total</p>
-                  <p className={styles.detailContentTotal}>₹123</p>
+                  <p className={styles.contentTotal}>
+                    <Checkbox
+                      style={{ marginRight: "13px" }}
+                      checked={standardShipping}
+                      onChange={() => handleCheckboxChange("standard")}
+                    />
+                    Standard :
+                  </p>
+                  <p className={styles.detailContentTotal}>₹1000</p>
                 </div>
                 <div className={styles.detailTotal}>
-                  <p className={styles.contentTotal}>Shipping</p>
-                  <p className={styles.detailContentTotal}>Free</p>
+                  <p className={styles.contentTotal}>
+                    <Checkbox
+                      style={{ marginRight: "13px" }}
+                      checked={expressShipping}
+                      onChange={() => handleCheckboxChange("express")}
+                    />
+                    Express :
+                  </p>
+                  <p className={styles.detailContentTotal}>₹1700</p>
                 </div>
-                <div className={styles.detailTotal}>
-                  <p className={styles.contentTotal}>Discount</p>
-                  <p className={styles.detailContentTotal}>₹999</p>
-                </div>
-                <div className={styles.detailTotal}>
-                  <p className={styles.contentTotal}>Tax</p>
-                  <p className={styles.detailContentTotal}>₹2,999</p>
-                </div>
-              </section>
-              <section className={styles.lineTotal}></section>
-              <section className={styles.toltalPriceDetail}>
-                <p className={styles.toltalPriceDetailContent}>Total</p>
-                <p className={styles.toltalPriceDetailContent}>₹123,999 INR</p>
-              </section>
-              <Btn defaultValue content={"PROCEED TO CHECKOUT"} />
-            </div>
+                <section className={styles.lineTotal}></section>
+                <section className={styles.toltalPriceDetail}>
+                  <p className={styles.toltalPriceDetailContent}>Total</p>
+                  <p className={styles.toltalPriceDetailContent}>
+                    ₹{calculateTotal()}
+                  </p>
+                </section>
+
+                <Btn defaultValue content={"PROCEED TO CHECKOUT"} />
+              </div>
+            </section>
           </div>
-          <div className={styles.couponCode}>
+
+          {/* <div className={styles.couponCode}>
             <section className={styles.headingCoupon}>
               <p className={styles.contentCardTotalHeading}>Coupon Code</p>
             </section>
@@ -187,7 +280,8 @@ function CartPage() {
                 <Btn variant2 content={"APPLY COUPON"} />
               </section>
             </div>
-          </div>
+          </div> */}
+
         </aside>
       </main>
     </div>

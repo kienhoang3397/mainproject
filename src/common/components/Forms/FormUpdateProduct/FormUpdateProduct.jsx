@@ -1,107 +1,343 @@
-import React, { useEffect, useState } from 'react';
-import { useForm } from 'react-hook-form';
-import { useDispatch } from 'react-redux';
-import { useParams } from 'react-router-dom';
-import { updateProduct } from '../../../../redux/slice/apiRequest';
-import Btn from '../../Buttons/Button';
-import { FormInputDefault } from '../FormInput/FormInput';
+import { DollarCircleFilled } from "@ant-design/icons";
+import { Alert, Input, Select } from "antd";
+import React, { useEffect, useState } from "react";
+import { Controller, useForm } from "react-hook-form";
+import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
+import Btn from "../../Buttons/Button";
+import styles from "./FormUpdateProduct.module.css";
+
+import TextArea from "antd/es/input/TextArea";
+import * as yup from "yup";
+import {
+  productsFetch,
+  updateProductApi,
+} from "../../../../redux/slice/productApiSlice";
+
+import { AlertTitle } from "@mui/material";
+import { yupResolver } from "@hookform/resolvers/yup";
+
+const { Option } = Select;
+
+const schemaFormUpdate = yup.object().shape({
+  name: yup.string().required("Product Name is required"),
+  productDescription: yup.string().required("Description is required"),
+  image: yup.string().required("Image URL is required"),
+  price: yup
+    .number()
+    .typeError("Price must be a number")
+    .positive("Price must be greater than zero")
+    .required("Price is required"),
+  stock: yup
+    .number()
+    .typeError("Stock must be a number")
+    .integer("Stock must be an integer")
+    .min(0, "Stock cannot be negative")
+    .required("Stock is required"),
+  category: yup.string().required("Product Category is required"),
+});
 
 function FormUpdateProduct() {
-    const params = useParams();
-    const dispatch = useDispatch();
-    const { handleSubmit, control } = useForm();
+  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [error, setError] = useState("");
+  const { productDashBoardId } = useParams();
+  const productList = useSelector((state) => state.productsApi?.product?.items);
 
-    const [formData, setFormData] = useState({
-        name: '',
-        qnty: '',
-        image: '',
-        price: '',
-        stock: '',
-        category: '',
-    });
+  const product = productList.find((prod) => prod._id === productDashBoardId);
 
-    const getProductInfo = async () => {
-        try {
-            let result = await fetch(`http://localhost:3000/${params.id}`);
-            result = await result.json();
+  const dispatch = useDispatch();
+  const {
+    control,
+    handleSubmit,
+    setValue,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(schemaFormUpdate),
+  });
 
-            setFormData({
-                name: result.name,
-                qnty: result.qnty,
-                image: result.image,
-                price: result.price,
-                stock: result.stock,
-                category: result.category,
-            });
-        } catch (error) {
-            console.log(error);
-        }
-    };
+  useEffect(() => {
+    dispatch(productsFetch());
+  }, [dispatch]);
 
-    useEffect(() => {
-        getProductInfo();
-    }, [params.id]);
+  useEffect(() => {
+    if (product) {
+      setValue("name", product.name);
+      setValue("category", product.category);
+      setValue("image", product.image);
+      setValue("price", product.price);
+      setValue("stock", product.stock);
+    }
+  }, [product, setValue]);
 
-    const handleInputChange = (name, value) => {
-        setFormData((prevData) => ({ ...prevData, [name]: value }));
-    };
+  const handleInputChange = (name, value) => {
+    setValue(name, value);
+  };
 
-    const handleUpdateProduct = (e) => {
-        
-        const id = params.id;
+  const onSubmit = async (data) => {
+    const id = product?._id;
+    try {
+      await schemaFormUpdate.validate(data, { abortEarly: false });
+      const productData = {
+        name: data.name,
+        category: data.category,
+        image: data.image,
+        price: data.price,
+        stock: data.stock,
+      };
 
-        const newProduct = {
-            name: formData.name,
-            qnty: formData.qnty,
-            image: formData.image,
-            price: formData.price,
-            stock: formData.stock,
-            category: formData.category,
-        };
+      dispatch(updateProductApi({ id, updatedData: productData }))
+        .then(() => {
+          dispatch(productsFetch());
+          setIsSubmitted(true);
+        })
+        .catch((error) => {
+          console.error("Error updating product:", error);
+        });
 
-        updateProduct(newProduct, id, dispatch);
-    };
+      setTimeout(() => {
+        setIsSubmitted(false);
+      }, 4000);
+    } catch (err) {
+      console.error(err.errors);
+      const validationErrors = err.errors.map(
+        (error) => `Validation Error - ${error.path}: ${error.message}`
+      );
+      setError(validationErrors.join("\n"));
+      setTimeout(() => {
+        setError(null);
+      }, 5000);
+    }
+  };
 
-    return (
-        <div className="containerFormDashBoad">
-            <form className="FormDashBoad" onSubmit={handleSubmit(handleUpdateProduct)}>
-                <FormInputDefault
-                    placeholder={'Type product name here. . .'}
-                    title={'Name'}
-                    value={formData.name}
-                    handleChange={(e) => handleInputChange('name', e.target.value)}
+  const closeAlerts = () => {
+    setError(null);
+  };
+
+  return (
+    <form onSubmit={handleSubmit(onSubmit)} className={styles.container}>
+      {isSubmitted && (
+        <Alert
+          className={styles.alert}
+          message="Product Update Succces"
+          type="success"
+          showIcon
+        />
+      )}
+
+      <div className={styles.containerHeadingTitle}>
+        <p className={styles.headingTitle}>Edit Product</p>
+        <Btn
+          defaultValue
+          content={"Save Product"}
+          width={"140px"}
+          height={"40px"}
+          htmlType="submit"
+        ></Btn>
+      </div>
+      <section className={styles.productSetting}>
+        <div className={styles.leftForm}>
+          <div className={styles.containerForm}>
+            <p className={styles.formTitle}>General Information</p>
+            <div className={styles.containerfieldInput}>
+              <section className={styles.fieldInput}>
+                <label htmlFor="name" className={styles.label}>
+                  Product Name
+                </label>
+                <div className={styles.inputArea}>
+                  <Controller
+                    name="name"
+                    control={control}
+                    render={({ field }) => (
+                      <>
+                        <Input
+                          {...field}
+                          id="name"
+                          className={styles.inputTextArea}
+                          placeholder="Controlled autosize"
+                          onChange={(e) =>
+                            handleInputChange("name", e.target.value)
+                          }
+                        />
+                        {errors.name && (
+                          <p className={styles.errorMessage}>
+                            {errors.name.message}
+                          </p>
+                        )}
+                      </>
+                    )}
+                  />
+                </div>
+              </section>
+              <section className={styles.fieldInput}>
+                <label htmlFor="productDescription" className={styles.label}>
+                  Description
+                </label>
+                <div className={styles.inputArea}>
+                  <Controller
+                    name="productDescription"
+                    control={control}
+                    render={({ field }) => (
+                      <>
+                        <TextArea
+                          {...field}
+                          id="productDescription"
+                          className={styles.inputTextArea}
+                          placeholder="Controlled autosize"
+                          autoSize={{ minRows: 3, maxRows: 5 }}
+                        />
+                        {/* {errors.productDescription && (
+                          <p className={styles.errorMessage}>
+                            {errors.productDescription.message}
+                          </p>
+                        )} */}
+                      </>
+                    )}
+                  />
+                </div>
+              </section>
+            </div>
+          </div>
+          <div className={styles.containerForm}>
+            <p className={styles.formTitle}>Media</p>
+            <div className={styles.containerfieldInput}>
+              <section className={styles.fieldInput}>
+                <label htmlFor="image" className={styles.label}>
+                  Photo
+                </label>
+                <div className={styles.inputArea}>
+                  <Controller
+                    name="image"
+                    control={control}
+                    render={({ field }) => (
+                      <>
+                        <Input
+                          {...field}
+                          id="image"
+                          className={styles.inputTextArea}
+                          placeholder="Controlled autosize"
+                          onChange={(e) =>
+                            handleInputChange("image", e.target.value)
+                          }
+                        />
+                        {errors.image && (
+                          <p className={styles.errorMessage}>
+                            {errors.image.message}
+                          </p>
+                        )}
+                      </>
+                    )}
+                  />
+                </div>
+              </section>
+            </div>
+          </div>
+          <div className={styles.containerForm}>
+            <p className={styles.formTitle}>Pricing</p>
+            <div className={styles.containerfieldInput}>
+              <section className={styles.fieldInput}>
+                <label htmlFor="productBasePrice" className={styles.label}>
+                  Base Price
+                </label>
+                <Controller
+                  name="price"
+                  control={control}
+                  render={({ field }) => (
+                    <>
+                      <Input
+                        {...field}
+                        id="price"
+                        className={styles.inputAntd}
+                        size="large"
+                        placeholder="large size"
+                        prefix={<DollarCircleFilled />}
+                        onChange={(e) =>
+                          handleInputChange("price", e.target.value)
+                        }
+                      />
+                      {errors.price && (
+                        <p className={styles.errorMessage}>
+                          {errors.price.message}
+                        </p>
+                      )}
+                    </>
+                  )}
                 />
-                <FormInputDefault
-                    title={'Quantity'}
-                    value={formData.qnty}
-                    handleChange={(e) => handleInputChange('qnty', e.target.value)}
-                />
-                <FormInputDefault
-                    title={'Src Image'}
-                    value={formData.image}
-                    handleChange={(e) => handleInputChange('image', e.target.value)}
-                />
-                <FormInputDefault
-                    title={'Price'}
-                    value={formData.price}
-                    handleChange={(e) => handleInputChange('price', e.target.value)}
-                />
-                <FormInputDefault
-                    title={'Stock'}
-                    value={formData.stock}
-                    handleChange={(e) => handleInputChange('stock', e.target.value)}
-                />
-                <FormInputDefault
-                    title={'Category'}
-                    value={formData.category}
-                    handleChange={(e) => handleInputChange('category', e.target.value)}
-                />
-                <Btn defaultValue content={'Submit'} type={'submit'}>
-                    Submit
-                </Btn>
-            </form>
+              </section>
+            </div>
+          </div>
         </div>
-    );
+        <div className={styles.rightForm}>
+          <div className={styles.containerForm}>
+            <p className={styles.formTitle}>Category</p>
+            <div className={styles.containerfieldInput}>
+              <section className={styles.fieldInput}>
+                <label htmlFor="category" className={styles.label}>
+                  Product Category
+                </label>
+                <div className={styles.inputArea}>
+                  <Controller
+                    name="category"
+                    control={control}
+                    render={({ field }) => (
+                      <>
+                        <Select
+                          {...field}
+                          id="category"
+                          className={styles.inputTextArea}
+                          placeholder="Select Product Category"
+                          onChange={(value) =>
+                            handleInputChange("category", value)
+                          }
+                        >
+                          <Option value="Iphone">Iphone</Option>
+                          <Option value="MacBook">MacBook</Option>
+                          <Option value="AppleWatch">Apple Watch</Option>
+                        </Select>
+                        {errors.category && (
+                          <p className={styles.errorMessage}>
+                            {errors.category.message}
+                          </p>
+                        )}
+                      </>
+                    )}
+                  />
+                </div>
+              </section>
+              <section className={styles.fieldInput}>
+                <label htmlFor="stock" className={styles.label}>
+                  Product Stock
+                </label>
+                <div className={styles.inputArea}>
+                  <Controller
+                    name="stock"
+                    control={control}
+                    render={({ field }) => (
+                      <>
+                        <Input
+                          {...field}
+                          id="stock"
+                          className={styles.inputTextArea}
+                          placeholder="Controlled autosize"
+                          onChange={(e) =>
+                            handleInputChange("stock", e.target.value)
+                          }
+                        />
+                        {errors.stock && (
+                          <p className={styles.errorMessage}>
+                            {errors.stock.message}
+                          </p>
+                        )}
+                      </>
+                    )}
+                  />
+                </div>
+              </section>
+            </div>
+          </div>
+        </div>
+      </section>
+    </form>
+  );
 }
 
 export default FormUpdateProduct;

@@ -45,7 +45,7 @@
 
 .tableDashTitle {
     color: #000;
-    font-family: 'Lato';
+   font-family: 'Lato', sans-serif;
     font-size: 16px;
     font-style: normal;
     font-weight: 700;
@@ -72,7 +72,7 @@
     color: var(--Blue-BG, #3858D6);
 
     /* Text M/Semibold */
-    font-family: Public Sans;
+   font-family: 'Public Sans', sans-serif;
     font-size: 14px;
     font-style: normal;
     font-weight: 500;
@@ -103,7 +103,7 @@
     color: var(--Default-Text-Color, #191C1F);
 
     /* Text M/Medium */
-    font-family: Public Sans;
+   font-family: 'Public Sans', sans-serif;
     font-size: 14px;
     font-style: normal;
     font-weight: 500;
@@ -116,7 +116,7 @@
     color: var(--neutral-gray-gray-500, #667085);
 
     /* Text S/Regular */
-    font-family: Public Sans;
+   font-family: 'Public Sans', sans-serif;
     font-size: 12px;
     font-style: normal;
     font-weight: 400;
@@ -129,7 +129,7 @@
     color: var(--neutral-black-black-500, #1D1F2C);
 
     /* Text M/Medium */
-    font-family: Public Sans;
+    font-family: 'Public Sans', sans-serif;
     font-size: 14px;
     font-style: normal;
     font-weight: 500;
@@ -142,7 +142,7 @@
     color: var(--neutral-gray-gray-500, #667085);
 
     /* Text M/Medium */
-    font-family: Public Sans;
+    font-family: 'Public Sans', sans-serif;
     font-size: 14px;
     font-style: normal;
     font-weight: 500;

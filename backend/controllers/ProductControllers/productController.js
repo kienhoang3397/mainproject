@@ -13,12 +13,10 @@ const productController = {
   createProduct: async (req, res) => {
     try {
       const newProduct = new Product({
-        qnty: req.body.qnty,
         image: req.body.image,
         name: req.body.name,
         price: req.body.price,
         stock: req.body.stock,
-        discount: req.body.discount,
         category: req.body.category,
       });
 
@@ -29,15 +27,17 @@ const productController = {
     }
   },
 
+
   updateProduct: async (req, res) => {
     try {
-      const updatedProduct = await Product.updateOne(
-          {_id: req.params.id},
-          {$set: req.body}
+      const updatedProduct = await Product.findByIdAndUpdate(
+        req.params.id,
+        { $set: req.body },
+        { new: true }
       );
 
       if (!updatedProduct) {
-        return res.status(404).json({ message: 'Product not found' });
+        return res.status(404).json({ message: "Product not found" });
       }
 
       res.status(200).json(updatedProduct);
@@ -46,17 +46,17 @@ const productController = {
     }
   },
 
-   getSingleProduct: async (req, res) => {
+  getSingleProduct: async (req, res) => {
     try {
       const product = await Product.findById(req.params.id);
       if (product) {
         res.status(200).json(product);
       } else {
-        res.status(404).json({ message: 'Product not found' });
+        res.status(404).json({ message: "Product not found" });
       }
     } catch (err) {
       console.error(err);
-      res.status(500).json({ message: 'Internal Server Error' });
+      res.status(500).json({ message: "Internal Server Error" });
     }
   },
 
@@ -71,8 +71,6 @@ const productController = {
       res.status(500).json(err);
     }
   },
-
-
 };
 
 module.exports = productController;

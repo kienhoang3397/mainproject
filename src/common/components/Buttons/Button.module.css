@@ -8,17 +8,17 @@
     color: #ffffff;
    
     height: 47px;
-    text-align: center;
+   
     color: #FFF;
    
-    font-family: Poppins;
+    font-family: Public Sans;
     font-size: 14px;
     font-style: normal;
     font-weight: 500;
     line-height: 125.5%; /* 17.57px */
     border-radius: 10px;
     border: solid var(--blue-BG);
-    padding: 10px;
+   
 }
 
 .disable {

@@ -6,15 +6,15 @@ import { FormInputt, FormInputtFrame } from '../../common/components/Forms/FormI
 import { updateUser } from '../../redux/slice/apiRequest';
 
 import { yupResolver } from '@hookform/resolvers/yup';
-import { Alert, AlertTitle } from '@mui/material';
 import * as yup from 'yup';
+import { Alert, AlertTitle } from '@mui/material';
 import styles from './Profile.module.css';
 
 
 // First form schema without currentPassword
 const schemaWithoutCurrentPassword = yup.object().shape({
   username: yup.string(),
-  phonenumber: yup.string().matches(/^\d{8}$/, 'Phone number must have exactly 8 digits'),
+  phonenumber: yup.string().matches(/^\d{9}$/, 'Phone number must have exactly 8 digits'),
   email: yup.string().email('Invalid email format'),
 });
 

@@ -80,7 +80,7 @@ export const router = createBrowserRouter(
         <Route index element={<DashBoard />} />
         <Route path="maindashboard" element={<DashBoard />} />
         <Route path="add" element={<FormAddDashBoard />} />
-        <Route path="maindashboard/add2/:id" element={<UpdateProduct />} />
+        <Route path="maindashboard/add2/:productDashBoardId" element={<UpdateProduct />} />
       </Route>
     </>
   )
