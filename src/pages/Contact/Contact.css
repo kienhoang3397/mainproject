@@ -29,21 +29,22 @@
     transform: translateY(0);
   }
 }
-
-
+.bg{
+  padding: 60px 100px;
+}
 .contactContainer {
   display: flex;
   gap: 60px;
 
   border-radius: 10px;
-  background: #FFF;
+  background: #fff;
   box-shadow: 2px 4px 12px 0px rgba(0, 0, 0, 0.25);
   padding: 50px;
-  margin: 50px;
+
 }
 
 .topContent-titleContactInfo {
-  color: #FFF;
+  color: #fff;
   font-family: Poppins;
   font-size: 28px;
   font-style: normal;
@@ -52,7 +53,7 @@
 }
 
 .underContent-titleContactInfo {
-  color: #C9C9C9;
+  color: #c9c9c9;
   font-family: Poppins;
   font-size: 18px;
   font-style: normal;
@@ -62,12 +63,11 @@
 
 .leftContent {
   background-color: black;
-  color: #FFF;
+  color: #fff;
   border-radius: 13px;
   padding: 30px;
   display: flex;
 
-  
   flex-direction: column;
   gap: 80px;
   width: 40%;
@@ -77,8 +77,6 @@
   display: flex;
   gap: 6px;
   flex-direction: column;
-
-
 }
 
 .cotactInfo {
@@ -93,8 +91,8 @@
   align-items: center;
 }
 
-.textInfo>p {
-  color: #FFF;
+.textInfo > p {
+  color: #fff;
   font-family: Poppins;
   font-size: 16px;
   font-style: normal;
@@ -108,7 +106,6 @@
   align-items: flex-start;
   gap: 50px;
   width: 60%;
-
 }
 
 .checkBoxField {
@@ -143,8 +140,8 @@
   border-radius: 50%;
 }
 
-.checkBoxField:hover input~.checkmark,
-.checkBoxField input:checked~.checkmark {
+.checkBoxField:hover input ~ .checkmark,
+.checkBoxField input:checked ~ .checkmark {
   background-color: #ccc;
   border-radius: 50%;
 }
@@ -156,25 +153,25 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 5c-.28 0-.53.11-.71.29L7 9.59l-2.29-2.3a1.003 1.003 0 00-1.42 1.42l3 3c.18.18.43.29.71.29s.53-.11.71-.29l5-5A1.003 1.003 0 0012 5z" fill="%23fff"/></svg>') no-repeat center center;
+  background: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 5c-.28 0-.53.11-.71.29L7 9.59l-2.29-2.3a1.003 1.003 0 00-1.42 1.42l3 3c.18.18.43.29.71.29s.53-.11.71-.29l5-5A1.003 1.003 0 0012 5z" fill="%23fff"/></svg>')
+    no-repeat center center;
   background-size: cover;
   /* You may adjust the background size as needed */
   width: 100%;
   height: 100%;
 }
 
-.checkBoxField input:checked~.checkmark:after {
+.checkBoxField input:checked ~ .checkmark:after {
   display: block;
 }
 
 .containerSubject {
   width: 100%;
- 
 }
 
 .contentCheckBox,
 .titleSubject {
-  color: var(--Font-Color-Black, #8B8E99);
+  color: var(--Font-Color-Black, #8b8e99);
   font-family: Poppins;
   font-style: normal;
   line-height: 20px;
@@ -185,11 +182,10 @@
   font-weight: 600;
   line-height: 20px;
 }
-.subject{
+.subject {
   display: flex;
   gap: 20px;
-  margin-top: 15px;
-  
+
 }
 .contentCheckBox {
   font-size: 12px;
@@ -201,12 +197,80 @@
   display: flex;
   gap: 20px;
 }
-.FormContact{
+.FormContact {
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 .formContact {
   display: grid;
   grid-template-columns: auto auto;
   gap: 20px;
   width: 100%;
+}
+.fieldInput {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.inputArea::placeholder {
+  color: var(--Font-Color-Black, #8b8e99);
+  font-family: Inter;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px; /* 150% */
+  border-radius: 8px;
+}
+.inputArea {
+  padding: 10px 14px;
+  color: var(--Font-Color-Black, #8b8e99);
+  font-family: Inter;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px; /* 150% */
+  border-radius: 8px;
+}
+.label {
+  color: var(--Font-Color-Black, #8b8e99);
+  font-family: Inter;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 20px; /* 142.857% */
+}
+.containerSelectSubject{
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+@media only screen and (max-width: 1100px) {
+ 
+  .contactContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+   
+    margin: 50px 10px;
+  }
+  .leftContent {
+    width: 100%;
+  }
+  .rightContent {
+    width: 100%;
+  }
+}
+@media only screen and (max-width: 800px) {
+  .contactContainer{
+    padding: 32px 24px;
+  }
+  .bg{
+    padding: 74px 30px;
+  }
+  .textInfo > p{
+    font-size: 14px;
+  }
 }

@@ -24,12 +24,46 @@ export const dropDown ={
     }
   }
 }
+
+export const formFooter = {
+  components: {
+    Input: {
+      colorBgContainer: "transparent",
+      colorBorder: "#E4E7E9",
+      colorText: "#8B8E99",
+      colorTextPlaceholder: "8B8E99",
+    },
+  },
+};
+export const searchProduct = {
+  components: {
+    Input: {
+      colorBgContainer: "#FFF",
+      colorBorder: "#FFF",
+      colorText: "#8B8E99",
+      colorTextPlaceholder: "8B8E99",
+      fontFamily: 'Inter',
+      fontSize: "16"
+      
+    },
+  },
+};
+export const menuProduct = {
+  components: {
+    Select: {
+      selectorBg: " #fff",
+      colorBorder: "#8B8E99",
+    },
+  },
+};
+
 export const sideProductConfig = {
   components: {
     Select: {
       selectorBg: " #f9f9fc",
       colorBorder: "none",
-      controlOutline: "none"
+      controlOutline: "none",
+      
     },
     Checkbox: {
       colorPrimary: "#3858D6",
@@ -59,5 +93,5 @@ export const sideProductConfig = {
   },
 };
 
-  export default themeConfig;
+  
   

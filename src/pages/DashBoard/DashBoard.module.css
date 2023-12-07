@@ -1,152 +1,210 @@
-.dashboard {
-    display: flex;
-    flex-direction: column;
-    background-color: #E4E7E9;
-    width: 100%;
-     /* Set the height of the dashboard to fill the viewport height */
+@import url(/src/common/styles/fonrt.css);
+
+.container{
+  padding: 25px;
 }
-.menuIconDash{
-    cursor: pointer;
+.alert {
+  position: fixed;
+  top: 7%;
+  right: 1%;
+  z-index: 1000;
+  animation: slideInDown 1.5s ease; /* Adjust the animation duration and timing function as needed */
 }
-.tableDash {
-  /* Make .tableDash fill the remaining vertical space */
-    background: #FFF;
-    margin: 50px;
-    padding: 15px;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    align-self: stretch;
-    border-radius: 12px;
-    box-shadow: 0px 4px 30px 0px rgba(46, 45, 116, 0.05);
+.btnAdd{
+  display: flex;
+padding: 10px 14px;
+justify-content: center;
+align-items: center;
+gap: 5px;
+border-radius: 8px;
+background: var(--Blue-BG, #3858D6);
+height: 20px;
+margin-bottom: 20px;
 }
+.btnAddContent{
+  color: var(--neutral-white, #FFF);
 
-
-.tableRow {
-    border-bottom: 1px solid var(--Border-Color, #E4E7E9);
-    background: #FFF;
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    align-self: stretch;
+/* Text M/Semibold */
+font-family: Public Sans;
+font-size: 14px;
+font-style: normal;
+font-weight: 500;
+line-height: 20px; /* 142.857% */
+letter-spacing: 0.07px;
 }
-
-.headerCel {
-    display: flex;
-    padding: 20px;
-    align-items: flex-start;
-    gap: 8px;
-
-    border-bottom: 1px solid var(--neutral-gray-gray-50, #F0F1F3);
-    background: var(--neutral-white, #FFF);
+.btnAddIcon{
+  color: #F5F5F7;
+  width: 20px;
+  height: 20px;
 }
-
-
-
-.tableDashTitle {
-    color: #000;
-   font-family: 'Lato', sans-serif;
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: 131.9%;
-    /* 21.104px */
-    letter-spacing: 0.08px;
-    
+.fieldSettingHeading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
+.formTitle {
+  color: var(--Default-Text-Color, #191c1f);
 
-.tableRow {
-    display: flex;
-    align-items: center;
+  /* Display M/Semibold */
+  font-family: Public Sans;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 32px; /* 133.333% */
+  letter-spacing: 0.24px;
+}
+.table {
+  width: 100%;
 }
 
-.cell {
-    display: flex;
-
-    padding: 20px;
-    align-items: center;
-    gap: 8px;
+.trTableWL {
+  align-items: flex-start;
+  align-self: stretch;
 }
+.thTableWLFirst {
+ color: var(--neutral-gray-gray-500, #667085);
+  border-bottom: 1px solid var(--Border-Color, #e4e7e9);
+  /* Text M/Medium */
 
-.cellContentCheck {
-    color: var(--Blue-BG, #3858D6);
+  font-size: 14px;
+  font-style: normal;
+width: 5px;
+  line-height: 20px; /* 142.857% */
+  letter-spacing: 0.07px;
+  background-color: pink;
+ padding: 17px 0px ;
+ padding-left: 24px;
 
-    /* Text M/Semibold */
-   font-family: 'Public Sans', sans-serif;
-    font-size: 14px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: 20px;
-    /* 142.857% */
-    letter-spacing: 0.07px;
+ text-align: end;
+  gap: 8px;
+
+  background: #fff;
+
+  background: var(--neutral-white, #fff);
 }
+.thTableWL {
+  color: var(--neutral-black-black-500, #1d1f2c);
 
-.containerProduct {
-    display: flex;
-    align-items: center;
-    gap: 8px;
+  /* Text M/Medium */
+
+  font-size: 14px;
+  font-style: normal;
+
+  line-height: 20px; /* 142.857% */
+  letter-spacing: 0.07px;
+
+  display: table-cell;
+  width: 98px;
+  padding: 18px 22px;
+  text-align: start;
+  gap: 8px;
+  border-bottom: 1px solid var(--Border-Color, #e4e7e9);
+  background: var(--neutral-white, #fff);
 }
-
-.containerProductImg {
-    width: 44px;
-    height: 44px;
+.productInfo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
 }
-
-.containerProductContent {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 4px;
+.imgProduct {
+  width: 44px;
+  height: 44px;
 }
+.productContent {
+  width: 230px;
+  overflow: hidden;
+  color: var(--Default-Text-Color, #191c1f);
+  text-overflow: ellipsis;
 
-.containerProductName {
-    color: var(--Default-Text-Color, #191C1F);
-
-    /* Text M/Medium */
-   font-family: 'Public Sans', sans-serif;
-    font-size: 14px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: 20px;
-    /* 142.857% */
-    letter-spacing: 0.07px;
+  /* Body/Small/400 */
+  font-family: Public Sans;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px;
+  /* 142.857% */
+  padding-right: 24px;
+  white-space: nowrap;
+  /* Ngăn chặn ngắn dòng nếu nội dung quá nhiều */
 }
+.product {
+  color: var(--neutral-gray-gray-500, #667085);
 
-.containerProductSold {
+  /* Text M/Medium */
+
+  font-size: 14px;
+  font-style: normal;
+
+  line-height: 20px; /* 142.857% */
+  letter-spacing: 0.07px;
+  background-color: pink;
+  padding: 17px 22px;
+  align-items: center;
+  gap: 8px;
+  border-bottom: 1px solid var(--Border-Color, #e4e7e9);
+  background: #fff;
+}
+.productSvgg{
     color: var(--neutral-gray-gray-500, #667085);
+  border-bottom: 1px solid var(--Border-Color, #e4e7e9);
+  /* Text M/Medium */
 
-    /* Text S/Regular */
-   font-family: 'Public Sans', sans-serif;
-    font-size: 12px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 18px;
-    /* 150% */
-    letter-spacing: 0.06px;
+  font-size: 14px;
+  font-style: normal;
+
+  line-height: 20px; /* 142.857% */
+  letter-spacing: 0.07px;
+  background-color: pink;
+ padding: 17px 0;
+
+ text-align: end;
+  gap: 8px;
+
+  background: #fff;
+}
+.productSvg {
+  color: var(--neutral-gray-gray-500, #667085);
+  border-bottom: 1px solid var(--Border-Color, #e4e7e9);
+  /* Text M/Medium */
+
+  font-size: 14px;
+  font-style: normal;
+
+  line-height: 20px; /* 142.857% */
+  letter-spacing: 0.07px;
+  background-color: pink;
+  padding: 17px 22px;
+  align-items: center;
+  gap: 8px;
+
+  background: #fff;
 }
 
-.headerCellContent {
-    color: var(--neutral-black-black-500, #1D1F2C);
-
-    /* Text M/Medium */
-    font-family: 'Public Sans', sans-serif;
-    font-size: 14px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: 20px;
-    /* 142.857% */
-    letter-spacing: 0.07px;
+.thTableWLFirst {
+  border-top-left-radius: 12px; /* Góc trên bên trái */
 }
 
-.cellContent {
-    color: var(--neutral-gray-gray-500, #667085);
+.thTableWL:last-child {
+  border-top-right-radius: 12px; /* Góc trên bên phải */
+}
 
-    /* Text M/Medium */
-    font-family: 'Public Sans', sans-serif;
-    font-size: 14px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: 20px;
-    /* 142.857% */
-    letter-spacing: 0.07px;
+/* Các CSS khác */
+
+.table {
+  border-spacing: 0px;
+  font-family: Public Sans;
+  font-weight: 500;
+}
+
+.action {
+  cursor: pointer;
+  width: 16px;
+  height: 16px;
+}
+.actionContainer {
+  display: flex;
+  gap: 12px;
+}
+.link{
+  color: var(--neutral-gray-gray-500, #667085); ;
 }

@@ -1,11 +1,9 @@
-.container{
+.container {
     gap: 12px;
     display: flex;
     flex-direction: column;
     align-items: center;
     text-decoration: none;
-    
-    
 }
 
 .text {
@@ -16,7 +14,6 @@
     font-style: normal;
     font-weight: 600;
     line-height: 16px;
-    /* 133.337% */
     letter-spacing: -0.12px;
 }
 
@@ -28,7 +25,6 @@
     font-style: normal;
     font-weight: 700;
     line-height: 20px;
-    /* 86.958% */
     letter-spacing: -0.224px;
 }
 
@@ -40,6 +36,19 @@
     font-style: normal;
     font-weight: 600;
     line-height: 20px;
-    /* 142.859% */
     letter-spacing: -0.224px;
+}
+
+@media only screen and (max-width: 800px) {
+    .text {
+        font-size: 10px; /* Điều chỉnh kích thước font chữ cho màn hình nhỏ hơn 800px */
+    }
+
+    .title {
+        font-size: 18px; /* Điều chỉnh kích thước font chữ cho màn hình nhỏ hơn 800px */
+    }
+
+    .content {
+        font-size: 12px; /* Điều chỉnh kích thước font chữ cho màn hình nhỏ hơn 800px */
+    }
 }

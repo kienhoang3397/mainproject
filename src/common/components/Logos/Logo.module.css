@@ -1,17 +1,10 @@
-.logoInv {
-  flex-shrink: 0;
-  background: url("../../../assets/image/LogoInv.png") no-repeat center/cover
-    transparent;
-}
+.icon{
+  display: flex;
+width: 27.015px;
+height: 27.133px;
+flex-direction: column;
+justify-content: center;
+align-items: center;
 
-.whiteLogo {
-  flex-shrink: 0;
-  background: url("../../../assets/image/WhiteLogo.png") no-repeat center/cover
-    transparent;
-}
-
-.greyLogo {
-  flex-shrink: 0;
-  background: url("../../../assets/image/GreyLogo.png") no-repeat center/cover
-    transparent;
+    color: #8B8E99;
 }

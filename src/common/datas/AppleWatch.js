@@ -23,7 +23,7 @@ const appleWatchs = [
 		id: 3,
         image: watch3,
         content: <IphoneSpec name={'Apple Watch Ultra'} price = {'From ₹18,000'}/>,
-		color: color3
+		color: color1
 	},
     {
         id: 1,
@@ -41,7 +41,7 @@ const appleWatchs = [
 		id: 3,
         image: watch3,
         content: <IphoneSpec name={'Apple Watch Ultra'} price = {'From ₹18,000'}/>,
-		color: color3
+		color: color1
 	},
 
 ];

@@ -2,17 +2,19 @@
   padding: 45px 120px 123px;
 }
 .containerCartPage {
+  width: 100%;
   display: flex;
   flex-direction: row;
   gap: 25px;
 }
 .asideCartPage {
+  width: 25%;
   display: flex;
   flex-direction: column;
 }
 .cartFullContainer {
   display: inline-flex;
-  width: 50rem;
+
   flex-direction: column;
   align-items: flex-start;
   background: var(--gray-00, #fff);
@@ -25,7 +27,7 @@
 
 .heading {
   display: flex;
-
+width: 100%;
   padding: 20px 24px;
   align-items: flex-start;
   gap: 10px;
@@ -39,12 +41,16 @@
   font-weight: 500;
   line-height: 24px;
 }
-
+.containerIcon{
+  width: 100%;
+  padding: 0 24px;
+  padding-bottom: 16px;
+}
 .subHeading {
   display: flex;
   border: 1px solid var(--Border-Color, #e4e7e9);
   background: transparent;
-  padding: 10px 24px;
+  
   align-items: center;
   gap: 24px;
   justify-content: space-around;
@@ -82,7 +88,7 @@
   line-height: 20px;
   /* 142.857% */
   display: -webkit-box;
-  width: 230px;
+ 
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 1;
 }
@@ -152,13 +158,14 @@
   justify-content: center;
   align-items: center;
   gap: 24px;
-  padding: 18px 13px;
+ 
 }
 
 .cardTotals {
   display: flex;
-  width: 422px;
-  padding-bottom: 24px;
+  width: 100%;
+ 
+  
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -169,22 +176,16 @@
 
 .cardTotalHeading {
   display: flex;
-  padding: 20px 24px;
+  
   align-items: flex-start;
   gap: 10px;
 }
 
-.total {
-  display: flex;
-  padding-bottom: 0px;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 12px;
-}
+
 
 .contentCardTotalHeading {
   color: var(--gray-900, #191c1f);
-  width: 376px;
+  
 
   /* Body/Large/500 */
   font-family: Public Sans;
@@ -205,7 +206,7 @@
 
 .detailTotal {
   display: flex;
-  width: 376px;
+ 
   justify-content: space-between;
   align-items: center;
 }
@@ -235,15 +236,16 @@
 }
 
 .lineTotal {
-  width: 376px;
+ width: 100%;
+ margin: 16px 0;
   height: 1px;
   background-color: #e4e7e9;
-  margin: 10px 0;
+
 }
 
 .toltalPriceDetail {
   display: flex;
-  width: 376px;
+ margin-bottom: 16px ;
   justify-content: space-between;
   align-items: center;
 }
@@ -263,7 +265,7 @@
 .headingCoupon {
   display: flex;
   border-bottom: 1px solid var(--gray-100, #e4e7e9);
-  padding: 20px 24px;
+  
   align-items: flex-start;
   gap: 10px;
 
@@ -279,7 +281,7 @@
 
 .couponCode {
   display: flex;
-  width: 424px;
+  
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
@@ -290,9 +292,9 @@
 
 .form {
   display: flex;
-  width: 385px;
+  
   height: 70px;
-  padding-top: 26px;
+  
   justify-content: center;
   align-items: center;
   flex-shrink: 0;
@@ -310,7 +312,7 @@
 }
 
 .container1 {
-  width: 100%;
+  width: 75%;
 }
 
 .settingHeading {
@@ -460,6 +462,8 @@
   gap: 5px;
 }
 .itemTotalCart{
+ 
+  width: 100%;
     display: flex;
     flex-direction: column;
     gap: 10px;

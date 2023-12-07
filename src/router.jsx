@@ -17,13 +17,13 @@ const UserDashBoard = React.lazy(() =>
   import("./common/components/UserDashBoard/UserDashBoard")
 );
 const MainLayout = React.lazy(() =>
-  import("./common/layouts/MainLayouts/MainLayout")
+  import("./common/layouts/MainLayouts/MainLayout/MainLayout")
 );
 const MainLayoutSecond = React.lazy(() =>
   import("./common/layouts/MainLayouts/MainLayoutSecond")
 );
 const UserLayout = React.lazy(() =>
-  import("./common/layouts/MainLayouts/UserLayout")
+  import("./common/layouts/MainLayouts/UserLayout/UserLayout")
 );
 const OrderHistory = React.lazy(() =>
   import("./pages/OrderHistory/OrderHistory")
@@ -80,7 +80,10 @@ export const router = createBrowserRouter(
         <Route index element={<DashBoard />} />
         <Route path="maindashboard" element={<DashBoard />} />
         <Route path="add" element={<FormAddDashBoard />} />
-        <Route path="maindashboard/add2/:productDashBoardId" element={<UpdateProduct />} />
+        <Route
+          path="maindashboard/add2/:productDashBoardId"
+          element={<UpdateProduct />}
+        />
       </Route>
     </>
   )

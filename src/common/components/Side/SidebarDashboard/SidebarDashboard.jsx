@@ -18,7 +18,7 @@ function SidebarDashboard() {
       <div className="SidebarDashboard">
         <div className="sider">
           <aside className="theme">
-            <Logo></Logo>
+          
             <Theme></Theme>
           </aside>
           <aside className="menu">

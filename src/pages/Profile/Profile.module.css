@@ -40,8 +40,8 @@
 }
 .accountSetting {
 
-  border-radius: 4px;
-  border: 1px solid var(--gray-100, #E4E7E9);
+ 
+ 
   background: var(--gray-00, #FFF);
   padding: 22px 24px;
 }
@@ -64,6 +64,10 @@
   border-bottom: 1px solid var(--gray-100, #E4E7E9);
   background: var(--gray-00, #FFF);
  
+}
+.main{
+background: var(--gray-00, #FFF);
+  padding: 22px 24px;
 }
 
 .main {

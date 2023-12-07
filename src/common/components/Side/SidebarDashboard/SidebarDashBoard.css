@@ -38,10 +38,10 @@
 
 .menuTitle {
     color: var(--Blue-BG, #3858D6);
-    font-family: 'Poppins', sans-serif;
+  font-family: 'Poppins', sans-serif;
     font-size: 11px;
     font-style: normal;
-    font-weight: 400;
+    font-weight: 700;
     line-height: 11px;
     /* 100% */
     letter-spacing: 1px;
@@ -82,7 +82,11 @@
     color: var(--Font-Color-Black, #8B8E99);
 }
 
-
+.theme{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
 .menuContent {
     color: var(--Font-Color-Black, #8B8E99);
   font-family: 'Poppins', sans-serif;

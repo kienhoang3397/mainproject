@@ -3,11 +3,10 @@ import { useDispatch, useSelector } from "react-redux";
 import Btn from "../../common/components/Buttons/Button";
 import Status from "../../common/components/Status/Status";
 
-import { removeItemformWishlist } from "../../redux/slice/wishlist";
-import styles from "./WishList.module.css";
 import { addToCart } from "../../redux/slice/cartApiSlice";
 import { fetchUser } from "../../redux/slice/userApiSlice";
 import { removeFromwishlist } from "../../redux/slice/wishlistApiSlice";
+import styles from "./WishList.module.css";
 
 function WishList() {
   const dispatch = useDispatch();

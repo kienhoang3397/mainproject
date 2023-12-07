@@ -1,3 +1,4 @@
+@import url(/src/common/styles/fonrt.css);
 .headingTitle {
   color: var(--neutral-black-black-500, #1d1f2c);
 margin-bottom: 24px;
@@ -55,7 +56,7 @@ flex: 1 0 0;
   color: var(--neutral-black-black-500, #1d1f2c);
 margin-bottom: 14px;
   /* Text XL/Semibold */
- font-family: 'Public Sans', sans-serif;
+  font-family: 'Public Sans', sans-serif;
   font-size: 18px;
   font-style: normal;
   font-weight: 600;
@@ -75,7 +76,7 @@ margin-bottom: 14px;
   color: var(--neutral-black-black-300, #777980);
 
   /* Text M/Medium */
- font-family: 'Public Sans', sans-serif;
+  font-family: 'Public Sans', sans-serif;
   font-size: 14px;
   font-style: normal;
   font-weight: 500;
@@ -94,7 +95,7 @@ margin-bottom: 14px;
   color: var(--neutral-black-black-500, #1d1f2c);
 
   /* Text M/Regular */
- font-family: 'Public Sans', sans-serif;
+   font-family: 'Public Sans', sans-serif;
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
@@ -102,7 +103,7 @@ margin-bottom: 14px;
   letter-spacing: 0.07px;
 }
 .inputAntd{
-     font-family: 'Public Sans', sans-serif;
+ font-family: 'Public Sans', sans-serif;
   font-size: 14px;
   font-style: normal;
   font-weight: bold;

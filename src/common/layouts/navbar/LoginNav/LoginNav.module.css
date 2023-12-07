@@ -1,70 +1,80 @@
-    /* .navField{
-        position: relative;
-    } */
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 80px;
+  height: 70px;
+  background: var(--BG, #f5f5f7);
+  box-shadow: 2px 4px 12px 0px rgba(0, 0, 0, 0.25);
+}
+.router {
+  display: flex;
+  gap: 32px;
+}
+.logo {
+  text-decoration: none;
+}
+.item {
+  color: #8b8e99;
+  font-family: Poppins;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  text-decoration: none;
+}
+.auth {
+  display: flex;
+  gap: 32px;
+}
+.iconNav {
+  font-size: 16px;
+  color: #8b8e99;
+  display: none;
+}
+.nav.active {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+}
+@media only screen and (max-width: 1000px) {
+  .nav {
+    padding: 0 30px;
+  }
+  .scrolled {
+    top: 0;
+  }
+  .router {
+    position: fixed;
+    top: 70px;
+    left: 0;
+    align-items: center;
+    flex-direction: column;
+    background: var(--BG, #f5f5f7);
+    opacity: 0.9;
+    z-index: 100000000;
+    width: 100%;
+    height: 50vh;
+    top: -100%;
+    transition: all 0.5s;
+    border-radius: 0 0 50% 50%;
+  }
 
+  .router.hidden {
+    top: 70px;
+  }
 
+  .iconNav {
+    display: block;
+  }
 
-    .darkNav {
-        background-color: transparent;
-        border: solid none;
-        box-shadow: none;
+  .auth {
+    display: none;
+  }
 
-       
-    }
-
-    .lightNav {
-
-        box-shadow: 2px 4px 12px 0px rgba(0, 0, 0, 0.25);
-
-    }
-
-    .logo {
-        font-size: 14px;
-        display: flex;
-        
-        text-decoration: none;
-        align-items: center;
-    }
-
-    .nav {
-        padding: 0 100px;
-        background-color: transparent;
-        height: 70px;
-        color: var(--font-color-black);
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        z-index: 100;
-        box-shadow: 2px 4px 12px 0px rgba(0, 0, 0, 0.25);
-        width: 100%;
-
-
-
-    }
-
-    .item {
-        color: var(--font-color-black);
-        font-family: Poppins;
-        font-size: 16px;
-        font-style: normal;
-        font-weight: 700;
-        line-height: normal;
-        text-decoration: none;
-    }
-
-    .router {
-       
-        display: flex;
-        gap: 32px;
-        justify-content: space-between;
-        align-items: center;
-    }
-
-    .auth {
-        display: flex;
-        gap: 20px;
-        justify-content: space-between;
-        align-items: center;
-        padding-right: 30px;
-
-    }
+  #check:checked ~ .router {
+    left: 0;
+  }
+}

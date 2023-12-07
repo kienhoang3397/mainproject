@@ -7,6 +7,7 @@ const initialState = {
     status: null,
   },
 };
+
 export const updateProductApi = createAsyncThunk(
   "update/product",
   async ({ id, updatedData }) => {
@@ -14,9 +15,8 @@ export const updateProductApi = createAsyncThunk(
     try {
       const res = await axios.put(
         `http://localhost:3000/product/${id}`,
-        updatedData // Ensure that updatedData has the correct structure
+        updatedData
       );
-      console.log("API Response:", res.data);
       return res?.data;
     } catch (error) {
       throw error;
@@ -31,6 +31,31 @@ export const productsFetch = createAsyncThunk(
     return res?.data;
   }
 );
+
+export const addProduct = createAsyncThunk(
+  "add/product",
+  async (productData) => {
+    console.log(productData); // Move this line inside the async function
+    try {
+      const res = await axios.post(
+        "http://localhost:3000/product/add",
+        productData
+      );
+      return res?.data;
+    } catch (error) {
+      throw error;
+    }
+  }
+);
+
+export const deleteProduct = createAsyncThunk("delete/product", async (id) => {
+  try {
+    const res = await axios.delete(`http://localhost:3000/product/${id}`);
+    return res?.data;
+  } catch (error) {
+    throw error;
+  }
+});
 
 const productApiSlice = createSlice({
   name: "products",
@@ -53,13 +78,35 @@ const productApiSlice = createSlice({
       })
       .addCase(updateProductApi.fulfilled, (state, action) => {
         state.product.status = "fulfilled";
-        // Assuming action.payload is the updated product data
-        // Update the corresponding item in the items array
         state.product.items = state.product.items.map((item) =>
           item._id === action.payload._id ? action.payload : item
         );
       })
       .addCase(updateProductApi.rejected, (state) => {
+        state.product.status = "reject";
+      })
+      .addCase(addProduct.pending, (state) => {
+        state.product.status = "pending";
+      })
+      .addCase(addProduct.fulfilled, (state, action) => {
+        state.product.status = "fulfilled";
+        state.product.items = [...state.product.items, action.payload];
+      })
+
+      .addCase(addProduct.rejected, (state) => {
+        state.product.status = "reject";
+      })
+      .addCase(deleteProduct.pending, (state) => {
+        state.product.status = "pending";
+      })
+      .addCase(deleteProduct.fulfilled, (state, action) => {
+        state.product.status = "fulfilled";
+        // Remove the deleted product from the items array
+        state.product.items = state.product.items.filter(
+          (item) => item._id !== action.payload._id
+        );
+      })
+      .addCase(deleteProduct.rejected, (state) => {
         state.product.status = "reject";
       });
   },

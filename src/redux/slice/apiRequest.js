@@ -1,53 +1,11 @@
 import axios from "axios";
 import { loginFailed, loginStart, loginSuccess, logoutFailed, logoutStart, logoutSuccess, registerFailed, registerStart, registerSuccess } from "./authSlice";
-import { addProductFailed, addProductStart, addProductSuccsess, deleteProductFailed, deleteProductStart, deleteProductSuccsess, getProductError, getProductStart, getProductSuccess, updateProductFailed, updateProductStart, updateProductSuccsess } from "./productSlice";
 import { getUserFailed, getUsersStart, getUsersSuccess, updateUserFailed, updateUserStart, updateUserSuccess } from "./userSlice";
+import { dataProductPages } from "../../common/datas/ProductListingData";
 
 
 
 
-export const getAllProducts = async (dispatch) => {
-    dispatch(getProductStart());
-    try {
-        const res = await axios.get("http://localhost:3000/product/getall");
-        dispatch(getProductSuccess(res.data)); // Đã sửa tên action creator
-    } catch (err) {
-        dispatch(getProductError());
-    }
-};
-export const addProduct = async (product, dispatch) => {
-    dispatch(addProductStart());
-    try {
-        await axios.post("http://localhost:3000/product/add", product)
-        dispatch(addProductSuccsess())
-
-
-    }
-    catch (err) {
-        dispatch(addProductFailed())
-    }
-}
-export const deleteProduct = async (dispatch, id) => {
-    dispatch(deleteProductStart());
-    try {
-        const res = await axios.delete(`http://localhost:3000/product/${id}`);
-        dispatch(deleteProductSuccsess());
-    } catch (err) {
-        dispatch(deleteProductFailed());
-    }
-};
-
-
-export const updateProduct = async (product, id, dispatch) => {
-    dispatch(updateProductStart());
-    try {
-        const res = await axios.put(`http://localhost:3000/product/${id}`, product);
-        dispatch(updateProductSuccsess(res.data));
-    } catch (err) {
-        console.error('Error updating product:', err);
-        dispatch(updateProductFailed(err.message));
-    }
-};
 export const updateUser = async (user, id, dispatch) => {
     dispatch(updateUserStart());
     try {
@@ -96,12 +54,10 @@ export const registerUser = async (user, dispatch, navigate) => {
         dispatch(registerFailed())
     }
 }
-export const getAllUser = async (accessToken, dispatch) => {
+export const getAllUser = async (dispatch) => {
     dispatch(getUsersStart());
     try {
-        const res = await axios.get("http://localhost:3000/v1/user/", {
-            headers: { token: `Bearer ${accessToken}` },
-        });
+        const res = await axios.get("http://localhost:3000/v1/user/");
         dispatch(getUsersSuccess(res.data));
     } catch (error) {
         console.error("Error fetching user data:", error);
@@ -149,7 +105,32 @@ export const getUserApi = async (accessToken) => {
 
 
   
+const addAllProductsAPI = async () => {
+  const promises = dataProductPages.map(async (product) => {
+    try {
+      const res = await axios.post(
+        "http://localhost:3000/product/add",
+        product
+      );
+      return res.data;
+    } catch (error) {
+      console.error("Error adding product:", error);
+      throw error;
+    }
+  });
 
+  try {
+    // Use Promise.all to wait for all promises to resolve
+    const results = await Promise.all(promises);
+    console.log("All products added successfully:", results);
+  } catch (error) {
+    console.error("Error adding products:", error);
+    // Handle the error as needed
+  }
+};
+
+// Usage
+// addAllProductsAPI();
 
 
 

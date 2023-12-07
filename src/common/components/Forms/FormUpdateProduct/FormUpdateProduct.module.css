@@ -1,3 +1,4 @@
+@import url(/src/common/styles/fonrt.css);
 .headingTitle {
   color: var(--neutral-black-black-500, #1d1f2c);
 margin-bottom: 24px;

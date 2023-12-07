@@ -1,6 +1,7 @@
-import React, { useEffect } from "react";
+import React, { useState } from "react";
 import { AiFillStar } from "react-icons/ai";
 import { BsTruck } from "react-icons/bs";
+import { FaHeart } from "react-icons/fa";
 import {
   PiCreditCardLight,
   PiHandshakeLight,
@@ -8,19 +9,16 @@ import {
   PiMedalDuotone,
 } from "react-icons/pi";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import Btn from "../../../common/components/Buttons/Button";
-import { DropMenuCustom } from "../../../common/components/DropMenu/DropMenuSort/DropMenuSort";
 import DetailSlide from "../../../common/components/Sliders/Detail/DetailSlider";
-import { dataProductPages } from "../../../common/datas/ProductListingData";
-import "./Detail.css";
-
-import store from "../../../redux/store";
 import { addToCart } from "../../../redux/slice/cartApiSlice";
 import { fetchUser } from "../../../redux/slice/userApiSlice";
 import { addTowishlist } from "../../../redux/slice/wishlistApiSlice";
+import "./Detail.css";
 
 function Detail() {
+  const [toggle, setToogle] = useState(1);
   const { productId } = useParams();
   const productList = useSelector((state) => state.productsApi?.product?.items);
   const product = productList.find((prod) => prod._id === productId);
@@ -34,33 +32,41 @@ function Detail() {
     (state) => state.auth.login.currentUser?.accessToken
   );
 
- const handleAddToCart = () => {
-   const quantity = 1;
+  const handleAddToCart = () => {
+    const quantity = 1;
 
-   dispatch(addToCart({ productId, quantity, token }))
-     .then(() => {
-       dispatch(fetchUser(token));
-     })
-     .catch((error) => {
-       console.error("Error adding to cart:", error);
-     });
- };
+    dispatch(addToCart({ productId, quantity, token }))
+      .then(() => {
+        dispatch(fetchUser(token));
+      })
+      .catch((error) => {
+        console.error("Error adding to cart:", error);
+      });
+  };
 
- const handleAddToWishList = () => {
-   dispatch(addTowishlist({ productId, token }))
-     .then(() => {
-       dispatch(fetchUser(token));
-     })
-     .catch((error) => {
-       console.error("Error adding to wishlist:", error);
-     });
- };
-
-
+  const handleAddToWishList = () => {
+    dispatch(addTowishlist({ productId, token }))
+      .then(() => {
+        dispatch(fetchUser(token));
+      })
+      .catch((error) => {
+        console.error("Error adding to wishlist:", error);
+      });
+  };
+  function updateToogle(id) {
+    setToogle(id)
+  }
   return (
-    <>
+    <section className="containerDetail">
       <div className="detailContainer">
-        <DetailSlide />
+        <DetailSlide
+          image1={product?.image1}
+          image2={product?.image2}
+          image3={product?.image3}
+          image4={product.image4}
+          image5={product?.image1}
+          image6={product?.image2}
+        />
 
         <section className="detailDescription">
           <div className="ratingDetail">
@@ -90,8 +96,6 @@ function Detail() {
                   </span>
                 </span>
               </div>
-            </div>
-            <div className="rowPropDetail">
               <div>
                 Brand: <span className="bold">Apple</span>
               </div>
@@ -108,165 +112,278 @@ function Detail() {
               ₹{product?.price + product?.price * 0.25}
             </del>
             <section className="badgeField">
-              <div className="badge">{product?.discount * 100}% OFF</div>
+              <div className="badge">25% OFF</div>
             </section>
           </section>
-          <div className="devider"></div>
-          <div className="dropMenuDetailContainer">
-            <DropMenuCustom title={"hehe"} item1={123412124} item2 item3 />
-            <DropMenuCustom item1={123412124} />
-            <DropMenuCustom item1={123412124} />
-          </div>
-          <div className="btnDetail"></div>
-          <Btn
-            defaultValue
-            content={" Add to Cart"}
-            handleBtn={() => handleAddToCart(product._id, 1)}
-          ></Btn>
-          <Btn
-            defaultValue
-            content={" Add to WishList"}
-            handleBtn={() => handleAddToWishList(product._id)}
-          ></Btn>
-
-          <Link to={"/shoppingcart"}>
-            <Btn variant2 content={"Click me to Cart"} />
-          </Link>
 
           <div className="btnDetail">
-            <Btn defaultValue content={"Buy Now"} />
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="53"
-              height="52"
-              viewBox="0 0 53 52"
-              fill="none"
-            >
-              <g clipPath="url(#clip0_105_4831)">
-                <path
-                  d="M1 9C1 4.30558 4.80558 0.5 9.5 0.5H43.5C48.1944 0.5 52 4.30558 52 9V43C52 47.6944 48.1944 51.5 43.5 51.5H9.5C4.80558 51.5 1 47.6944 1 43V9Z"
-                  stroke="#8B8E99"
-                />
-                <path
-                  d="M33.5 16H19.2143C18.8192 16 18.5 16.3192 18.5 16.7143V35.2857C18.5 35.6808 18.8192 36 19.2143 36H33.5C33.8951 36 34.2143 35.6808 34.2143 35.2857V16.7143C34.2143 16.3192 33.8951 16 33.5 16ZM27.6964 17.6071H29.8393V22.2924L28.8013 21.5357L27.6964 22.3259V17.6071ZM32.6071 34.3929H20.1071V17.6071H26.3571V24.2344C26.3571 24.308 26.3795 24.3817 26.4241 24.442C26.4512 24.4803 26.4856 24.5128 26.5254 24.5377C26.5652 24.5627 26.6095 24.5794 26.6558 24.5871C26.702 24.5948 26.7494 24.5932 26.7951 24.5825C26.8408 24.5717 26.8839 24.5521 26.9219 24.5246L28.7924 23.1875L30.6094 24.5134C30.6696 24.558 30.7433 24.5826 30.8192 24.5826C31.0156 24.5826 31.1763 24.4219 31.1763 24.2254V17.6071H32.6049V34.3929H32.6071Z"
-                  fill="#8B8E99"
-                />
-              </g>
-              <defs>
-                <clipPath id="clip0_105_4831">
-                  <rect
-                    width="52"
-                    height="52"
-                    fill="white"
-                    transform="translate(0.5)"
-                  />
-                </clipPath>
-              </defs>
-            </svg>
+            <Btn
+              defaultValue
+              content={" Add to Cart"}
+              handleBtn={() => handleAddToCart(product._id, 1)}
+            ></Btn>
+            <section className="heartcontainer">
+              <FaHeart
+                onClick={() => handleAddToWishList(product._id, 1)}
+                className="heart"
+              />
+            </section>
           </div>
         </section>
       </div>
 
       <div className="productInfomation">
         <section className="tabInfoDetail">
-          <p className="tproductontent">Description</p>
-          <p className="tproductontent">Review</p>
+          <p
+            className={
+              toggle === 1 ? "tproductontent active" : "tproductontent"
+            }
+            onClick={() => updateToogle(1)}
+          >
+            Description
+          </p>
+          <p
+            className={
+              toggle === 2 ? "tproductontent active" : "tproductontent"
+            }
+            onClick={() => updateToogle(2)}
+          >
+            Review
+          </p>
         </section>
-        <div className="lineGreyW"></div>
-        <section className="contentInfoDetail">
-          <div className="decriptionInfoDetail">
-            <p className="titleInfoDetail">Description</p>
-            <p className="contentDecriptionInfoDetail">
-              The most powerful MacBook Pro ever is here. With the b lazing-fast
-              M1 Pro or M1 Max
-              <br />
-              chip — the first Apple silicon designed for pros — you get
-              groundbreaking performance
-              <br /> and amazing battery life. Add to that a stunning Liquid
-              Retina XDR display, the best
-              <br /> camera and audio ever in a Mac notebook, and all the ports
-              you need. The first notebook
-              <br />
-              of its kind, this MacBook Pro is a beast. M1 Pro takes the
-              <br /> exceptional performance of the M1 architecture to a whole
-              new level for pro users.
-            </p>
-            <p className="contentDecriptionInfoDetail">
-              Even the most ambitious projects are easily handled with up to 10
-              CPU cores, up to 16
-              <br /> GPU cores, a 16‑core Neural Engine, and dedicated encode
-              and decode media engines
-              <br /> that support H.264, HEVC, and ProRes codecs.
-            </p>
-          </div>
-          <div className="featureInfoDetail">
-            <p className="titleInfoDetail">Feature</p>
-            <main className="featureContainer">
-              <h4 className="featureContent">
-                <PiMedalDuotone className="iconFeatureContainer" />
-                <span className="contentFeature">Free 1 Year Warranty</span>
-              </h4>
-              <h4 className="featureContent">
-                <BsTruck className="iconFeatureContainer" />{" "}
-                <span className="contentFeature">
-                  Free Shipping & Fasted Delivery
-                </span>
-              </h4>
-              <h4 className="featureContent">
-                <PiHandshakeLight className="iconFeatureContainer" />
-                <span className="contentFeature">
-                  100% Money-back guarantee
-                </span>
-              </h4>
-              <h4 className="featureContent">
-                <PiHeadphonesLight className="iconFeatureContainer" />
-                <span className="contentFeature">24/7 Customer support</span>
-              </h4>
-              <h4 className="featureContent">
-                <PiCreditCardLight className="iconFeatureContainer" />
-                <span className="contentFeature">Secure payment method</span>
-              </h4>
-            </main>
-          </div>
-          <div className="lineGreyH"></div>
-          <div className="shippingInfoDetai">
-            <p className="titleInfoDetail">Shipping Information</p>
-            <main className="shippingContainer">
-              <h4 className="shippingContent">
-                <span className="textShippingContainer">
-                  Courier:
-                  <span className="contentshipping">
-                    {" "}
-                    2 - 4 days, free shipping
-                  </span>{" "}
-                </span>
-              </h4>
-              <h4 className="shippingContent">
-                <span className="textShippingContainer">
-                  Local Shipping:{" "}
-                  <span className="contentshipping">
-                    {" "}
-                    up to one week, $19.00
+
+        <section
+          className={
+            toggle === 1 ? "contentInfoDetail" : "contentInfoDetailHide"
+          }
+        >
+          <section className="infoDetail">
+            <div className="decriptionInfoDetail">
+              <p className="titleInfoDetail">Description</p>
+              <p className="contentDecriptionInfoDetail">{product?.desc1}</p>
+              <p className="contentDecriptionInfoDetail">{product?.desc2}</p>
+            </div>
+            <div className="featureInfoDetail">
+              <p className="titleInfoDetail">Feature</p>
+              <main className="featureContainer">
+                <h4 className="featureContent">
+                  <PiMedalDuotone className="iconFeatureContainer" />
+                  <span className="contentFeature">Free 1 Year Warranty</span>
+                </h4>
+                <h4 className="featureContent">
+                  <BsTruck className="iconFeatureContainer" />{" "}
+                  <span className="contentFeature">
+                    Free Shipping & Fasted Delivery
                   </span>
-                </span>
-              </h4>
-              <h4 className="shippingContent">
-                <span className="textShippingContainer">
-                  UPS Ground Shipping:{" "}
-                  <span className="contentshipping"> 4 - 6 days, $29.00</span>{" "}
-                </span>
-              </h4>
-              <h4 className="shippingContent">
-                <span className="textShippingContainer">
-                  Unishop Global Export:{" "}
-                  <span className="contentshipping"> 3 - 4 days, $39.00</span>
-                </span>
-              </h4>
-            </main>
-          </div>
+                </h4>
+                <h4 className="featureContent">
+                  <PiHandshakeLight className="iconFeatureContainer" />
+                  <span className="contentFeature">
+                    100% Money-back guarantee
+                  </span>
+                </h4>
+                <h4 className="featureContent">
+                  <PiHeadphonesLight className="iconFeatureContainer" />
+                  <span className="contentFeature">24/7 Customer support</span>
+                </h4>
+                <h4 className="featureContent">
+                  <PiCreditCardLight className="iconFeatureContainer" />
+                  <span className="contentFeature">Secure payment method</span>
+                </h4>
+              </main>
+            </div>
+
+            <div className="shippingInfoDetai">
+              <p className="titleInfoDetail">Shipping Information</p>
+              <main className="shippingContainer">
+                <h4 className="shippingContent">
+                  <span className="textShippingContainer">
+                    Courier:
+                    <span className="contentshipping">
+                      {" "}
+                      2 - 4 days, free shipping
+                    </span>{" "}
+                  </span>
+                </h4>
+                <h4 className="shippingContent">
+                  <span className="textShippingContainer">
+                    Local Shipping:{" "}
+                    <span className="contentshipping">
+                      {" "}
+                      up to one week, $19.00
+                    </span>
+                  </span>
+                </h4>
+                <h4 className="shippingContent">
+                  <span className="textShippingContainer">
+                    UPS Ground Shipping:{" "}
+                    <span className="contentshipping"> 4 - 6 days, $29.00</span>{" "}
+                  </span>
+                </h4>
+                <h4 className="shippingContent">
+                  <span className="textShippingContainer">
+                    Unishop Global Export:{" "}
+                    <span className="contentshipping"> 3 - 4 days, $39.00</span>
+                  </span>
+                </h4>
+              </main>
+            </div>
+          </section>
+        </section>
+        <section
+          className={
+            toggle === 2 ? "contentInfoDetail" : "contentInfoDetailHide"
+          }
+        >
+          <section className="detailFeedback">
+            <div className="userDetail">
+              <section className="userDetailHeading">
+                <img
+                  className="imgUserDetail"
+                  src="https://camerabox.vn/uploads/news/2018_07/chup-anh-phong-canh-thu-vi.jpg"
+                  alt=""
+                />
+                <div className="userInfo">
+                  <section className="userRating">
+                    <div className="userInfoTop">
+                      <p>Dianne Russell</p>
+                      <p className="userInfoTopSpan">&#8226;</p>
+                      <p className="userInfoTopSpan">Just Now</p>
+                    </div>
+                    <div className="userInfoBottom">
+                      <AiFillStar className="ratingStar" />
+                      <AiFillStar className="ratingStar" />
+                      <AiFillStar className="ratingStar" />
+                      <AiFillStar className="ratingStar" />
+                      <AiFillStar className="ratingStar" />
+                    </div>
+                  </section>
+                </div>
+              </section>
+              <section className="contentUserDetail">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                Vestibulum ullamcorper ut lectus nec tincidunt. Nunc mattis
+                dignissim arcu, sit amet consequat sem auctor a.
+              </section>
+            </div>
+            <div className="userDetail">
+              <section className="userDetailHeading">
+                <img
+                  className="imgUserDetail"
+                  src="https://data.webnhiepanh.com/wp-content/uploads/2020/11/21105453/phong-canh-1.jpg"
+                  alt=""
+                />
+                <div className="userInfo">
+                  <section className="userRating">
+                    <div className="userInfoTop">
+                      <p>Courtney Henry</p>
+                      <p className="userInfoTopSpan">&#8226;</p>
+                      <p className="userInfoTopSpan">2 mins ago</p>
+                    </div>
+                    <div className="userInfoBottom">
+                      <AiFillStar className="ratingStar" />
+                      <AiFillStar className="ratingStar" />
+                      <AiFillStar className="ratingStar" />
+                      <AiFillStar className="ratingStar" />
+                      <AiFillStar className="ratingStar" />
+                    </div>
+                  </section>
+                </div>
+              </section>
+              <section className="contentUserDetail">
+                In eu tortor viverra, tempor odio ac, pretium diam.
+              </section>
+            </div>
+            <div className="userDetail">
+              <section className="userDetailHeading">
+                <img
+                  className="imgUserDetail"
+                  src="https://media.istockphoto.com/id/517188688/vi/anh/phong-c%E1%BA%A3nh-n%C3%BAi-non.jpg?s=612x612&w=0&k=20&c=WWWaejSo6EWGZMZSK7QK6LCfwd0rL2KB3ImCX2VkW4A="
+                  alt=""
+                />
+                <div className="userInfo">
+                  <section className="userRating">
+                    <div className="userInfoTop">
+                      <p>Darrell Steward</p>
+                      <p className="userInfoTopSpan">&#8226;</p>
+                      <p className="userInfoTopSpan">21 mins ago</p>
+                    </div>
+                    <div className="userInfoBottom">
+                      <AiFillStar className="ratingStar" />
+                      <AiFillStar className="ratingStar" />
+                      <AiFillStar className="ratingStar" />
+                      <AiFillStar className="ratingStar" />
+                      <AiFillStar className="ratingStar" />
+                    </div>
+                  </section>
+                </div>
+              </section>
+              <section className="contentUserDetail">
+                Vivamus fermentum consectetur ligula vel tristique. Nulla nec
+                quam ultricies, bibendum sem quis, sollicitudin quam. In gravida
+                tempor faucibus. Curabitur at accumsan eros. Suspendisse cursus
+                velit non metus posuere, quis rhoncus velit volutpat. Proin
+                accumsan egestas pharetra.
+              </section>
+            </div>
+            <div className="userDetail">
+              <section className="userDetailHeading">
+                <img
+                  className="imgUserDetail"
+                  src="https://media.istockphoto.com/id/517188688/vi/anh/phong-c%E1%BA%A3nh-n%C3%BAi-non.jpg?s=612x612&w=0&k=20&c=WWWaejSo6EWGZMZSK7QK6LCfwd0rL2KB3ImCX2VkW4A="
+                  alt=""
+                />
+                <div className="userInfo">
+                  <section className="userRating">
+                    <div className="userInfoTop">
+                      <p>Brooklyn Simmons</p>
+                      <p className="userInfoTopSpan">&#8226;</p>
+                      <p className="userInfoTopSpan">1 hour ago</p>
+                    </div>
+                    <div className="userInfoBottom">
+                      <AiFillStar className="ratingStar" />
+                      <AiFillStar className="ratingStar" />
+                      <AiFillStar className="ratingStar" />
+                      <AiFillStar className="ratingStar" />
+                      <AiFillStar className="ratingStar" />
+                    </div>
+                  </section>
+                </div>
+              </section>
+              <section className="contentUserDetail">
+                Vestibulum tincidunt blandit odio vel finibus.
+              </section>
+            </div>
+            <div className="userDetail">
+              <section className="userDetailHeading">
+                <img
+                  className="imgUserDetail"
+                  src="https://img.meta.com.vn/Data/image/2022/01/13/anh-dep-thien-nhien-6.jpg"
+                  alt=""
+                />
+                <div className="userInfo">
+                  <section className="userRating">
+                    <div className="userInfoTop">
+                      <p>Marvin McKinney</p>
+                      <p className="userInfoTopSpan">&#8226;</p>
+                      <p className="userInfoTopSpan">1 day ago</p>
+                    </div>
+                    <div className="userInfoBottom">
+                      <AiFillStar className="ratingStar" />
+                      <AiFillStar className="ratingStar" />
+                      <AiFillStar className="ratingStar" />
+                      <AiFillStar className="ratingStar" />
+                      <AiFillStar className="ratingStar" />
+                    </div>
+                  </section>
+                </div>
+              </section>
+              <section className="contentUserDetail">I Love this</section>
+            </div>
+          </section>
         </section>
       </div>
-    </>
+    </section>
   );
 }
 

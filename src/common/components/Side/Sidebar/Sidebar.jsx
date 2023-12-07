@@ -1,34 +1,72 @@
-import { Checkbox, Slider } from 'antd';
-import { FormInputDefault } from '../../Forms/FormInput/FormInput';
-import styles from './Sidebar.module.css';
+import { Checkbox, Slider } from "antd";
+import { FormInputDefault } from "../../Forms/FormInput/FormInput";
+import styles from "./Sidebar.module.css";
+import { useSelector } from "react-redux";
 
-function Sidebar({ handleChange, handleUpdatePrice, priceFilterVal2, priceFilterVal, handleUpdatePrice2, handleChangeMinPrice }) {
+function Sidebar({
+  productCur,
+  menu,
+  handleChange,
+  handleUpdatePrice,
+  priceFilterVal2,
+  priceFilterVal,
+  handleUpdatePrice2,
+  handleChangeMinPrice,
+}) {
+  const productList = useSelector((state) => state.productsApi?.product?.items);
   return (
-
     <div className={styles.sideBar}>
+      <div className={styles.menu}>
+        {menu}{" "}
+        <p className={styles.contentNavProduct}>
+          {productCur}/{productList.length}
+          <span className={styles.spanContent}>Results Loaded</span>
+        </p>
+      </div>
+
       <div className={styles.categorySection}>
         <h1 className={styles.titleCategory}>CATEGORY</h1>
         <label className={styles.checkBoxField}>
-          <Checkbox   className={styles.checkboxxx} type='checkbox' onChange={handleChange} value={'IPhone'} />
+          <Checkbox
+            className={styles.checkboxxx}
+            type="checkbox"
+            onChange={handleChange}
+            value={"IPhone"}
+          />
           <p className={styles.contentCheckBox}>Iphone</p>
         </label>
         <label className={styles.checkBoxField}>
-          <Checkbox className={styles.checkboxxx} type='checkbox' onChange={handleChange} value={'Apple Watch'} />
+          <Checkbox
+            className={styles.checkboxxx}
+            type="checkbox"
+            onChange={handleChange}
+            value={"Apple Watch"}
+          />
           <p className={styles.contentCheckBox}>AppleWatch</p>
         </label>
         <label className={styles.checkBoxField}>
-          <Checkbox className={styles.checkboxxx} type='checkbox' onChange={handleChange} value={'MacBook'} />
+          <Checkbox
+            className={styles.checkboxxx}
+            type="checkbox"
+            onChange={handleChange}
+            value={"MacBook"}
+          />
           <p className={styles.contentCheckBox}>MacBook</p>
         </label>
       </div>
 
       <section className={styles.priceSection}>
         <h1 className={styles.titleCategory}>PRICE RANGE</h1>
-        <Slider min={0} max={50000} step={100} value={priceFilterVal} onChange={handleUpdatePrice} defaultValue={[0, 50000]} range reverse />
-        <span className={styles.inputPrice}>
-          <FormInputDefault placeholder="Min price" />
-          <FormInputDefault placeholder="Max price" />
-        </span>
+        <Slider
+          min={0}
+          max={50000}
+          step={100}
+          value={priceFilterVal}
+          onChange={handleUpdatePrice}
+          defaultValue={[0, 50000]}
+          range
+          reverse
+        />
       </section>
 
       <section className={styles.priceFilters}>
@@ -36,7 +74,7 @@ function Sidebar({ handleChange, handleUpdatePrice, priceFilterVal2, priceFilter
         <label className={styles.checkBoxField}>
           <Checkbox
             className={styles.checkboxxx}
-            type='checkbox'
+            type="checkbox"
             onChange={() => handleUpdatePrice2([0, 50000])}
             checked={priceFilterVal2[0] === 0 && priceFilterVal2[1] === 50000}
           />
@@ -45,7 +83,7 @@ function Sidebar({ handleChange, handleUpdatePrice, priceFilterVal2, priceFilter
         <label className={styles.checkBoxField}>
           <Checkbox
             className={styles.checkboxxx}
-            type='checkbox'
+            type="checkbox"
             onChange={() => handleUpdatePrice2([0, 10000])}
             checked={priceFilterVal2[0] === 0 && priceFilterVal2[1] === 10000}
           />
@@ -54,33 +92,38 @@ function Sidebar({ handleChange, handleUpdatePrice, priceFilterVal2, priceFilter
         <label className={styles.checkBoxField}>
           <Checkbox
             className={styles.checkboxxx}
-            type='checkbox'
+            type="checkbox"
             onChange={() => handleUpdatePrice2([10000, 20000])}
-            checked={priceFilterVal2[0] === 10000 && priceFilterVal2[1] === 20000}
+            checked={
+              priceFilterVal2[0] === 10000 && priceFilterVal2[1] === 20000
+            }
           />
           <p className={styles.contentCheckBox}>10000₹ - 20000₹</p>
         </label>
         <label className={styles.checkBoxField}>
           <Checkbox
             className={styles.checkboxxx}
-            type='checkbox'
+            type="checkbox"
             onChange={() => handleUpdatePrice2([20000, 30000])}
-            checked={priceFilterVal2[0] === 20000 && priceFilterVal2[1] === 30000}
+            checked={
+              priceFilterVal2[0] === 20000 && priceFilterVal2[1] === 30000
+            }
           />
           <p className={styles.contentCheckBox}>20000₹ - 30000₹</p>
         </label>
         <label className={styles.checkBoxField}>
           <Checkbox
             className={styles.checkboxxx}
-            type='checkbox'
+            type="checkbox"
             onChange={() => handleUpdatePrice2([40000, 50000])}
-            checked={priceFilterVal2[0] === 40000 && priceFilterVal2[1] === 50000}
+            checked={
+              priceFilterVal2[0] === 40000 && priceFilterVal2[1] === 50000
+            }
           />
           <p className={styles.contentCheckBox}>40000₹ - 50000₹</p>
         </label>
       </section>
     </div>
-
   );
 }
 

@@ -12,12 +12,32 @@ const productController = {
 
   createProduct: async (req, res) => {
     try {
+      const {
+        image,
+        image1,
+        image2,
+        image3,
+        image4,
+        name,
+        desc1,
+        desc2,
+        price,
+        stock,
+        category,
+      } = req.body;
+
       const newProduct = new Product({
-        image: req.body.image,
-        name: req.body.name,
-        price: req.body.price,
-        stock: req.body.stock,
-        category: req.body.category,
+        image,
+        image1,
+        image2,
+        image3,
+        image4,
+        name,
+        desc1,
+        desc2,
+        price,
+        stock,
+        category,
       });
 
       const product = await newProduct.save();
@@ -26,7 +46,6 @@ const productController = {
       res.status(500).json(err);
     }
   },
-
 
   updateProduct: async (req, res) => {
     try {

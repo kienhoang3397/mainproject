@@ -1,29 +1,52 @@
-.container{
+.container {
     align-items: center;
     display: flex;
     flex-direction: column;
     text-decoration: none;
-
-   
 }
 
 .color {
     margin-bottom: 10px;
     width: 104px;
     height: 14px;
-    flex-shrink: 0;  
+    flex-shrink: 0;
 }
-.img{
 
+.img {
     width: 216px;
     height: 254px;
     flex-shrink: 0;
-   margin-bottom: 22px;
-  
+    margin-bottom: 22px;
 }
-.imgRep{
+
+.imgRep {
     width: 100px;
     height: 100px;
     margin-bottom: 22px;
 }
 
+@media only screen and (max-width: 800px) {
+    .container {
+    
+    }
+
+    .color {
+      
+        width: 80px; 
+        height: 10px;
+    }
+
+    .img {
+     
+        width: 150px;
+        height: 180px;
+        margin-bottom: 15px; 
+    }
+
+    .imgRep {
+      
+        width: 50px;
+        height: 50px;
+        margin-bottom: 15px;
+    }
+}

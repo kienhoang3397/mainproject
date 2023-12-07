@@ -1,64 +1,72 @@
-@import url('/src/common/styles/variables.css');
-.btn{
-   
-    width: 100%;
+@import url("/src/common/styles/variables.css");
+.btn {
+  font-size: 14px;
+  width: 100%;
 }
 .defaultValue {
-    background-color: var(--blue-BG);
-    color: #ffffff;
-   
-    height: 47px;
-   
-    color: #FFF;
-   
-    font-family: Public Sans;
-    font-size: 14px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: 125.5%; /* 17.57px */
-    border-radius: 10px;
-    border: solid var(--blue-BG);
-   
+  background-color: var(--blue-BG);
+  color: #ffffff;
+
+  height: 47px;
+
+  color: #fff;
+
+  font-family: Public Sans;
+
+  font-style: normal;
+  font-weight: 500;
+  line-height: 125.5%; /* 17.57px */
+  border-radius: 10px;
+  border: solid var(--blue-BG);
 }
 
 .disable {
-    background-color: var(--BG);
-    color: var(--default-text-color);
- 
-    height: 51.923px;
-   
-    text-align: center;
-    font-family: Poppins;
-    font-size: 14px;
-    font-style: normal;
-    font-weight: 600;
-    line-height: 125.5%;
-    border-radius: 10px;
-    /* 17.57px */
-    text-decoration-line: strikethrough;
+  background-color: var(--BG);
+  color: var(--default-text-color);
+
+  height: 51.923px;
+
+  text-align: center;
+  font-family: Poppins;
+
+  font-style: normal;
+  font-weight: 600;
+  line-height: 125.5%;
+  border-radius: 10px;
+  /* 17.57px */
+  text-decoration-line: strikethrough;
 }
 
 .variant2 {
+  height: 51.923px;
+  border: 1px solid var(--blue-BG);
+  background-color: transparent;
+  border-radius: 10px;
+  color: var(--Blue-BG, #3858d6);
+  text-align: center;
+  font-family: Poppins;
 
-    height: 51.923px;
-    border: 1px solid var(--blue-BG);
-    background-color: transparent;
-    border-radius: 10px;
-    color: var(--Blue-BG, #3858D6);
-    text-align: center;
-    font-family: Poppins;
-    font-size: 14px;
-    font-style: normal;
-    font-weight: 600;
-    line-height: 125.5%;
-
+  font-style: normal;
+  font-weight: 600;
+  line-height: 125.5%;
 }
 
 .ArrowBtnLeft,
 .ArrowBtnRight {
-    width: 43px;
-    height: 43px;
-    
-   
-    filter: drop-shadow(2px 4px 12px rgba(0, 0, 0, 0.25));
+  width: 43px;
+  height: 43px;
+
+  filter: drop-shadow(2px 4px 12px rgba(0, 0, 0, 0.25));
+}
+@media only screen and (max-width: 800px) {
+  .btn {
+    font-size: 12px;
+ 
+  }
+}
+@media only screen and (max-width: 400px) {
+  .btn {
+    font-size: 10px;
+
+  }
 }

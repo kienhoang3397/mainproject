@@ -27,7 +27,7 @@ export function SamplePrevArrowDetail(props) {
 }
 
 
-export default function DetailSlide() {
+export default function DetailSlide({image1, image2, image3, image4, image5, image6}) {
     const [nav1, setNav1] = useState(null);
     const [nav2, setNav2] = useState(null);
 
@@ -46,65 +46,53 @@ export default function DetailSlide() {
     };
 
     return (
-        <>
-          <div className={styles.containerSlider}>
-            <Slider className={styles.itemDetailSliderMain}
-                asNavFor={nav2}
-                ref={slider => (slider1 = slider)}
-                arrows={false}
-            >
-                <div className={styles.itemDetailSliderMain}>
-                    <h3>1</h3>
-                </div>
-                <div className={styles.itemDetailSliderMain}>
-                    <h3>2</h3>
-                </div>
-                <div className={styles.itemDetailSliderMain}>
-                    <h3>3</h3>
-                </div>
-                <div className={styles.itemDetailSliderMain}>
-                    <h3>4</h3>
-                </div>
-                <div className={styles.itemDetailSliderMain}>
-                    <h3>5</h3>
-                </div>
-                <div className={styles.itemDetailSliderMain}>
-                    <h3>6</h3>
-                </div>
-            </Slider>
+      <>
+        <div className={styles.containerSlider}>
+          <Slider
+            className={styles.itemDetailSliderMain}
+            asNavFor={nav2}
+            ref={(slider) => (slider1 = slider)}
+            arrows={false}
+          >
+            <div className={styles.itemDetailSliderMain}>
+              <img className={styles.imgDetail} src={image1} alt="" />
+            </div>
+            <div className={styles.itemDetailSliderMain}>
+              <img className={styles.imgDetail} src={image2} alt="" />
+            </div>
+            <div className={styles.itemDetailSliderMain}>
+              <img className={styles.imgDetail} src={image3} alt="" />
+            </div>
+            <div className={styles.itemDetailSliderMain}>
+              <img className={styles.imgDetail} src={image4} alt="" />
+            </div>
+            <div className={styles.itemDetailSliderMain}>
+              <img className={styles.imgDetail} src={image5} alt="" />
+            </div>
+            <div className={styles.itemDetailSliderMain}>
+              <img className={styles.imgDetail} src={image6} alt="" />
+            </div>
+          </Slider>
 
-            <Slider
-                asNavFor={nav1}
-                ref={slider => (slider2 = slider)}
-                slidesToShow={5}
-                swipeToSlide={true}
-                focusOnSelect={true}
-                className={styles.itemDetailSliderChildren}
+          <Slider
+            asNavFor={nav1}
+            ref={(slider) => (slider2 = slider)}
+            slidesToShow={5}
+            swipeToSlide={true}
+            focusOnSelect={true}
+            className={styles.itemDetailSliderChildren}
+            {...settingss}
+          >
+            <img className={styles.itemDetailSlider} src={image1} alt="" />
 
-                {...settingss}
-
-            >
-                <div className={styles.itemDetailSlider}>
-                    <h3>1</h3>
-                </div>
-                <div className={styles.itemDetailSlider}>
-                    <h3>2</h3>
-                </div>
-                <div className={styles.itemDetailSlider}>
-                    <h3>3</h3>
-                </div>
-                <div className={styles.itemDetailSlider}>
-                    <h3>4</h3>
-                </div>
-                <div className={styles.itemDetailSlider}>
-                    <h3>5</h3>
-                </div>
-                <div className={styles.itemDetailSlider}>
-                    <h3>6</h3>
-                </div>
-            </Slider>
+            <img className={styles.itemDetailSlider} src={image2} alt="" />
+            <img className={styles.itemDetailSlider} src={image3} alt="" />
+            <img className={styles.itemDetailSlider} src={image4} alt="" />
+            <img className={styles.itemDetailSlider} src={image5} alt="" />
+            <img className={styles.itemDetailSlider} src={image6} alt="" />
+         
+          </Slider>
         </div>
-        </>
-      
+      </>
     );
 }

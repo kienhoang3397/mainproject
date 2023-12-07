@@ -1,129 +1,127 @@
-import { MenuFoldOutlined, MenuUnfoldOutlined } from '@ant-design/icons'
-import { Button, Checkbox } from 'antd'
-import React, { useEffect, useState } from 'react'
-import { AiFillCaretDown } from 'react-icons/ai'
-import { BiSolidTrashAlt } from 'react-icons/bi'
-import { IoEyeSharp } from 'react-icons/io5'
-import { useDispatch, useSelector } from 'react-redux'
-import { Link } from 'react-router-dom'
-import { deleteProduct, getAllProducts } from '../../redux/slice/apiRequest'
-import styles from './DashBoard.module.css'
+import { MenuFoldOutlined, MenuUnfoldOutlined } from "@ant-design/icons";
+import { Alert, Button, Checkbox } from "antd";
+import React, { useEffect, useState } from "react";
+import { AiFillCaretDown } from "react-icons/ai";
+import { BiSolidTrashAlt } from "react-icons/bi";
+import { IoEyeSharp } from "react-icons/io5";
+import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
-// ... (existing code)
+import styles from "./DashBoard.module.css";
+import { deleteProduct, productsFetch } from "../../redux/slice/productApiSlice";
+import { HiPencil } from "react-icons/hi";
+import { BiSolidTrash } from "react-icons/bi";
+import Btn from "../../common/components/Buttons/Button";
+import { FiPlus } from "react-icons/fi";
 
 function DashBoard() {
-    
-    const productList = useSelector((state) => state.product.product.allProduct);
-    const dispatch = useDispatch();
+  const [isSubmitted, setIsSubmitted] = useState(false);
+  const productList = useSelector((state) => state.productsApi?.product?.items);
+  const dispatch = useDispatch()
 
-    useEffect(() => {
-        getAllProducts(dispatch);
-    }, []);
+  useEffect(() => {
+    dispatch(productsFetch());
+  }, []);
 
-    const [toogle, setToggle] = useState(false);
+const handleDelete = async (productId) => {
+  try {
+    dispatch(deleteProduct(productId))
+      .then(() => {
+        setIsSubmitted(true);
+        dispatch(productsFetch());
+      })
+      .catch((error) => {
+        console.error("Error deleting product:", error);
+      });
 
-    const Toggle = () => {
-        setToggle(!toogle);
-    };
-    const handleDelete = (id) => {
-        deleteProduct(dispatch, id)
-    }
-
-    return (
-
-
-        <div className={styles.dashboard}>
+    setTimeout(() => {
+      setIsSubmitted(false);
+    }, 4000);
+  } catch (err) {
+    console.error(err.errors);
+  }
+};
 
 
-            <div className={styles.dash}>
-                <Button className={styles.menuIcon}
-                    type="text"
-                    icon={toogle ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
-                    onClick={() => setToggle(!toogle)}
-                    style={{
-                        fontSize: '16px',
-                        width: 64,
-                        height: 64,
-                    }}
-                />
 
-                <table className={styles.tableDash}>
-                    <h1 className={styles.tableDashTitle}>Latest Orders</h1>
-                    <thead className={styles.tableRow}>
-                        <th className={styles.cell}>
-                            <Checkbox />
-                            <p className={styles.headerCellContent}>Order ID</p>
-                        </th>
-                        <th className={styles.cell}>
-                            <p className={styles.headerCellContent}>Product</p>
-                            <AiFillCaretDown className={styles.menuIconDash} />
-                        </th>
-                        <th className={styles.cell}>
-                            <p className={styles.headerCellContent}>Date</p>
-                            <AiFillCaretDown className={styles.menuIconDash} />
-                        </th>
-                        <th className={styles.cell}>
-                            <p className={styles.headerCellContent}>Customer</p>
+  return (
+    <div className={styles.container}>
+      {isSubmitted && (
+        <Alert
+          className={styles.alert}
+          message="Product Delete Succces"
+          type="success"
+          showIcon
+        />
+      )}
+      <main className={styles.containerCartPage}>
+        <div className={styles.container1}>
+          <section className={styles.fieldSettingHeading}>
+            <p className={styles.formTitle}>Product</p>
+            <Link to={"/dashboard/add"}>
+              <div className={styles.btnAdd}>
+                <FiPlus className={styles.btnAddIcon} />
+                <p className={styles.btnAddContent}>Add Product</p>
+              </div>
+            </Link>
+          </section>
 
-                        </th>
-                        <th className={styles.cell}>
-                            <p className={styles.headerCellContent}>Total</p>
-                            <AiFillCaretDown className={styles.menuIconDash} />
-                        </th>
-                        <th className={styles.cell}>
-                            <p className={styles.headerCellContent}>Payment</p>
-                            <AiFillCaretDown className={styles.menuIconDash} />
-                        </th>
-                        {/* <th className={styles.cell}>
-                <p className={styles.headerCellContent}>Status</p>
-                <AiFillCaretDown className={styles.menuIconDash}/>
-                </th> */}
-                        <th className={styles.cell}>
-                            <p className={styles.headerCellContent}>Action</p>
-                            <AiFillCaretDown className={styles.menuIconDash} />
-                        </th>
+          <table className={styles.table}>
+            <thead className={styles.thead}>
+              <tr className={styles.trTableWL}>
+                <th className={styles.thTableWLFirst}>
+                  <Checkbox />
+                </th>
+                <th className={styles.thTableWL}>Products</th>
+                <th className={styles.thTableWL}>Category</th>
+                <th className={styles.thTableWL}>Stock</th>
+                <th className={styles.thTableWL}>Price</th>
 
-                    </thead>
-                    <tbody>
-                        {productList.map((product) => (
-                            <tr key={product._id} className={styles.tableRow}>
-                                <td className={styles.cell}>
-                                    <Checkbox />
-                                    <p className={styles.cellContentCheck}>{product.orderId}</p>
-                                </td>
-                                <td className={styles.cell}>
-                                    <div className={styles.containerProduct}>
-                                        <img className={styles.containerProductImg} src={product.image} alt="" />
-                                        <section className={styles.containerProductContent}>
-                                            <p className={styles.containerProductName}>{product.name}</p>
-                                            <p className={styles.containerProductSold}>+ {product.qnty} Products</p>
-                                        </section>
-                                    </div>
-                                </td>
-                                <td className={styles.cell}><p className={styles.cellContent}>29 Dec 2004</p></td>
-                                <td className={styles.cell}><p className={styles.cellContent}>HoangKien</p></td>
-                                <td className={styles.cell}><p className={styles.cellContent}>₹{product.price}</p></td>
-                                <td className={styles.cell}><p className={styles.cellContent}>{product.paymentDate}</p></td>
-                                <td className={styles.cell}>
-                                    <div className={styles.containerProduct}>
-                                        <Link to={"add2/"+product._id}>
-                                            {/* <BsFillPencilFill className={styles.menuIconDash} /> */}asgasg
-                                        </Link>
-                                        <IoEyeSharp className={styles.menuIconDash} />
-                                        <BiSolidTrashAlt onClick={() => handleDelete(product._id)} className={styles.menuIconDash} />
-                                    </div>
-                                </td>
-                            </tr>
-                        ))}
-                    </tbody>
-                </table>
-            </div>
+                <th className={styles.thTableWL}>Action</th>
+              </tr>
+            </thead>
+            <tbody className={styles.tbody}>
+              {productList?.map((item) => (
+                <tr className={styles.trBody} key={item.product}>
+                  <td className={styles.productSvgg}>
+                    <Checkbox />
+                  </td>
+                  <td className={styles.productSvg}>
+                    <div className={styles.productInfo}>
+                      <img
+                        className={styles.imgProduct}
+                        src={item.image}
+                        alt=""
+                      />
+
+                      <p className={styles.productContent}>{item.name}</p>
+                    </div>
+                  </td>
+                  <td className={styles.productSvg}>{item.category}</td>
+                  <td className={styles.productSvg}>{item.stock}</td>
+                  <td className={styles.productSvg}>₹{item.price}</td>
+                  <td className={styles.productSvg}>
+                    <div className={styles.actionContainer}>
+                      <div>
+                        <Link className={styles.link} to={"add2/" + item._id}>
+                          <HiPencil className={styles.action} />
+                        </Link>
+                      </div>
+                      <IoEyeSharp className={styles.action} />
+                      <BiSolidTrash
+                        onClick={() => handleDelete(item._id)}
+                        className={styles.action}
+                      />
+                    </div>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
-
-
-    );
+      </main>
+    </div>
+  );
 }
 
 export default DashBoard;
-
-

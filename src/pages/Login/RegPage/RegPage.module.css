@@ -1,4 +1,3 @@
-
 .loginPageContainer{
     display: flex;
     justify-content: center;
@@ -7,136 +6,74 @@
     margin-bottom: 160px;
     width: 100%;
     margin-top: 60px;
-}
-.theme {
-    display: flex;
-    align-items: center;
-}
-.form{
-    width: 100%
-}
-.label{
-    width: 100%;
-}
-.imgLogin {
-    width: 50%;
-}
-
-  
- 
-
-.text {
-    color: var(--Font-Color-Black, #8B8E99);
-    font-family: Poppins;
-    font-size: 40px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: normal;
-}
-.formLogin {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 613px;
-  width: 50%;
-    flex-shrink: 0;
-    border-radius: 20px;
-    border: 1px solid var(--Border-Color, #E4E7E9);
-    gap: 10px;
-    padding: 50px;
+    padding: 0 90px;
     
 }
-
-.textLogin {
-    display: flex;
-   justify-content: flex-start;
+.textLogin{
     color: var(--Font-Color-Black, #8B8E99);
-    font-family: Poppins;
-    font-size: 24px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: 32px;
-
-    align-self: flex-start;
-    /* 133.333% */
+font-family: Poppins;
+font-size: 24px;
+font-style: normal;
+font-weight: 700;
+line-height: 32px; /* 133.333% */
 }
-
-.forgotPassword {
-    color: var(--Blue-BG, #3858D6);
-
-    /* Text md / Semibold */
-    font-family: Inter;
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 600;
-    line-height: 24px;
-    /* 150% */
+.formLogin{
+     width: 100%;
+     padding: 40px;
+     border-radius: 20px;
+border: 1px solid var(--Border-Color, #E4E7E9);
 }
-.shapeFormText {
+.form{
+    display: flex;
+    gap: 20px;
+    flex-direction: column;
+}
+.label{
     color: var(--Font-Color-Black, #8B8E99);
-    text-align: center;
-    font-family: Roboto;
-    font-size: 14px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
+font-family: Inter;
+font-size: 14px;
+font-style: normal;
+font-weight: 500;
+line-height: 20px; /* 142.857% */
 }
-.shapeForm {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: row;
-
+.inputTextArea, .inputTextArea::placeholder {
+color: var(--Font-Color-Black, #8B8E99);
+font-family: Inter;
+font-size: 16px;
+font-style: normal;
+font-weight: 400;
+line-height: 24px; /* 150% */
+border-radius: 8px;
+border: 1px solid var(--Border-Color, #E4E7E9);
+background: #FFF;
+box-shadow: 0px 1px 2px 0px rgba(16, 24, 40, 0.05);
+display: flex;
+padding: 10px 14px;
+align-items: center;
+gap: 8px;
+align-self: stretch;
 }
+.errorMessage {
+    color: red;
+     font-family: 'Public Sans', sans-serif;
 
-.shapeForm {
+  font-style: normal;
+  font-weight: bold;
+  line-height: 20px; /* 142.857% */
+  letter-spacing: 0.07px;
+    font-size: 10px;
+    
+}
+.containerInput{
     display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: row;
+    flex-direction: column;
     gap: 10px;
-    width: 100%;
-    margin: 10px 0;
-
 }
-
-.shapeW {
-    width: 100%;
-    height: 1px;
-    background: #E4E7E9;
-}
-.googleSignup {
-    display: flex;
-    align-items: center;
-    flex-direction: row;
-    display: flex;
-    width: 100%;
-    padding: 13.5px 187.905px 14px 185.47px;
-    justify-content: center;
-    align-items: flex-start;
-    gap: 10.625px;
-    flex-shrink: 0;
-    border-radius: 50px;
-    background: var(--Border-Color, #E4E7E9);
-}
-
-.googleSignupContent {
-    color: #3F434A;
-    text-align: center;
-    font-family: Roboto;
-    font-size: 14px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-}
-
 .questionSignup {
     display: flex;
     gap: 4px;
     flex-direction: row;
 }
-
 .question {
     color: var(--gray-900, #101828);
 
@@ -160,3 +97,44 @@
     line-height: 24px;
     /* 150% */
 }
+.alert {
+  position: fixed;
+  top: 7%;
+  right: 1%;
+  z-index: 1000;
+  animation: slideInDown 1.5s ease;
+}
+.themeSmall{display: none   ;}
+@media  only screen and (max-width: 800px) {
+        .loginPageContainer{
+        padding: 0 30px;
+    }
+    .formLogin{
+        width: 100%;
+        padding: 40px 20px;
+      
+    }
+    .imgLogin{
+        display: none;
+    }
+    .loginPageContainer{
+        display: flex;
+        flex-direction: column;
+    }
+}
+@media  only screen and (max-width: 500px) {
+    .question, .signupNow{
+        font-size: 13px;
+    }
+    .themeSmall{
+        display: inline-block;
+    }
+    .themeLarge{
+        display: none;
+    }
+ 
+.formLogin {
+    width: 100%;
+   
+   min-width: 300px;
+}}

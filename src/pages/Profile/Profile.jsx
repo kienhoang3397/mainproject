@@ -200,7 +200,7 @@ function Profile() {
           </main>
         </section>
 
-        <section className={styles.accountSetting}>
+        <section className={styles.containerPassword}>
           <section className={styles.fieldSettingHeading}>
             <p className={styles.settingHeading}>Change Password</p>
           </section>

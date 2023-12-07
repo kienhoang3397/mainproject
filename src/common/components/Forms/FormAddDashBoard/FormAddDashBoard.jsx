@@ -1,22 +1,23 @@
 import { DollarCircleFilled } from "@ant-design/icons";
-import { Alert, Input } from "antd";
+import { Alert, Input, Select } from "antd";
 import React, { useEffect, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import Btn from "../../Buttons/Button";
-import { DropMenuCustom } from "../../DropMenu/DropMenuSort/DropMenuSort";
 import styles from "./FormAddDashBoard.module.css";
 
 import TextArea from "antd/es/input/TextArea";
 import * as yup from "yup";
 import {
+  addProduct,
   productsFetch,
-  updateProductApi,
 } from "../../../../redux/slice/productApiSlice";
 
 import { AlertTitle } from "@mui/material";
 import { yupResolver } from "@hookform/resolvers/yup";
+
+const { Option } = Select;
 
 const schemaFormUpdate = yup.object().shape({
   name: yup.string().required("Product Name is required"),
@@ -33,15 +34,14 @@ const schemaFormUpdate = yup.object().shape({
     .integer("Stock must be an integer")
     .min(0, "Stock cannot be negative")
     .required("Stock is required"),
+  category: yup.string().required("Product Category is required"),
 });
 
-function FormUpdateProduct() {
+function FormAddProduct() {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [error, setError] = useState("");
-  const { productDashBoardId } = useParams();
   const productList = useSelector((state) => state.productsApi?.product?.items);
-
-  const product = productList.find((prod) => prod._id === productDashBoardId);
+  const loading = useSelector((state) => state.productsApi.loading);
 
   const dispatch = useDispatch();
   const {
@@ -52,57 +52,73 @@ function FormUpdateProduct() {
   } = useForm({
     resolver: yupResolver(schemaFormUpdate),
   });
+
   useEffect(() => {
     dispatch(productsFetch());
   }, [dispatch]);
-  useEffect(() => {
-    if (product) {
-      setValue("name", product.name);
-
-      setValue("image", product.image);
-      setValue("price", product.price);
-      setValue("stock", product.stock);
-    }
-  }, [product, setValue]);
 
   const handleInputChange = (name, value) => {
     setValue(name, value);
   };
 
   const onSubmit = async (data) => {
-    const id = product?._id;
     try {
       await schemaFormUpdate.validate(data, { abortEarly: false });
+
+      const existingProducts = productList;
+      const isDuplicateName = existingProducts.some(
+        (product) => product.name === data.name
+      );
+      const isDuplicateImage = existingProducts.some(
+        (product) => product.image === data.image
+      );
+
+      if (isDuplicateName || isDuplicateImage) {
+        setError("Product with the same name or image already exists");
+        setIsSubmitted(false); // Reset isSubmitted to false
+        return;
+      }
+
       const productData = {
         name: data.name,
-
         image: data.image,
         price: data.price,
         stock: data.stock,
+        category: data.category,
       };
 
-      dispatch(updateProductApi({ id, updatedData: productData }))
+      dispatch(addProduct(productData))
         .then(() => {
-          dispatch(productsFetch());
           setIsSubmitted(true);
+          dispatch(productsFetch());
         })
         .catch((error) => {
           console.error("Error updating product:", error);
+          setError("Error adding product. Please try again."); // Set error message
         });
+
       setTimeout(() => {
         setIsSubmitted(false);
+        setError(null); // Clear error message
       }, 4000);
     } catch (err) {
       console.error(err.errors);
-      const validationErrors = err.errors.map(
+      const validationErrors = err.errors?.map(
         (error) => `Validation Error - ${error.path}: ${error.message}`
       );
-      setError(validationErrors.join("\n"));
-      setTimeout(() => {
-        setError(null);
-      }, 5000);
+     
+       setError(validationErrors.join("\n"));
+       setIsSubmitted(false); // Reset isSubmitted to false
+      //    setTimeout(() => {
+      //      setError(null);
+      //    }, 3000);
     }
   };
+  useEffect(() => {
+    setTimeout(() => {
+      setError(null);
+    }, 4000);
+  }, [error]);
 
   const closeAlerts = () => {
     setError(null);
@@ -113,9 +129,19 @@ function FormUpdateProduct() {
       {isSubmitted && (
         <Alert
           className={styles.alert}
-          message="Product Update Succces"
+          message="Product Add Success"
           type="success"
           showIcon
+        />
+      )}
+
+      {error && (
+        <Alert
+          className={styles.alert}
+          message={error}
+          type="error"
+          showIcon
+          onClose={closeAlerts}
         />
       )}
 
@@ -266,20 +292,33 @@ function FormUpdateProduct() {
             <p className={styles.formTitle}>Category</p>
             <div className={styles.containerfieldInput}>
               <section className={styles.fieldInput}>
-                <label htmlFor="productCategory" className={styles.label}>
+                <label htmlFor="category" className={styles.label}>
                   Product Category
                 </label>
                 <div className={styles.inputArea}>
                   <Controller
-                    name="productCategory"
+                    name="category"
                     control={control}
                     render={({ field }) => (
                       <>
-                        <DropMenuCustom
-                          item1={"Iphone"}
-                          item2={"MacBook"}
-                          item3={"AppleWatch"}
-                        />
+                        <Select
+                          {...field}
+                          id="category"
+                          className={styles.inputTextArea}
+                          placeholder="Select Product Category"
+                          onChange={(value) =>
+                            handleInputChange("category", value)
+                          }
+                        >
+                          <Option value="Iphone">Iphone</Option>
+                          <Option value="MacBook">MacBook</Option>
+                          <Option value="AppleWatch">Apple Watch</Option>
+                        </Select>
+                        {errors.category && (
+                          <p className={styles.errorMessage}>
+                            {errors.category.message}
+                          </p>
+                        )}
                       </>
                     )}
                   />
@@ -322,4 +361,4 @@ function FormUpdateProduct() {
   );
 }
 
-export default FormUpdateProduct;
+export default FormAddProduct;

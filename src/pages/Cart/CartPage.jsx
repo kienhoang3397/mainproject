@@ -1,21 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Btn from "../../common/components/Buttons/Button";
 import Couter from "../../common/components/Buttons/Couter/Couter";
 
-import styles from "./CartPage.module.css";
-import FormItemInput from "antd/es/form/FormItemInput";
-import { getUserApi } from "../../redux/slice/apiRequest";
-import { fetchUser } from "../../redux/slice/userApiSlice";
 import {
   addToCart,
   decreaseQuantity,
   removeFromCart,
 } from "../../redux/slice/cartApiSlice";
+import { fetchUser } from "../../redux/slice/userApiSlice";
+import styles from "./CartPage.module.css";
 
-import Status from "../../common/components/Status/Status";
 
-import { removeItemformWishlist } from "../../redux/slice/wishlist";
 import { Checkbox } from "antd";
 // Import your Redux actions here
 // import { incrementQuantity, decrementQuantity, removeFromCart } from 'your-redux-actions';
@@ -113,7 +109,8 @@ const calculateTotal = () => {
      setExpressShipping(!expressShipping);
      setStandardShipping(false);
    }
- }; 
+  }; 
+  
 
   return (
     <div className={styles.container}>
@@ -194,7 +191,7 @@ const calculateTotal = () => {
                       }
                     />
                   </td>
-                  <p className={styles.price}>₹{item.amount}</p>
+                  <p className={styles.price}> ₹{calculateSubtotal()}</p>
                 </tr>
               ))}
             </tbody>
@@ -206,68 +203,67 @@ const calculateTotal = () => {
             <section className={styles.heading}>
               <p className={styles.contentCardTotalHeading}>Card Totals</p>
             </section>
-            <section className={styles.itemTotalCart}>
-              <div className={styles.total}>
-                <section className={styles.containerDetailTotal}>
+            <div className={styles.containerIcon}>
+              <section className={styles.itemTotalCart}>
+                <div className={styles.detailTotal}>
+                  <p className={styles.contentTotal}>Sub-total</p>
+                  <p className={styles.detailContentTotal}>
+                    ₹{
+                      calculateTotal()}
+                  </p>
+                </div>
+                <div className={styles.detailTotal}>
+                  <p className={styles.contentTotal}>Discount</p>
+                  <p className={styles.detailContentTotal}>₹999</p>
+                </div>
+                <div className={styles.detailTotal}>
+                  <p className={styles.contentTotal}>Tax ( 4% )</p>
+                  <p className={styles.detailContentTotal}>
+                    ₹{calculateTax(calculateSubtotal())}
+                  </p>
+                </div>
+              </section>
+
+              <section className={styles.lineTotal}></section>
+              <section className={styles.itemTotalCart}>
+                <div className={styles.detailTotal}>
+                  <p className={styles.contentTotal}>Shipping</p>
+                </div>
+                <div className={styles.containerCheckbox}>
                   <div className={styles.detailTotal}>
-                    <p className={styles.contentTotal}>Sub-total</p>
-                    <p className={styles.detailContentTotal}>
-                      ₹{calculateSubtotal()}
+                    <p className={styles.contentTotal}>
+                      <Checkbox
+                        style={{ marginRight: "13px" }}
+                        checked={standardShipping}
+                        onChange={() => handleCheckboxChange("standard")}
+                      />
+                      Standard :
                     </p>
+                    <p className={styles.detailContentTotal}>₹1000</p>
                   </div>
-                </section>
-              </div>
-              <div className={styles.detailTotal}>
-                <p className={styles.contentTotal}>Discount</p>
-                <p className={styles.detailContentTotal}>₹999</p>
-              </div>
-              <div className={styles.detailTotal}>
-                <p className={styles.contentTotal}>Tax ( 4% )</p>
-                <p className={styles.detailContentTotal}>
-                  ₹{calculateTax(calculateSubtotal())}
-                </p>
-              </div>
-            </section>
+                  <div className={styles.detailTotal}>
+                    <p className={styles.contentTotal}>
+                      <Checkbox
+                        style={{ marginRight: "13px" }}
+                        checked={expressShipping}
+                        onChange={() => handleCheckboxChange("express")}
+                      />
+                      Express :
+                    </p>
+                    <p className={styles.detailContentTotal}>₹1700</p>
+                  </div>
+                  <section className={styles.lineTotal}></section>
+                  <section className={styles.toltalPriceDetail}>
+                    <p className={styles.toltalPriceDetailContent}>Total</p>
+                    <p className={styles.toltalPriceDetailContent}>
+                      ₹{calculateTotal()}
+                    </p>
+                  </section>
 
-            <section className={styles.lineTotal}></section>
-            <section className={styles.itemTotalCart}>
-              <div className={styles.detailTotal}>
-                <p className={styles.contentTotal}>Shipping</p>
-              </div>
-              <div className={styles.containerCheckbox}>
-                <div className={styles.detailTotal}>
-                  <p className={styles.contentTotal}>
-                    <Checkbox
-                      style={{ marginRight: "13px" }}
-                      checked={standardShipping}
-                      onChange={() => handleCheckboxChange("standard")}
-                    />
-                    Standard :
-                  </p>
-                  <p className={styles.detailContentTotal}>₹1000</p>
+                  <Btn defaultValue content={"PROCEED TO CHECKOUT"} />
                 </div>
-                <div className={styles.detailTotal}>
-                  <p className={styles.contentTotal}>
-                    <Checkbox
-                      style={{ marginRight: "13px" }}
-                      checked={expressShipping}
-                      onChange={() => handleCheckboxChange("express")}
-                    />
-                    Express :
-                  </p>
-                  <p className={styles.detailContentTotal}>₹1700</p>
-                </div>
-                <section className={styles.lineTotal}></section>
-                <section className={styles.toltalPriceDetail}>
-                  <p className={styles.toltalPriceDetailContent}>Total</p>
-                  <p className={styles.toltalPriceDetailContent}>
-                    ₹{calculateTotal()}
-                  </p>
-                </section>
-
-                <Btn defaultValue content={"PROCEED TO CHECKOUT"} />
-              </div>
-            </section>
+              </section>
+            </div>
           </div>
 
           {/* <div className={styles.couponCode}>
@@ -281,7 +277,6 @@ const calculateTotal = () => {
               </section>
             </div>
           </div> */}
-
         </aside>
       </main>
     </div>

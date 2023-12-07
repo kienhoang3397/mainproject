@@ -11,7 +11,7 @@ import ip15pink from '../../assets/image/IPhones/iphone-15-finish-select-202309-
 import ip15yellow from '../../assets/image/IPhones/iphone-15-finish-select-202309-6-7inch-yellow.png';
 import color1 from '../../assets/image/IPhones/color1.png';
 import color2 from '../../assets/image/IPhones/color2.png';
-import color3 from '../../assets/image/IPhones/color3.png';
+
 
 import IphoneSpec from '../components/IphoneSpec/IphoneSpec';
 
@@ -19,57 +19,39 @@ import IphoneSpec from '../components/IphoneSpec/IphoneSpec';
 
 
 const newestCollections = [
-	{
-        id: 1,
-		image: ip15pmblack,
-        content: <IphoneSpec name={'Iphone 15 '} price={'From ₹59,000'}p/>,
-		color: color1
-	},
-	{
-		id: 2,
-		image: ip15pmnatural,
-         content: <IphoneSpec name={'Iphone 15 '} price={'From ₹52,000'}p/>,
-		color: color2
-	},
-	{
-		id: 3,
-        image: ip15pmbblue,
-         content: <IphoneSpec name={'Iphone 15 '} price={'From ₹51,000'}p/>,
-		color: color3
-	},
-    {
-        id: 4,
-		image: ip15pmwhite,
-         content: <IphoneSpec name={'Iphone 15 '} price={'From ₹45,000'}p/>,
-		color: color1
-	},
-	{
-		id: 5,
-		image: ip15black,
-         content: <IphoneSpec name={'Iphone 15 '} price={'From ₹59,000'}p/>,
-		color: color2
-	},
-	{
-		id: 6,
-        image: ip15green,
-         content: <IphoneSpec name={'Iphone 15 '} price={'From ₹59,000'}p/>,
-		color: color3
-	},
-    {
-        id: 7,
-		image:  ip15pink,
-         content: <IphoneSpec name={'Iphone 15 '} price={'From ₹59,000'}p/>,
-		color: color1
-	},
-	{
-		id: 8,
-		image: ip15yellow,
-		content: <IphoneSpec name={'Iphone 15 '} price={'From ₹59,000'}p/>,
-		color: color2
-	},
-    
-	
-
+  {
+    id: 1,
+    image: "https://i.ibb.co/h2ZtxQz/i-Phone15-Pro-Black-Titanium.png",
+    content: (
+      <IphoneSpec name={"Iphone 15 Pro Max "} price={"From ₹59,000"} p />
+    ),
+    color: color1,
+  },
+  {
+    id: 2,
+    image: "https://i.ibb.co/99rNZZR/i-Phone15-Pro-Max-Natural-Titanium.png",
+    content: (
+      <IphoneSpec name={"Iphone 15 Pro Max "} price={"From ₹52,000"} p />
+    ),
+    color: color2,
+  },
+  {
+    id: 3,
+    image: "https://i.ibb.co/d4QGWKX/i-Phone15-Pro-Max-Blue-Titanium.png",
+    content: (
+      <IphoneSpec name={"Iphone 15 Pro Max "} price={"From ₹51,000"} p />
+    ),
+    color: color1,
+  },
+  {
+    id: 4,
+    image: "https://i.ibb.co/nrmMKQw/i-Phone15-Pro-Max-White-Titanium.png",
+    content: (
+      <IphoneSpec name={"Iphone 15 Pro Max "} price={"From ₹45,000"} p />
+    ),
+    color: color1,
+  },
+ 
 ];
 
 
