@@ -1,12 +1,20 @@
-.defaultColor{
-    color: gray;
+.defaultColor {
+  color: gray;
 }
-.status{
-    display: flex;
-align-content: center;
-font-family: Poppins;
-font-size: 14px;
-font-style: normal;
-font-weight: 600;
-line-height: 125.5%; /* 17.57px */
+.status {
+  display: flex;
+  align-content: center;
+  font-family: Poppins;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 125.5%; /* 17.57px */
 }
+@media only screen and (max-width: 800px) {
+  .status {
+    font-size: 11px;
+  }
+}
+@media only screen and (max-width: 540px) {  .status {
+    font-size: 10px;
+  }}

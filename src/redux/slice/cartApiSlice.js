@@ -1,6 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-import { useSelector } from "react-redux";
 
 const initialState = {
   carts: {
@@ -71,6 +70,47 @@ export const addToCart = createAsyncThunk(
     }
   }
 );
+export const clearCart = createAsyncThunk("carts/checkout", async (token) => {
+  try {
+    const accessToken = token;
+
+    const response = await axios.post(
+      "http://localhost:3000/v1/user/checkout",
+      {},
+      {
+        headers: {
+          token: `Bearer ${accessToken}`,
+        },
+      }
+    );
+
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+});
+export const addCartToOrderHistory = createAsyncThunk(
+  "carts/addCartToOrderHistory",
+  async (token) => {
+    try {
+      const accessToken = token;
+      console.log(accessToken);
+      const response = await axios.post(
+        "http://localhost:3000/v1/user/add-to-orderhistory",{},
+
+        {
+          headers: {
+            token: `Bearer ${accessToken}`,
+          },
+        }
+      );
+
+      return response.data;
+    } catch (error) {
+      throw error;
+    }
+  }
+);
 
 const cartApiSlice = createSlice({
   name: "carts",
@@ -106,6 +146,26 @@ const cartApiSlice = createSlice({
         state.carts.items = action.payload.user.cart;
       })
       .addCase(decreaseQuantity.rejected, (state) => {
+        state.carts.status = "rejected";
+      })
+      .addCase(clearCart.pending, (state) => {
+        state.carts.status = "pending";
+      })
+      .addCase(clearCart.fulfilled, (state, action) => {
+        state.carts.status = "fulfilled";
+        state.carts.items = [];
+      })
+      .addCase(clearCart.rejected, (state) => {
+        state.carts.status = "rejected";
+      })
+      .addCase(addCartToOrderHistory.pending, (state) => {
+        state.carts.status = "pending";
+      })
+      .addCase(addCartToOrderHistory.fulfilled, (state, action) => {
+        state.carts.status = "fulfilled";
+        state.carts.items = []; // Clear cart after adding to order history
+      })
+      .addCase(addCartToOrderHistory.rejected, (state) => {
         state.carts.status = "rejected";
       });
   },

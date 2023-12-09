@@ -69,7 +69,7 @@ export const router = createBrowserRouter(
       <Route path="/user" element={<UserLayout />}>
         <Route path="profile" element={<Profile />} />
         <Route path="logout" element={<Test />} />
-        <Route path="ortherhistory" element={<OrderHistory />} />
+        <Route path="orderhistory" element={<OrderHistory />} />
         <Route path="dashboarduser" element={<UserDashBoard />}>
           <Route path="user/profile" element={<Profile />} />
         </Route>

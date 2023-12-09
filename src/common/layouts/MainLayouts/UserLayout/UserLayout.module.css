@@ -1,9 +1,64 @@
-.container{
-    display: flex;
-    flex-direction: column;
+.container {
+  display: flex;
+  flex-direction: column;
 }
-.content{
+.main{
+  display: flex;
+   padding: 45px 120px 123px;
+   gap: 13px;
+}
+.content {
+ 
+ 
+  
+}
+.contentOnRepon{
+  display: none;
+}
+.icon {
+  position: fixed;
+  top: 80px;
+  padding: 8px;
+  border-radius: 50%;
+  background-color: #f2f4f5;
+  color: var(--Blue-BG, #3858d6);
+  box-shadow: 2px 4px 12px 0px rgba(0, 0, 0, 0.25);
+
+  /* Body/Small/600 */
+  font-family: Public Sans;
+  font-size: 45px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 20px; /* 142.857% */
+}
+.usernav {
+  left: -100%;
+  position: fixed;
+  height: 100vh;
+  top: 25%;
+  transition: all 0.5s;
+  z-index: 10000;
+}
+.usernav.hidden {
+  left: 0;
+}
+@media only screen and (max-width: 1150px) {
+  .contentOnRepon{
+    display: block;
+  }
+  .content{
+    display: none;
+  }
+  .main {
     display: flex;
-    padding: 45px 120px 123px;
+    padding: 45px 50px 123px;
     gap: 13px;
+  }
+}
+@media only screen and (max-width: 800px) {
+  .main {
+    display: flex;
+    padding: 45px 10px 123px;
+    gap: 13px;
+  }
 }

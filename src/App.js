@@ -3,6 +3,7 @@ import "./index.css";
 
 import { RouterProvider } from "react-router-dom";
 import { router } from "./router";
+import Test from "./assets/Test";
 
 
 
@@ -15,9 +16,9 @@ function App() {
    
     <>
  
-  <RouterProvider router={router}/>
-  
-    
+      <RouterProvider router={router}/>
+     
+ 
     </>
   )
 }

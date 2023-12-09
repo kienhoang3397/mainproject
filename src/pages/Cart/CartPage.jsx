@@ -2,21 +2,20 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Btn from "../../common/components/Buttons/Button";
 import Couter from "../../common/components/Buttons/Couter/Couter";
-
 import {
+  addCartToOrderHistory,
   addToCart,
+  clearCart,
   decreaseQuantity,
   removeFromCart,
 } from "../../redux/slice/cartApiSlice";
 import { fetchUser } from "../../redux/slice/userApiSlice";
 import styles from "./CartPage.module.css";
-
-
 import { Checkbox } from "antd";
-// Import your Redux actions here
-// import { incrementQuantity, decrementQuantity, removeFromCart } from 'your-redux-actions';
 
 function CartPage() {
+  const [showConfirmation, setShowConfirmation] = useState(false);
+  const [showCheckoutSuccsess, setShowCheckoutSuccsess] = useState(false);
   const dispatch = useDispatch();
   const [standardShipping, setStandardShipping] = useState(false);
   const [expressShipping, setExpressShipping] = useState(false);
@@ -59,20 +58,32 @@ function CartPage() {
         console.error("Error removing from cart:", error);
       });
   };
-const calculateSubtotal = () => {
-  if (!cart || !Array.isArray(cart)) {
-    return formatNumberWithCommas(0);
-  }
+  const handleCheck = (token) => {
+    dispatch(addCartToOrderHistory(token))
+      .then(() => {
+        dispatch(fetchUser(token));
+      })
+      .catch((error) => {
+        console.error("Error checking out:", error);
+      });
 
-  const subtotal = cart.reduce((accumulator, item) => {
-    const updatedAmount = item.quantity * item.price;
-    return accumulator + updatedAmount;
-  }, 0);
+    
+    setShowConfirmation(false);
+    setShowCheckoutSuccsess(true);
+  };
 
-  return formatNumberWithCommas(subtotal);
-};
+  const calculateSubtotal = () => {
+    if (!cart || !Array.isArray(cart)) {
+      return formatNumberWithCommas(0);
+    }
 
+    const subtotal = cart.reduce((accumulator, item) => {
+      const updatedAmount = item.quantity * item.price;
+      return accumulator + updatedAmount;
+    }, 0);
 
+    return formatNumberWithCommas(subtotal);
+  };
 
   const calculateTax = () => {
     const subtotal = parseFloat(calculateSubtotal().replace(/,/g, "")) || 0;
@@ -80,37 +91,43 @@ const calculateSubtotal = () => {
     const tax = subtotal * taxRate;
     return formatNumberWithCommas(tax);
   };
-   const calculateShipping = () => {
-     let shippingCost = 0;
-     if (standardShipping) {
-       shippingCost += 1000;
-     }
-     if (expressShipping) {
-       shippingCost += 1700;
-     }
-     return formatNumberWithCommas(shippingCost);
+  const calculateShipping = () => {
+    let shippingCost = 0;
+    if (standardShipping) {
+      shippingCost += 1000;
+    }
+    if (expressShipping) {
+      shippingCost += 1700;
+    }
+    return formatNumberWithCommas(shippingCost);
   };
-const calculateTotal = () => {
-  const subtotal = parseFloat(calculateSubtotal().replace(/,/g, "")) || 0;
-  const shipping = parseFloat(calculateShipping().replace(/,/g, "")) || 0;
-  const tax = parseFloat(calculateTax().replace(/,/g, "")) || 0;
+  const calculateTotal = () => {
+    const subtotal = parseFloat(calculateSubtotal().replace(/,/g, "")) || 0;
+    const shipping = parseFloat(calculateShipping().replace(/,/g, "")) || 0;
+    const tax = parseFloat(calculateTax().replace(/,/g, "")) || 0;
 
-  const total = subtotal + shipping + tax;
-  return formatNumberWithCommas(total);
-};
+    const total = subtotal + shipping + tax;
+    return formatNumberWithCommas(total);
+  };
 
-
-  // Function to handle changes in shipping option
- const handleCheckboxChange = (shippingType) => {
-   if (shippingType === "standard") {
-     setStandardShipping(!standardShipping);
-     setExpressShipping(false);
-   } else if (shippingType === "express") {
-     setExpressShipping(!expressShipping);
-     setStandardShipping(false);
-   }
-  }; 
-  
+  const handleCheckboxChange = (shippingType) => {
+    if (shippingType === "standard") {
+      setStandardShipping(!standardShipping);
+      setExpressShipping(false);
+    } else if (shippingType === "express") {
+      setExpressShipping(!expressShipping);
+      setStandardShipping(false);
+    }
+  };
+  const handleLogoutClick = () => {
+    setShowConfirmation(true);
+  };
+  const handleCancelLogout = () => {
+    setShowConfirmation(false);
+  };
+  const handleCloseCheckout = () => {
+    setShowCheckoutSuccsess(false);
+  };
 
   return (
     <div className={styles.container}>
@@ -191,7 +208,10 @@ const calculateTotal = () => {
                       }
                     />
                   </td>
-                  <p className={styles.price}> ₹{calculateSubtotal()}</p>
+                  <td className={styles.productSvg}>
+                    {" "}
+                    <p className={styles.price}> ₹{item.amount}</p>
+                  </td>
                 </tr>
               ))}
             </tbody>
@@ -208,8 +228,7 @@ const calculateTotal = () => {
                 <div className={styles.detailTotal}>
                   <p className={styles.contentTotal}>Sub-total</p>
                   <p className={styles.detailContentTotal}>
-                    ₹{
-                      calculateTotal()}
+                    ₹{calculateTotal()}
                   </p>
                 </div>
                 <div className={styles.detailTotal}>
@@ -260,25 +279,38 @@ const calculateTotal = () => {
                     </p>
                   </section>
 
-                  <Btn defaultValue content={"PROCEED TO CHECKOUT"} />
+                  <Btn
+                    handleBtn={handleLogoutClick}
+                    defaultValue
+                    content={"PROCEED TO CHECKOUT"}
+                  />
                 </div>
               </section>
             </div>
           </div>
-
-          {/* <div className={styles.couponCode}>
-            <section className={styles.headingCoupon}>
-              <p className={styles.contentCardTotalHeading}>Coupon Code</p>
-            </section>
-            <div className={styles.applyCoupon}>
-              <section className={styles.form}></section>
-              <section className={styles.btnCoupon}>
-                <Btn variant2 content={"APPLY COUPON"} />
-              </section>
-            </div>
-          </div> */}
         </aside>
       </main>
+      {showConfirmation && (
+        <div className={styles.confirmationDialog}>
+          <p className={styles.contentDialog}>
+            ARE YOU SURE WANT TO CHECKOUT ?
+          </p>
+          <section className={styles.containerBtnDiaLog}>
+            <button
+              className={styles.btnDialogOk}
+              onClick={() => handleCheck(token)}
+            >
+              Yes
+            </button>
+            <button className={styles.btnDialogNo} onClick={handleCancelLogout}>
+              No
+            </button>
+          </section>
+        </div>
+      )}
+      {showCheckoutSuccsess && (
+        <button onClick={handleCloseCheckout}>Yeasasfasfas</button>
+      )}
     </div>
   );
 }

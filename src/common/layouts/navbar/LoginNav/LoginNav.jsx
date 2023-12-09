@@ -8,9 +8,11 @@ import QuickAccess from "../../../components/QuickAccess/QuickAccess";
 import Theme from "../../../components/Themes/Theme";
 import { TiThMenu } from "react-icons/ti";
 import styles from "./LoginNav.module.css";
+import store from "../../../../redux/store";
+import { productsFetch } from "../../../../redux/slice/productApiSlice";
 
 function BeforeLoginNav({ darkNav, lightNav }) {
-  const [isChecked, setChecked] = useState(false);
+  const [isCheckedNav, setCheckedNav] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
 
   const navClasses = clsx(styles.nav, {
@@ -35,7 +37,10 @@ function BeforeLoginNav({ darkNav, lightNav }) {
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
+
+   
   }, []);
+  
 
   return (
     <div className={styles.navField}>
@@ -47,7 +52,7 @@ function BeforeLoginNav({ darkNav, lightNav }) {
 
           <div
             className={
-              isChecked ? styles.router : `${styles.router} ${styles.hidden}`
+              isCheckedNav ? styles.router : `${styles.router} ${styles.hidden}`
             }
           >
             <Link className={styles.item} to={"/"}>
@@ -62,11 +67,11 @@ function BeforeLoginNav({ darkNav, lightNav }) {
           <div className={styles.iconNav}>
             <input
               type="checkbox"
-              id="check"
-              checked={isChecked}
-              onChange={() => setChecked(!isChecked)}
+              id="checkk"
+              checked={isCheckedNav}
+              onChange={() => setCheckedNav(!isCheckedNav)}
             />
-            <label htmlFor="check">
+            <label htmlFor="checkk">
               <TiThMenu />
             </label>
           </div>
@@ -81,7 +86,7 @@ function BeforeLoginNav({ darkNav, lightNav }) {
 
           <div
             className={
-              isChecked ? styles.router : `${styles.router} ${styles.hidden}`
+              isCheckedNav ? styles.router : `${styles.router} ${styles.hidden}`
             }
           >
             <Link className={styles.item} to={"/"}>
@@ -105,11 +110,11 @@ function BeforeLoginNav({ darkNav, lightNav }) {
           <div className={styles.iconNav}>
             <input
               type="checkbox"
-              id="check"
-              checked={isChecked}
-              onChange={() => setChecked(!isChecked)}
+              id="checkk"
+              checked={isCheckedNav}
+              onChange={() => setCheckedNav(!isCheckedNav)}
             />
-            <label htmlFor="check">
+            <label htmlFor="checkk">
               <TiThMenu />
             </label>
           </div>

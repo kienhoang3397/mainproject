@@ -7,33 +7,23 @@ import styles from './UserDashBoard.module.css';
 
 function UserDashBoard() {
     const user = useSelector((state) => state.auth.login.currentUser?.user);
+    const orderhistory = useSelector(
+      (state) => state.userApi.user.orderhistory
+    );
     return (
         <div className={styles.container}>
             <header className={styles.funfact}>
                 <section className={styles.containerProduct}>
                     <div className={styles.containerProductImg}> <BsRocket className={styles.productImg} /></div>
                     <div className={styles.containerProductContent}>
-                        <p className={styles.containerProductName}>145</p>
+                        <p className={styles.containerProductName}>{orderhistory?.length}</p>
                         <p className={styles.containerProductSold}> Total Orders</p>
                     </div>
                 </section>
-                <section className={styles.containerProduct2}>
-                    <div className={styles.containerProductImg}> <BsRocket className={styles.productImg2} /></div>
-                    <div className={styles.containerProductContent}>
-                        <p className={styles.containerProductName}>145</p>
-                        <p className={styles.containerProductSold}> Total Orders</p>
-                    </div>
-                </section>
-                <section className={styles.containerProduct3}>
-                    <div className={styles.containerProductImg}> <BsRocket className={styles.productImg3} /></div>
-                    <div className={styles.containerProductContent}>
-                        <p className={styles.containerProductName}>145</p>
-                        <p className={styles.containerProductSold}> Total Orders</p>
-                    </div>
-                </section>
+            
             </header>
             <div className={styles.contentUserDB}>
-                <p className={styles.firstContentUserDB}>Hello, Feyz Ibrahim</p>
+                <p className={styles.firstContentUserDB}>Hello, {user?.username}</p>
                 <p className={styles.secondContentUserDB}>From your account dashboard. you can
                     easily check & view your Recent
                     Orders, manage your Shipping and

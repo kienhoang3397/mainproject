@@ -79,10 +79,14 @@ function FormUpdateProduct() {
       await schemaFormUpdate.validate(data, { abortEarly: false });
       const productData = {
         name: data.name,
-        category: data.category,
         image: data.image,
+        image1: data.image1,
+        image2: data.image2,
+        image3: data.image3,
+        image4: data.image4,
         price: data.price,
         stock: data.stock,
+        category: data.category,
       };
 
       dispatch(updateProductApi({ id, updatedData: productData }))
@@ -222,6 +226,142 @@ function FormUpdateProduct() {
                         {errors.image && (
                           <p className={styles.errorMessage}>
                             {errors.image.message}
+                          </p>
+                        )}
+                      </>
+                    )}
+                  />
+                </div>
+              </section>
+            </div>
+          </div>
+          <div className={styles.containerForm}>
+            <p className={styles.formTitle}>Media</p>
+            <div className={styles.containerfieldInput}>
+              <section className={styles.fieldInput}>
+                <label htmlFor="image" className={styles.label}>
+                  Photo
+                </label>
+                <div className={styles.inputArea}>
+                  <Controller
+                    name="image1"
+                    control={control}
+                    render={({ field }) => (
+                      <>
+                        <Input
+                          {...field}
+                          id="image1"
+                          className={styles.inputTextArea}
+                          placeholder="Controlled autosize"
+                          onChange={(e) =>
+                            handleInputChange("image1", e.target.value)
+                          }
+                        />
+                        {errors.image1 && (
+                          <p className={styles.errorMessage}>
+                            {errors.image1.message}
+                          </p>
+                        )}
+                      </>
+                    )}
+                  />
+                </div>
+              </section>
+            </div>
+          </div>
+          <div className={styles.containerForm}>
+            <p className={styles.formTitle}>Media</p>
+            <div className={styles.containerfieldInput}>
+              <section className={styles.fieldInput}>
+                <label htmlFor="image2" className={styles.label}>
+                  Photo
+                </label>
+                <div className={styles.inputArea}>
+                  <Controller
+                    name="image2"
+                    control={control}
+                    render={({ field }) => (
+                      <>
+                        <Input
+                          {...field}
+                          id="image2"
+                          className={styles.inputTextArea}
+                          placeholder="Controlled autosize"
+                          onChange={(e) =>
+                            handleInputChange("image", e.target.value)
+                          }
+                        />
+                        {errors.image2 && (
+                          <p className={styles.errorMessage}>
+                            {errors.image2.message}
+                          </p>
+                        )}
+                      </>
+                    )}
+                  />
+                </div>
+              </section>
+            </div>
+          </div>
+          <div className={styles.containerForm}>
+            <p className={styles.formTitle}>Media</p>
+            <div className={styles.containerfieldInput}>
+              <section className={styles.fieldInput}>
+                <label htmlFor="image" className={styles.label}>
+                  Photo
+                </label>
+                <div className={styles.inputArea}>
+                  <Controller
+                    name="image3"
+                    control={control}
+                    render={({ field }) => (
+                      <>
+                        <Input
+                          {...field}
+                          id="image3"
+                          className={styles.inputTextArea}
+                          placeholder="Controlled autosize"
+                          onChange={(e) =>
+                            handleInputChange("image3", e.target.value)
+                          }
+                        />
+                        {errors.image3 && (
+                          <p className={styles.errorMessage}>
+                            {errors.image3.message}
+                          </p>
+                        )}
+                      </>
+                    )}
+                  />
+                </div>
+              </section>
+            </div>
+          </div>
+          <div className={styles.containerForm}>
+            <p className={styles.formTitle}>Media</p>
+            <div className={styles.containerfieldInput}>
+              <section className={styles.fieldInput}>
+                <label htmlFor="image4" className={styles.label}>
+                  Photo
+                </label>
+                <div className={styles.inputArea}>
+                  <Controller
+                    name="image4"
+                    control={control}
+                    render={({ field }) => (
+                      <>
+                        <Input
+                          {...field}
+                          id="image4"
+                          className={styles.inputTextArea}
+                          placeholder="Controlled autosize"
+                          onChange={(e) =>
+                            handleInputChange("image4", e.target.value)
+                          }
+                        />
+                        {errors.image4 && (
+                          <p className={styles.errorMessage}>
+                            {errors.image4.message}
                           </p>
                         )}
                       </>

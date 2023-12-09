@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Btn from "../../common/components/Buttons/Button";
 import Status from "../../common/components/Status/Status";
@@ -9,6 +9,8 @@ import { removeFromwishlist } from "../../redux/slice/wishlistApiSlice";
 import styles from "./WishList.module.css";
 
 function WishList() {
+  const [toggle, setToggle] = useState(false);
+  const [selectedProductId, setSelectedProductId] = useState(null);
   const dispatch = useDispatch();
   const wishlist = useSelector((state) => state.userApi?.user.wishlist);
 
@@ -19,46 +21,30 @@ function WishList() {
     dispatch(removeFromwishlist({ productId, token }))
       .then(() => {
         dispatch(fetchUser(token));
+        setToggle(false); 
       })
       .catch((error) => {
-        console.error("Error removing from cart:", error);
+        console.error("Error removing from wishlist:", error);
       });
   };
+
   const handleaddToCart = (productId) => {
     const quantity = 1;
 
     dispatch(addToCart({ productId, quantity, token }))
       .then(() => {
         dispatch(fetchUser(token));
+        setToggle(false); 
       })
       .catch((error) => {
         console.error("Error adding to cart:", error);
       });
   };
-  function getCurrentDate() {
-    return new Date();
-  }
 
-  function formatDate(date) {
-    const options = {
-      month: "short",
-      day: "numeric",
-      year: "numeric",
-      hour: "2-digit",
-      minute: "2-digit",
-      hour12: false, // Use 24-hour format
-    };
-
-    const formattedDate = new Intl.DateTimeFormat("en-US", options).format(
-      date
-    );
-    return formattedDate;
-  }
-
-  // const currentDate = getCurrentDate();
-  // const formattedDateString = formatDate(currentDate);
-
-  // console.log(formattedDateString); // Output: Current date and time in the format "Dec 30, 2023 07:52"
+  const handleToggle = (productId) => {
+    setToggle(!toggle);
+    setSelectedProductId(productId);
+  };
 
   return (
     <div className={styles.container}>
@@ -71,7 +57,7 @@ function WishList() {
             <th className={styles.thTableWLFirst}>Products</th>
             <th className={styles.thTableWL}>Price</th>
             <th className={styles.thTableWL}>Status</th>
-            <th className={styles.thTableWL}>Action</th>
+            <th className={styles.thTableWLR}>Action</th>
             <th className={styles.thTableWL}>Delete</th>
           </tr>
         </thead>
@@ -104,7 +90,7 @@ function WishList() {
                   <Status color={"#FF4343"} content={"Out of Stock"} />
                 )}
               </td>
-              <td className={styles.productSvg}>
+              <td className={styles.productSvgR}>
                 <Btn
                   defaultValue
                   handleBtn={() => handleaddToCart(wishlist.product)}
@@ -113,16 +99,15 @@ function WishList() {
                 ></Btn>
               </td>
               <td className={styles.productSvg}>
-                <section
-                  className={styles.productSvgg}
-                  onClick={() => handleRemoveFromWishList(wishlist.product)}
-                >
+                <section className={styles.productSvg}>
                   <svg
+                    className={styles.svg}
                     xmlns="http://www.w3.org/2000/svg"
                     width="24"
                     height="21"
                     viewBox="0 0 24 21"
                     fill="none"
+                    onClick={() => handleRemoveFromWishList(wishlist.product)}
                   >
                     <path
                       d="M11.9736 19.9312C16.9442 19.9312 20.9736 15.9017 20.9736 10.9312C20.9736 5.96059 16.9442 1.93115 11.9736 1.93115C7.00307 1.93115 2.97363 5.96059 2.97363 10.9312C2.97363 15.9017 7.00307 19.9312 11.9736 19.9312Z"
@@ -145,7 +130,39 @@ function WishList() {
                       stroke-linejoin="round"
                     />
                   </svg>
+                  <div
+                    className={styles.feature}
+                    onClick={() => handleToggle(wishlist.product)}
+                  >
+                    More
+                  </div>
                 </section>
+                {toggle && (
+                  <div className={styles.toggleOptions}>
+                    <section className={styles.containerBtnDiaLog}>
+                      <button
+                        className={styles.btnDialogOk}
+                        onClick={() => handleaddToCart(wishlist.product)}
+                      >
+                        Add to Cart
+                      </button>
+                      <button
+                        className={styles.btnDialogNo}
+                        onClick={() =>
+                          handleRemoveFromWishList(wishlist.product)
+                        }
+                      >
+                        Remove
+                      </button>
+                    </section>
+                    <p
+                      onClick={() => setToggle(false)}
+                      className={styles.contentDialog}
+                    >
+                      Cancel
+                    </p>
+                  </div>
+                )}
               </td>
             </tr>
           ))}
