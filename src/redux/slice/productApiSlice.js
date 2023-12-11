@@ -14,7 +14,7 @@ export const updateProductApi = createAsyncThunk(
     console.log(updatedData);
     try {
       const res = await axios.put(
-        `http://localhost:3000/product/${id}`,
+        `https://apimainproject-kienhoangs-projects.vercel.app/product/${id}`,
         updatedData
       );
       return res?.data;
@@ -27,7 +27,7 @@ export const updateProductApi = createAsyncThunk(
 export const productsFetch = createAsyncThunk(
   "getall/productsFetch",
   async () => {
-    const res = await axios.get("http://localhost:3000/product/getall");
+    const res = await axios.get("https://apimainproject-kienhoangs-projects.vercel.app/product/getall");
     return res?.data;
   }
 );
@@ -38,7 +38,7 @@ export const addProduct = createAsyncThunk(
     console.log(productData); // Move this line inside the async function
     try {
       const res = await axios.post(
-        "http://localhost:3000/product/add",
+        "https://apimainproject-kienhoangs-projects.vercel.app/product/add",
         productData
       );
       return res?.data;
@@ -50,7 +50,7 @@ export const addProduct = createAsyncThunk(
 
 export const deleteProduct = createAsyncThunk("delete/product", async (id) => {
   try {
-    const res = await axios.delete(`http://localhost:3000/product/${id}`);
+    const res = await axios.delete(`https://apimainproject-kienhoangs-projects.vercel.app/product/${id}`);
     return res?.data;
   } catch (error) {
     throw error;

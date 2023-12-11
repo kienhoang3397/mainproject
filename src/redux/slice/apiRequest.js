@@ -23,7 +23,7 @@ import { dataProductPages } from "../../common/datas/ProductListingData";
 export const updateUser = async (user, id, dispatch) => {
   dispatch(updateUserStart());
   try {
-    const res = await axios.put(`http://localhost:3000/v1/user/${id}`, user);
+    const res = await axios.put(`https://apimainproject-kienhoangs-projects.vercel.app/v1/user/${id}`, user);
     dispatch(updateUserSuccess(res.data));
   } catch (err) {
     console.error("Error updating User:", err);
@@ -34,7 +34,7 @@ export const updateUser = async (user, id, dispatch) => {
 export const loginUser = async (user, dispatch, navigate) => {
   dispatch(loginStart());
   try {
-    const res = await axios.post("http://localhost:3000/v1/auth/login", user);
+    const res = await axios.post("https://apimainproject-kienhoangs-projects.vercel.app/v1/auth/login", user);
     dispatch(loginSuccess(res.data));
     navigate("/");
   } catch (error) {
@@ -54,7 +54,7 @@ export const loginUser = async (user, dispatch, navigate) => {
 export const registerUser = async (user, dispatch, navigate) => {
   dispatch(registerStart());
   try {
-    await axios.post("http://localhost:3000/v1/auth/register", user);
+    await axios.post("https://apimainproject-kienhoangs-projects.vercel.app/v1/auth/register", user);
     dispatch(registerSuccess());
     navigate("/login");
   } catch (err) {
@@ -64,7 +64,7 @@ export const registerUser = async (user, dispatch, navigate) => {
 export const getAllUser = async (dispatch) => {
   dispatch(getUsersStart());
   try {
-    const res = await axios.get("http://localhost:3000/v1/user/");
+    const res = await axios.get("https://apimainproject-kienhoangs-projects.vercel.app/v1/user/");
     dispatch(getUsersSuccess(res.data));
   } catch (error) {
     console.error("Error fetching user data:", error);
@@ -75,7 +75,7 @@ export const getAllUser = async (dispatch) => {
 export const logOutUser = async (dispatch, id, navigate, accessToken) => {
   dispatch(logoutStart());
   try {
-    const res = await axios.post("http://localhost:3000/v1/auth/logout", id, {
+    const res = await axios.post("https://apimainproject-kienhoangs-projects.vercel.app/v1/auth/logout", id, {
       headers: { token: `Bearer ${accessToken}` },
     });
     dispatch(logoutSuccess(res.data));
@@ -94,7 +94,7 @@ export const logOutUser = async (dispatch, id, navigate, accessToken) => {
 };
 export const getUserApi = async (accessToken) => {
   try {
-    const res = await axios.get("http://localhost:3000/v1/user/info", {
+    const res = await axios.get("https://apimainproject-kienhoangs-projects.vercel.app/v1/user/info", {
       headers: { token: `Bearer ${accessToken}` },
     });
 
@@ -110,7 +110,7 @@ const addAllProductsAPI = async () => {
   const promises = dataProductPages.map(async (product) => {
     try {
       const res = await axios.post(
-        "http://localhost:3000/product/add",
+        "https://apimainproject-kienhoangs-projects.vercel.app/product/add",
         product
       );
       return res.data;

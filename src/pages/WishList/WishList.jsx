@@ -13,7 +13,7 @@ function WishList() {
   const [toggle, setToggle] = useState(false);
   const [selectedProductId, setSelectedProductId] = useState(null);
   const dispatch = useDispatch();
-  const wishlist = useSelector((state) => state.infoUserApi?.user.wishlist);
+  const wishlist = useSelector((state) => state.infoUserApi?.user?.wishlist);
 
   const token = useSelector(
     (state) => state.userApi.user?.accessToken

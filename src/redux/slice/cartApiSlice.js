@@ -13,7 +13,7 @@ export const decreaseQuantity = createAsyncThunk(
     try {
       const accessToken = token;
       const response = await axios.post(
-        "http://localhost:3000/v1/user/decrease",
+        "https://apimainproject-kienhoangs-projects.vercel.app/v1/user/decrease",
         { productId },
         {
           headers: {
@@ -34,7 +34,7 @@ export const removeFromCart = createAsyncThunk(
     try {
       const accessToken = token;
       const response = await axios.post(
-        "http://localhost:3000/v1/user/removeFromCart",
+        "https://apimainproject-kienhoangs-projects.vercel.app/v1/user/removeFromCart",
         { productId },
         {
           headers: {
@@ -56,7 +56,7 @@ export const addToCart = createAsyncThunk(
       const accessToken = token;
 
       const response = await axios.post(
-        "http://localhost:3000/v1/user/add-to-cart",
+        "https://apimainproject-kienhoangs-projects.vercel.app/v1/user/add-to-cart",
         { productId, quantity },
         {
           headers: {
@@ -75,7 +75,7 @@ export const clearCart = createAsyncThunk("carts/checkout", async (token) => {
     const accessToken = token;
 
     const response = await axios.post(
-      "http://localhost:3000/v1/user/checkout",
+      "https://apimainproject-kienhoangs-projects.vercel.app/v1/user/checkout",
       {},
       {
         headers: {
@@ -96,7 +96,7 @@ export const addCartToOrderHistory = createAsyncThunk(
       const accessToken = token;
       console.log(accessToken);
       const response = await axios.post(
-        "http://localhost:3000/v1/user/add-to-orderhistory",{},
+        "https://apimainproject-kienhoangs-projects.vercel.app/v1/user/add-to-orderhistory",{},
 
         {
           headers: {

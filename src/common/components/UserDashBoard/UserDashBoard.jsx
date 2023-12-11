@@ -6,9 +6,9 @@ import Btn from '../Buttons/Button';
 import styles from './UserDashBoard.module.css';
 
 function UserDashBoard() {
-    const user = useSelector((state) => state.userApi.user.user);
+    const user = useSelector((state) => state.userApi.user?.user);
     const orderhistory = useSelector(
-      (state) => state.infoUserApi.user.orderhistory
+      (state) => state.infoUserApi.user?.orderhistory
     );
     return (
         <div className={styles.container}>

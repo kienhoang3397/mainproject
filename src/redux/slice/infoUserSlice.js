@@ -5,7 +5,7 @@ export const fetchUserInfo = createAsyncThunk(
   "infoUser/fetchUserInfo",
   async (accessToken) => {
     try {
-      const response = await axios.get("http://localhost:3000/v1/user/info", {
+      const response = await axios.get("https://apimainproject-kienhoangs-projects.vercel.app/v1/user/info", {
         headers: { token: `Bearer ${accessToken}` },
       });
 

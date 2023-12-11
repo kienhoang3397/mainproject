@@ -136,6 +136,9 @@ function RegPage() {
       {error && (
         <Alert className={styles.alert} message={error} type="error" showIcon />
       )}
+      <section className={styles.imgLogin}>
+        <img src="https://i.ibb.co/hFXwLcv/imgLogin.png" alt="" />
+      </section>
       <section className={styles.formLogin}>
         <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
           <div className={styles.themeLarge}>

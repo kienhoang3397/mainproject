@@ -5,7 +5,7 @@ export const fetchUser = createAsyncThunk(
   "user/fetchUser",
   async (accessToken) => {
     try {
-      const response = await axios.get("http://localhost:3000/v1/user/info", {
+      const response = await axios.get("https://apimainproject-kienhoangs-projects.vercel.app/v1/user/info", {
         headers: { token: `Bearer ${accessToken}` },
       });
 
@@ -18,10 +18,10 @@ export const fetchUser = createAsyncThunk(
 );
 
 export const fetchAllUserApi = createAsyncThunk(
-  "user/fetchAllUser", // Corrected identifier
+  "user/fetchAllUser",
   async () => {
     try {
-      const response = await axios.get("http://localhost:3000/v1/user");
+      const response = await axios.get("https://apimainproject-kienhoangs-projects.vercel.app/v1/user");
       return response.data;
     } catch (error) {
       console.error("Error fetching all user data:", error);
@@ -34,7 +34,7 @@ export const registerUserApi = createAsyncThunk(
   async (userData) => {
     try {
       const response = await axios.post(
-        "http://localhost:3000/v1/auth/register",
+        "https://apimainproject-kienhoangs-projects.vercel.app/v1/auth/register",
         userData
       );
       return response.data;
@@ -51,13 +51,13 @@ export const loginUser = createAsyncThunk(
   async (userData, { rejectWithValue }) => {
     try {
       const response = await axios.post(
-        "http://localhost:3000/v1/auth/login",
+        "https://apimainproject-kienhoangs-projects.vercel.app/v1/auth/login",
         userData
       );
       return response.data;
     } catch (error) {
       if (error.response?.data?.message) {
-        // Return the custom error message
+     
         return rejectWithValue({ message: error.response.data.message });
       } else {
         return rejectWithValue({
@@ -74,7 +74,7 @@ export const deleteUser = createAsyncThunk(
   async (userId) => {
     try {
       const response = await axios.delete(
-        `http://localhost:3000/v1/user/${userId}`
+        `https://apimainproject-kienhoangs-projects.vercel.app/v1/user/${userId}`
       );
       return response.data;
     } catch (error) {
@@ -87,7 +87,7 @@ export const logoutUser = createAsyncThunk(
   "user/logoutUser",
   async ({ id, accessToken}) => {
     try {
-      const res = await axios.post("http://localhost:3000/v1/auth/logout", id, {
+      const res = await axios.post("https://apimainproject-kienhoangs-projects.vercel.app/v1/auth/logout", id, {
         headers: { token: `Bearer ${accessToken}` },
       });
      

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Btn from "../../common/components/Buttons/Button";
 import Couter from "../../common/components/Buttons/Couter/Couter";
@@ -14,7 +14,7 @@ import { fetchUser } from "../../redux/slice/userApiSlice";
 import styles from "./CartPage.module.css";
 import { Checkbox } from "antd";
 import { fetchUserInfo } from "../../redux/slice/infoUserSlice";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function CartPage() {
   const [showConfirmation, setShowConfirmation] = useState(false);
@@ -131,6 +131,14 @@ function CartPage() {
   const handleCloseCheckout = () => {
     setShowCheckoutSuccsess(false);
   };
+  const user = useSelector((state) => state.userApi?.user);
+
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (!user) {
+      navigate("/login");
+    }
+  }, []);
 
   return (
     <div className={styles.container}>

@@ -15,7 +15,7 @@ export const removeFromwishlist = createAsyncThunk(
     try {
       const accessToken = token;
       const response = await axios.post(
-        "http://localhost:3000/v1/user/removeFromWishList",
+        "https://apimainproject-kienhoangs-projects.vercel.app/v1/user/removeFromWishList",
         { productId },
         {
           headers: {
@@ -36,7 +36,7 @@ export const addTowishlist = createAsyncThunk(
       const accessToken = token;
 
       const response = await axios.post(
-        "http://localhost:3000/v1/user/add-to-wishlist",
+        "https://apimainproject-kienhoangs-projects.vercel.app/v1/user/add-to-wishlist",
         { productId },
         {
           headers: {

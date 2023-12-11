@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { AiFillStar } from "react-icons/ai";
 import { BsTruck } from "react-icons/bs";
 import { FaHeart } from "react-icons/fa";
@@ -9,7 +9,7 @@ import {
   PiMedalDuotone,
 } from "react-icons/pi";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Btn from "../../../common/components/Buttons/Button";
 import DetailSlide from "../../../common/components/Sliders/Detail/DetailSlider";
 import { addToCart } from "../../../redux/slice/cartApiSlice";
@@ -50,6 +50,14 @@ function Detail() {
   function updateToogle(id) {
     setToogle(id);
   }
+  const user = useSelector((state) => state.userApi?.user);
+
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (!user) {
+      navigate("/login");
+    }
+  }, []);
   return (
     <section className="containerDetail">
       <div className="detailContainer">

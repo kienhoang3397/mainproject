@@ -15,10 +15,10 @@ function ProductPage() {
   const [isChecked, setChecked] = useState(false);
   const productList = useSelector((state) => state.productsApi?.product?.items);
   
-  const user = useSelector((state) => state.userApi.user);
+ 
   const navigate = useNavigate();
   const dispatch = useDispatch();
- 
+  const user = useSelector((state) => state.userApi.user);
   useEffect(() => {
     if (!user) {
       navigate("/login");
