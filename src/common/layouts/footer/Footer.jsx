@@ -13,12 +13,12 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { formFooter } from "../../config/configANT";
 import { MdEmail } from "react-icons/md";
 import { UserAddOutlined } from "@ant-design/icons";
+import { BsApple } from "react-icons/bs";
 
 function Footer() {
   
   return (
     <footer className={styles.footer}>
-   
       <div className={styles.feedback}>
         <aside className={styles.feedbackContainer}>
           <section className={styles.feedbackHeading}>
@@ -33,7 +33,7 @@ function Footer() {
           <section className={styles.feedbackForm}>
             <section className={styles.fieldInput}>
               <label htmlFor="email" className={styles.label}>
-               Email
+                Email
               </label>
               <div>
                 <ConfigProvider theme={formFooter}>
@@ -97,13 +97,7 @@ function Footer() {
               </ul>
             </div>
             <div className={styles.brand}>
-              {" "}
-              <Logo
-                greyLogo
-                width={"70px"}
-                height={"70px"}
-                className={styles.sections}
-              />
+              <BsApple className={styles.icon} />
             </div>
           </div>
           <div className={styles.contact}>

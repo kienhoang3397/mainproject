@@ -32,6 +32,11 @@ footer {
   line-height: 24px; /* 150% */
   border-radius: 8px;
 }
+.icon{
+  font-size: 30px;
+  color: #8b8e99;
+  
+}
 .label {
   color: var(--Font-Color-Black, #8b8e99);
   font-family: Inter;
@@ -39,6 +44,15 @@ footer {
   font-style: normal;
   font-weight: 500;
   line-height: 20px; /* 142.857% */
+}
+.textBottom{
+  color: #FFF;
+text-align: right;
+font-family: Inter;
+font-size: 10px;
+font-style: normal;
+font-weight: 700;
+line-height: 140%; /* 14px */
 }
 .feedback {
  min-width:344px;
