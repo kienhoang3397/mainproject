@@ -17,13 +17,15 @@ import { fetchUser } from "../../../redux/slice/userApiSlice";
 import { addTowishlist } from "../../../redux/slice/wishlistApiSlice";
 import "./Detail.css";
 import { fetchUserInfo } from "../../../redux/slice/infoUserSlice";
+import { productsFetch } from "../../../redux/slice/productApiSlice";
+import store from "../../../redux/store";
 
 function Detail() {
   const [toggle, setToogle] = useState(1);
   const { productId } = useParams();
   const productList = useSelector((state) => state.productsApi?.product?.items);
   const product = productList.find((prod) => prod._id === productId);
-  const token = useSelector((state) => state.userApi.user.accessToken);
+  const token = useSelector((state) => state.userApi.user?.accessToken);
   const dispatch = useDispatch();
 
   const handleAddToCart = () => {
@@ -53,10 +55,12 @@ function Detail() {
   const user = useSelector((state) => state.userApi?.user);
 
   const navigate = useNavigate();
+ 
   useEffect(() => {
     if (!user) {
       navigate("/login");
     }
+    store.dispatch(productsFetch());
   }, []);
   return (
     <section className="containerDetail">
@@ -65,7 +69,7 @@ function Detail() {
           image1={product?.image1}
           image2={product?.image2}
           image3={product?.image3}
-          image4={product.image4}
+          image4={product?.image4}
           image5={product?.image1}
           image6={product?.image2}
         />
