@@ -3,24 +3,22 @@ import React, { useEffect, useState } from "react";
 import ProductListingCard from "../../../common/components/Cards/ProductListingCard/ProductListingCard";
 import NavSearchProduct from "../../../common/layouts/navbar/NavSearchProduct/NavSearchProduct";
 
+import { TiThMenu } from "react-icons/ti";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllProducts } from "../../../redux/slice/apiRequest";
 import { useNavigate } from "react-router-dom";
 import Sidebar from "../../../common/components/Side/Sidebar/Sidebar";
-import { dataProductPages } from "../../../common/datas/ProductListingData";
-import store from "../../../redux/store";
 import { productsFetch } from "../../../redux/slice/productApiSlice";
+import store from "../../../redux/store";
 import styles from "./ProductPage.module.css";
-import { TiThMenu } from "react-icons/ti";
 
 function ProductPage() {
   const [isChecked, setChecked] = useState(false);
   const productList = useSelector((state) => state.productsApi?.product?.items);
-  //  console.log(productList)
-  const user = useSelector((state) => state.auth.login?.currentUser);
+  
+  const user = useSelector((state) => state.userApi.user);
   const navigate = useNavigate();
   const dispatch = useDispatch();
-
+ 
   useEffect(() => {
     if (!user) {
       navigate("/login");

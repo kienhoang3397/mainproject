@@ -23,6 +23,10 @@ const schemaFormUpdate = yup.object().shape({
   name: yup.string().required("Product Name is required"),
   productDescription: yup.string().required("Description is required"),
   image: yup.string().required("Image URL is required"),
+  image1: yup.string().required("Image URL is required"),
+  image2: yup.string().required("Image URL is required"),
+  image3: yup.string().required("Image URL is required"),
+  image4: yup.string().required("Image URL is required"),
   price: yup
     .number()
     .typeError("Price must be a number")
@@ -75,7 +79,7 @@ function FormAddProduct() {
 
      if (isDuplicateName || isDuplicateImage) {
        setError("Product with the same name or image already exists");
-       setIsSubmitted(false); // Reset isSubmitted to false
+       setIsSubmitted(false); 
        return;
      }
 
@@ -98,12 +102,12 @@ function FormAddProduct() {
        })
        .catch((error) => {
          console.error("Error updating product:", error);
-         setError("Error adding product. Please try again."); // Set error message
+         setError("Error adding product. Please try again."); 
        });
 
      setTimeout(() => {
        setIsSubmitted(false);
-       setError(null); // Clear error message
+       setError(null); 
      }, 4000);
    } catch (err) {
      console.error(err.errors);
@@ -112,7 +116,7 @@ function FormAddProduct() {
      );
 
      setError(validationErrors.join("\n"));
-     setIsSubmitted(false); // Reset isSubmitted to false
+     setIsSubmitted(false); 
    }
  };
 
@@ -208,11 +212,11 @@ function FormAddProduct() {
                           placeholder="Controlled autosize"
                           autoSize={{ minRows: 3, maxRows: 5 }}
                         />
-                        {/* {errors.productDescription && (
+                        {errors.productDescription && (
                           <p className={styles.errorMessage}>
                             {errors.productDescription.message}
                           </p>
-                        )} */}
+                        )}
                       </>
                     )}
                   />
@@ -255,10 +259,10 @@ function FormAddProduct() {
             </div>
           </div>
           <div className={styles.containerForm}>
-            <p className={styles.formTitle}>Media</p>
+            <p className={styles.formTitle}>Media Detail 1</p>
             <div className={styles.containerfieldInput}>
               <section className={styles.fieldInput}>
-                <label htmlFor="image" className={styles.label}>
+                <label htmlFor="image1" className={styles.label}>
                   Photo
                 </label>
                 <div className={styles.inputArea}>
@@ -289,7 +293,7 @@ function FormAddProduct() {
             </div>
           </div>
           <div className={styles.containerForm}>
-            <p className={styles.formTitle}>Media</p>
+            <p className={styles.formTitle}>Media Detail 2</p>
             <div className={styles.containerfieldInput}>
               <section className={styles.fieldInput}>
                 <label htmlFor="image2" className={styles.label}>
@@ -323,10 +327,10 @@ function FormAddProduct() {
             </div>
           </div>
           <div className={styles.containerForm}>
-            <p className={styles.formTitle}>Media</p>
+            <p className={styles.formTitle}>Media Detail 3</p>
             <div className={styles.containerfieldInput}>
               <section className={styles.fieldInput}>
-                <label htmlFor="image" className={styles.label}>
+                <label htmlFor="image3" className={styles.label}>
                   Photo
                 </label>
                 <div className={styles.inputArea}>
@@ -357,7 +361,7 @@ function FormAddProduct() {
             </div>
           </div>
           <div className={styles.containerForm}>
-            <p className={styles.formTitle}>Media</p>
+            <p className={styles.formTitle}>Media Detail 4</p>
             <div className={styles.containerfieldInput}>
               <section className={styles.fieldInput}>
                 <label htmlFor="image4" className={styles.label}>

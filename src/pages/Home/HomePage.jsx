@@ -1,13 +1,9 @@
 import React from "react";
 
-import styles from "./Home.module.scss";
+import styles from "./Home.module.css";
 
 import { SearchOutlined } from "@ant-design/icons";
-import leftImg from "../../assets/image/AppleWatchs/tile_watch_se__cuswe7ukqd6q_large.png";
-import rightImg from "../../assets/image/AppleWatchs/tile_why_watch__ft68r958qmye_large.png";
-import figure from "../../assets/image/figure.png";
-import inphone1 from "../../assets/image/iphone1.png";
-import imgNews from "../../assets/image/newletter.png";
+
 import Btn from "../../common/components/Buttons/Button";
 import { Products } from "../../common/components/MappingComponents/Products/Product";
 import AppleWatch from "../../common/components/Sliders/AppleWatch/AppleWatchSlide";
@@ -28,7 +24,6 @@ function HomePage(props) {
             focus on the product quality. Here you can find all the products
             Apple ever made, even the products Apple officially stopped selling.
             So why are you waiting? Just order now!
-            
           </p>
           <div className={styles.searchInput}>
             <div className={styles.textField}>
@@ -42,7 +37,11 @@ function HomePage(props) {
           </div>
         </article>
 
-        <img src={inphone1} className={styles.imgBg} alt="" />
+        <img
+          src={"https://i.ibb.co/J597ck2/iphone-1.png"}
+          className={styles.imgBg}
+          alt=""
+        />
       </div>
 
       <section className={styles.categoryField}>
@@ -68,16 +67,24 @@ function HomePage(props) {
           </section>
         </section>
         <div className={styles.imgIphoneBanner}>
-          <img src={figure} alt="" />
+          <img src={"https://i.ibb.co/Qd8dwDt/figure.png"} alt="" />
         </div>
       </div>
       <Iphone />
       <section className={styles.containerBanner}>
         <div className={styles.banner}>
-          <img src={leftImg} className={styles.leftBannerImg} alt="" />
+          <img
+            src={"https://i.ibb.co/XsTDJt8/photo-1-16001923426181629588387.png"}
+            className={styles.leftBannerImg}
+            alt=""
+          />
 
           <p className={styles.text}>Apple Watch</p>
-          <img src={rightImg} className={styles.rightBannerImg} alt="" />
+          <img
+            src={"https://i.ibb.co/XsTDJt8/photo-1-16001923426181629588387.png"}
+            className={styles.rightBannerImg}
+            alt=""
+          />
         </div>
       </section>
 

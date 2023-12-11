@@ -1,11 +1,4 @@
-import accessoriesnav from '../../assets/image/ProductImage/accessoriesnav.png'
-import airpodnav from '../../assets/image/ProductImage/airpodsnav.png'
-import airtagnav from '../../assets/image/ProductImage/airtagsnav.png'
-import homepodnav from '../../assets/image/ProductImage/homepodnav.png'
-import ipadnav from '../../assets/image/ProductImage/ipadnav.png'
-import iphonenav from '../../assets/image/ProductImage/iphonenav.png'
-import macnav from '../../assets/image/ProductImage/macnav.png'
-import watchnav from '../../assets/image/ProductImage/watchnav.png'
+
 
 
 
@@ -14,42 +7,42 @@ import watchnav from '../../assets/image/ProductImage/watchnav.png'
 const trendings = [
 	{
         id: 1,
-		image: macnav,
+		image: 'https://i.ibb.co/Wtqfns4/store-card-14-16-mac-nav-202301.png',
         name: 'Mac'
 	},
 	{
 		id: 2,
-		image: iphonenav,
+		image: 'https://i.ibb.co/Lg0qk7Z/store-card-13-iphone-nav-202209-GEO-US.png',
         name: 'Iphone'
 	},
 	{
 		id: 3,
-        image: ipadnav,
+        image: 'https://i.ibb.co/CK4ZcDD/store-card-13-ipad-nav-202210.png',
         name: 'Ipad'
 	},
     {
         id: 4,
-		image: watchnav,
+		image: 'https://i.ibb.co/RSjyj5r/store-card-13-watch-nav-202303.png',
         name: 'Apple Watch'
 	},
 	{
 		id: 5,
-		image: airpodnav,
+		image: 'https://i.ibb.co/Tg79ZRv/store-card-13-airpods-nav-202209.png',
         name: 'AirPod'
 	},
 	{
 		id: 6,
-        image: airtagnav,
+        image: 'https://i.ibb.co/8XJm7J5/store-card-13-airtags-nav-202108.png',
         name: 'AirTag'
 	},
     {
         id: 7,
-		image:  homepodnav,
+		image:  'https://i.ibb.co/WpFk6m5/store-card-13-homepod-nav-202301.png',
         name: 'HomePod'
 	},
 	{
 		id: 8,
-		image: accessoriesnav,
+		image: 'https://i.ibb.co/MB0SC61/store-card-13-accessories-nav-202303.png',
         name: 'Accessories'
 	},
     

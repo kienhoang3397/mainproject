@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Btn from "../../common/components/Buttons/Button";
 import Couter from "../../common/components/Buttons/Couter/Couter";
+import { TiTick } from "react-icons/ti";
 import {
   addCartToOrderHistory,
   addToCart,
@@ -12,6 +13,8 @@ import {
 import { fetchUser } from "../../redux/slice/userApiSlice";
 import styles from "./CartPage.module.css";
 import { Checkbox } from "antd";
+import { fetchUserInfo } from "../../redux/slice/infoUserSlice";
+import { Link } from "react-router-dom";
 
 function CartPage() {
   const [showConfirmation, setShowConfirmation] = useState(false);
@@ -19,10 +22,10 @@ function CartPage() {
   const dispatch = useDispatch();
   const [standardShipping, setStandardShipping] = useState(false);
   const [expressShipping, setExpressShipping] = useState(false);
-  const cart = useSelector((state) => state.userApi?.user.cart);
-  const token = useSelector(
-    (state) => state.auth.login.currentUser?.accessToken
-  );
+  const cart = useSelector((state) => state.infoUserApi?.user?.cart);
+
+  const token = useSelector((state) => state.userApi.user?.accessToken);
+ 
   const formatNumberWithCommas = (number) => {
     return number.toLocaleString("en-US");
   };
@@ -32,7 +35,7 @@ function CartPage() {
 
     dispatch(addToCart({ productId, quantity, token }))
       .then(() => {
-        dispatch(fetchUser(token));
+        dispatch(fetchUserInfo(token));
       })
       .catch((error) => {
         console.error("Error adding to cart:", error);
@@ -42,7 +45,7 @@ function CartPage() {
   const handleDecrement = (productId) => {
     dispatch(decreaseQuantity({ productId, token }))
       .then(() => {
-        dispatch(fetchUser(token));
+        dispatch(fetchUserInfo(token));
       })
       .catch((error) => {
         console.error("Error decreasing quantity:", error);
@@ -52,7 +55,7 @@ function CartPage() {
   const handleRemoveFromCart = (productId) => {
     dispatch(removeFromCart({ productId, token }))
       .then(() => {
-        dispatch(fetchUser(token));
+        dispatch(fetchUserInfo(token));
       })
       .catch((error) => {
         console.error("Error removing from cart:", error);
@@ -61,7 +64,7 @@ function CartPage() {
   const handleCheck = (token) => {
     dispatch(addCartToOrderHistory(token))
       .then(() => {
-        dispatch(fetchUser(token));
+        dispatch(fetchUserInfo(token));
       })
       .catch((error) => {
         console.error("Error checking out:", error);
@@ -309,7 +312,15 @@ function CartPage() {
         </div>
       )}
       {showCheckoutSuccsess && (
-        <button onClick={handleCloseCheckout}>Yeasasfasfas</button>
+        <section className={styles.checkout}>
+          <div className={styles.iconCheckoutField}>
+            <TiTick className={styles.iconCheckout} />
+            <p className={styles.textCheckout}>
+              You have successfully paid, please check<Link to={'/user/orderhistory'} className={styles.link}>Order History</Link>
+            </p>
+          </div>
+          <section className={styles.btncancel} onClick={handleCloseCheckout}>Close</section>
+        </section>
       )}
     </div>
   );

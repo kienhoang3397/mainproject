@@ -41,7 +41,7 @@ function ContactPage() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Add your logic for form submission here
+    
     setIsSubmitted(true);
     setTimeout(() => {
       setIsSubmitted(false);

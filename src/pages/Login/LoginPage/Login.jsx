@@ -4,16 +4,16 @@ import { RiLockPasswordLine } from "react-icons/ri";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { string, z } from "zod";
-// Assuming Btn is exported from this path
-// Assuming FormInput is exported from this path
+
 import Logo from "../../../common/components/Logos/Logo";
-import { loginUser } from "../../../redux/slice/apiRequest";
+
 import styles from "./LoginPage.module.css";
 import Theme from "../../../common/components/Themes/Theme";
 import { FiUser } from "react-icons/fi";
 import { Alert, Input } from "antd";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Btn from "../../../common/components/Buttons/Button";
+import { loginUser } from "../../../redux/slice/userApiSlice";
 
 const schema = z.object({
   username: string()
@@ -29,10 +29,6 @@ function LoginPage() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  // Move the useSelector outside the handleSign function
-  const loginState = useSelector((state) => state.auth?.login.msg);
-  const msg = useSelector((state) => state.auth?.login.msg);
-
   const [userData, setUserData] = useState({ username: "", password: "" });
 
   const handleChange = (name, value) => {
@@ -45,40 +41,38 @@ function LoginPage() {
   const {
     control,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isValid },
   } = useForm({ resolver: zodResolver(schema) });
-
   const handleSign = async () => {
     try {
-      await loginUser(userData, dispatch, navigate);
+      const response = await dispatch(loginUser(userData));
 
-      // Check for success message
-      if (loginState?.msg) {
+      if (response.payload && response.payload.user) {
         setIsSubmitted(true);
-
-        setTimeout(() => {
-          setIsSubmitted(false);
-        }, 5000);
+        navigate("/");
       } else {
-        // If there is an error message, display it
-        setError(msg || "An error occurred during login.");
+        setError("Error during login. Please check your credentials.");
       }
     } catch (error) {
-      console.error("Error during login:", error);
+      setError("Error during login. Please try again later.");
     }
   };
+
   useEffect(() => {
-    setTimeout(() => {
-      setError(null);
-    }, 5000);
-  }, [error]);
+    const timeoutId = setTimeout(() => {
+      setIsSubmitted(false);
+      setError("");
+    }, 3000);
+
+    return () => clearTimeout(timeoutId);
+  }, [isSubmitted, error]);
 
   return (
     <div className={styles.loginPageContainer}>
       {isSubmitted && (
         <Alert
           className={styles.alert}
-          message="Product Add Success"
+          message="Login Susscess"
           type="success"
           showIcon
         />

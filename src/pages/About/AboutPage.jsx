@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import Logo from "../../assets/image/Logo #8B8E99 1 (1).png";
+
 import ContactHorizontal, { ContactVertical } from "../../common/components/Items/ContactHorizontal";
 import styles from "./AboutPage.module.css";
 
@@ -30,7 +30,11 @@ function AboutPage() {
           <br /> velit a faucibus. In feugiat vestibulum velit vel pulvinar.
         </p>
         <div className={styles.photo}>
-          <img className={styles.logo} src={Logo} alt="" />
+          <img
+            className={styles.logo}
+            src={"https://i.ibb.co/fSPtJqg/Logo-8-B8-E99-1.png"}
+            alt=""
+          />
         </div>
 
         <div className={styles.containerBlog}>

@@ -7,20 +7,21 @@ import { addToCart } from "../../redux/slice/cartApiSlice";
 import { fetchUser } from "../../redux/slice/userApiSlice";
 import { removeFromwishlist } from "../../redux/slice/wishlistApiSlice";
 import styles from "./WishList.module.css";
+import { fetchUserInfo } from "../../redux/slice/infoUserSlice";
 
 function WishList() {
   const [toggle, setToggle] = useState(false);
   const [selectedProductId, setSelectedProductId] = useState(null);
   const dispatch = useDispatch();
-  const wishlist = useSelector((state) => state.userApi?.user.wishlist);
+  const wishlist = useSelector((state) => state.infoUserApi?.user.wishlist);
 
   const token = useSelector(
-    (state) => state.auth.login.currentUser?.accessToken
+    (state) => state.userApi.user?.accessToken
   );
   const handleRemoveFromWishList = (productId) => {
     dispatch(removeFromwishlist({ productId, token }))
       .then(() => {
-        dispatch(fetchUser(token));
+    dispatch(fetchUserInfo(token));
         setToggle(false); 
       })
       .catch((error) => {
@@ -33,7 +34,7 @@ function WishList() {
 
     dispatch(addToCart({ productId, quantity, token }))
       .then(() => {
-        dispatch(fetchUser(token));
+    dispatch(fetchUserInfo(token));
         setToggle(false); 
       })
       .catch((error) => {

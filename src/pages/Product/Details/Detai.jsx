@@ -16,28 +16,22 @@ import { addToCart } from "../../../redux/slice/cartApiSlice";
 import { fetchUser } from "../../../redux/slice/userApiSlice";
 import { addTowishlist } from "../../../redux/slice/wishlistApiSlice";
 import "./Detail.css";
+import { fetchUserInfo } from "../../../redux/slice/infoUserSlice";
 
 function Detail() {
   const [toggle, setToogle] = useState(1);
   const { productId } = useParams();
   const productList = useSelector((state) => state.productsApi?.product?.items);
   const product = productList.find((prod) => prod._id === productId);
-  const token = useSelector(
-    (state) => state.auth.login.currentUser?.accessToken
-  );
-
+  const token = useSelector((state) => state.userApi.user.accessToken);
   const dispatch = useDispatch();
-
-  const accessToken = useSelector(
-    (state) => state.auth.login.currentUser?.accessToken
-  );
 
   const handleAddToCart = () => {
     const quantity = 1;
 
     dispatch(addToCart({ productId, quantity, token }))
       .then(() => {
-        dispatch(fetchUser(token));
+        dispatch(fetchUserInfo(token));
       })
       .catch((error) => {
         console.error("Error adding to cart:", error);
@@ -47,14 +41,14 @@ function Detail() {
   const handleAddToWishList = () => {
     dispatch(addTowishlist({ productId, token }))
       .then(() => {
-        dispatch(fetchUser(token));
+        dispatch(fetchUserInfo(token));
       })
       .catch((error) => {
         console.error("Error adding to wishlist:", error);
       });
   };
   function updateToogle(id) {
-    setToogle(id)
+    setToogle(id);
   }
   return (
     <section className="containerDetail">

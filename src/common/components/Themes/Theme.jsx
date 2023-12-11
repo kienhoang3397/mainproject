@@ -9,7 +9,7 @@ function Theme({ fontsize }) {
     [styles.small]: fontsize === "small",
     [styles.medium]: fontsize === "medium",
     [styles.large]: fontsize === "large",
-    // Add more size options as needed
+  
   });
 
   return (

@@ -2,7 +2,7 @@ import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import clsx from "clsx";
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import QuickAccess from "../../../components/QuickAccess/QuickAccess";
 import Theme from "../../../components/Themes/Theme";
@@ -10,10 +10,12 @@ import { TiThMenu } from "react-icons/ti";
 import styles from "./LoginNav.module.css";
 import store from "../../../../redux/store";
 import { productsFetch } from "../../../../redux/slice/productApiSlice";
+import { fetchUser } from "../../../../redux/slice/userApiSlice";
 
 function BeforeLoginNav({ darkNav, lightNav }) {
   const [isCheckedNav, setCheckedNav] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const dispatch = useDispatch()
 
   const navClasses = clsx(styles.nav, {
     [styles.darkNav]: darkNav,
@@ -21,7 +23,7 @@ function BeforeLoginNav({ darkNav, lightNav }) {
     [styles.active]: isScrolled,
   });
 
-  const user = useSelector((state) => state.auth.login.currentUser?.user);
+  const user = useSelector((state) => state.userApi.user);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -37,10 +39,7 @@ function BeforeLoginNav({ darkNav, lightNav }) {
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-
-   
   }, []);
-  
 
   return (
     <div className={styles.navField}>
@@ -58,10 +57,10 @@ function BeforeLoginNav({ darkNav, lightNav }) {
             <Link className={styles.item} to={"/"}>
               Home
             </Link>
-            <Link to={"product"} className={styles.item}>
+            <Link to={"/product"} className={styles.item}>
               Product <FontAwesomeIcon icon={faChevronDown} />
             </Link>
-            <p className={styles.item}>Origial Products</p>
+
             <QuickAccess />
           </div>
           <div className={styles.iconNav}>

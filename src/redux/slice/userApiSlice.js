@@ -48,16 +48,22 @@ export const registerUserApi = createAsyncThunk(
 // Async function to log in a user
 export const loginUser = createAsyncThunk(
   "user/loginUser",
-  async (credentials) => {
+  async (userData, { rejectWithValue }) => {
     try {
       const response = await axios.post(
-        "http://localhost:3000/v1/user/login",
-        credentials
+        "http://localhost:3000/v1/auth/login",
+        userData
       );
       return response.data;
     } catch (error) {
-      console.error("Error logging in user:", error);
-      throw error;
+      if (error.response?.data?.message) {
+        // Return the custom error message
+        return rejectWithValue({ message: error.response.data.message });
+      } else {
+        return rejectWithValue({
+          message: "Error logging in. Please try again.",
+        });
+      }
     }
   }
 );
@@ -77,14 +83,29 @@ export const deleteUser = createAsyncThunk(
     }
   }
 );
-
+export const logoutUser = createAsyncThunk(
+  "user/logoutUser",
+  async ({ id, accessToken}) => {
+    try {
+      const res = await axios.post("http://localhost:3000/v1/auth/logout", id, {
+        headers: { token: `Bearer ${accessToken}` },
+      });
+     
+      return res.data;
+    } catch (error) {
+      console.error("Error logging out user:", error);
+      throw error;
+    }
+  }
+);
 
 const userApiSlice = createSlice({
   name: "user",
   initialState: {
     allUser: {},
-    user: {},
+    user: null,
     status: null,
+    message: null,
   },
   reducers: {},
   extraReducers: (builder) => {
@@ -121,23 +142,38 @@ const userApiSlice = createSlice({
       })
       .addCase(loginUser.pending, (state) => {
         state.status = "pending";
+        state.message = null;
       })
       .addCase(loginUser.fulfilled, (state, action) => {
         state.status = "fulfilled";
         state.user = action.payload;
+        state.message = null;
       })
-      .addCase(loginUser.rejected, (state) => {
+      .addCase(loginUser.rejected, (state, action) => {
         state.status = "rejected";
+        state.message = action.payload.message;
       })
       .addCase(deleteUser.pending, (state) => {
         state.status = "pending";
       })
       .addCase(deleteUser.fulfilled, (state, action) => {
         state.status = "fulfilled";
-        // You might want to update the state accordingly after user deletion
       })
       .addCase(deleteUser.rejected, (state) => {
         state.status = "rejected";
+      })
+      .addCase(logoutUser.pending, (state) => {
+        state.status = "pending";
+        state.message = null;
+      })
+      .addCase(logoutUser.fulfilled, (state, action) => {
+        state.status = "fulfilled";
+        state.user = null;
+        state.message = null;
+      })
+      .addCase(logoutUser.rejected, (state, action) => {
+        state.status = "rejected";
+        state.message = action.error.message;
       });
   },
 });

@@ -1,12 +1,12 @@
-import React from 'react';
-import Slider from 'react-slick';
-import { newestCollections } from '../../../datas/NewestCollection';
-import { ArrowBtnLeft, ArrowBtnRight } from '../../Buttons/Button';
-import NewestCollection from '../../MappingComponents/NewestCollection/NewestCollection';
+import React from "react";
+import Slider from "react-slick";
+import { newestCollections } from "../../../datas/NewestCollection";
+import { ArrowBtnLeft, ArrowBtnRight } from "../../Buttons/Button";
+import NewestCollection from "../../MappingComponents/NewestCollection/NewestCollection";
 
-import 'slick-carousel/slick/slick-theme.css';
-import 'slick-carousel/slick/slick.css';
-import styles from './IphoneSlide.module.css';
+import "slick-carousel/slick/slick-theme.css";
+import "slick-carousel/slick/slick.css";
+import styles from "./IphoneSlide.module.css";
 
 export function SampleNextArrow(props) {
   const { onClick } = props;
@@ -29,13 +29,14 @@ export function SamplePrevArrow(props) {
 function Iphone() {
   const settings = {
     dots: false,
-    infinite: true,
+    infinite: false,
     speed: 500,
     slidesToShow: 4,
     slidesToScroll: 4,
     initialSlide: 0,
     nextArrow: <SampleNextArrow />,
     prevArrow: <SamplePrevArrow />,
+    infinite: true,
     responsive: [
       {
         breakpoint: 1024,
@@ -43,6 +44,7 @@ function Iphone() {
           slidesToShow: 3,
           slidesToScroll: 3,
           infinite: true,
+          dots: false,
         },
       },
       {
@@ -51,8 +53,8 @@ function Iphone() {
           slidesToShow: 2,
           slidesToScroll: 2,
           initialSlide: 2,
-         
           infinite: true,
+          dots: true,
         },
       },
       {
@@ -60,8 +62,8 @@ function Iphone() {
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
-         
           infinite: true,
+          dots: true,
         },
       },
     ],
@@ -73,13 +75,16 @@ function Iphone() {
       <Slider {...settings} className={styles.container}>
         {newestCollections.map((newest) => (
           <div key={newest.id} className={styles.containerNewest}>
-            <NewestCollection image={newest.image} content={newest.content} color={newest.color} />
+            <NewestCollection
+              image={newest.image}
+              content={newest.content}
+              color={newest.color}
+            />
           </div>
         ))}
       </Slider>
     </div>
   );
 }
-
 
 export default Iphone;

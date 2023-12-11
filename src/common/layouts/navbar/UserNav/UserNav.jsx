@@ -1,42 +1,49 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
 import {
   AiOutlineClockCircle,
   AiOutlineShoppingCart,
-  AiOutlineUser
-} from 'react-icons/ai';
-import { BiHeart } from 'react-icons/bi';
-import { FiLogOut } from 'react-icons/fi';
-import { RxDashboard } from 'react-icons/rx';
-import { useDispatch, useSelector } from 'react-redux';
-import { NavLink, useNavigate } from 'react-router-dom';
-import { logOutUser } from '../../../../redux/slice/apiRequest';
-import './UserNav.css';
-import { productsFetch } from '../../../../redux/slice/productApiSlice';
-import store from '../../../../redux/store';
+  AiOutlineUser,
+} from "react-icons/ai";
+import { BiHeart } from "react-icons/bi";
+import { FiLogOut } from "react-icons/fi";
+import { RxDashboard } from "react-icons/rx";
+import { useDispatch, useSelector } from "react-redux";
+import { NavLink, useNavigate } from "react-router-dom";
+
+import { productsFetch } from "../../../../redux/slice/productApiSlice";
+import store from "../../../../redux/store";
+import "./UserNav.css";
+import { logoutUser } from "../../../../redux/slice/userApiSlice";
 
 function UserNav() {
   const [showConfirmation, setShowConfirmation] = useState(false);
-  const dispatch = useDispatch()
-  const navigate = useNavigate()
-  const auth = useSelector((state) => state.auth.login.currentUser);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const user = useSelector((state) => state.auth.login.currentUser);
 
-  const accessToken = user?.accessToken
-  const id = user?.user._id
+const accessToken = useSelector((state) => state.userApi.user?.accessToken);
+const id = useSelector((state) => state.infoUserApi.user?._id);
 
-  
-useEffect(() => {
-  store.dispatch(productsFetch());
-}, []);
 
-  const handleConfirmLogout = () => {
-    logOutUser(dispatch, id, navigate, accessToken)
-    setShowConfirmation(false);
+  useEffect(() => {
+    store.dispatch(productsFetch());
+  }, []);
+
+  const handleLogOut = () => {
+    dispatch(logoutUser({ id, accessToken }));
+    navigate("/"); 
   };
+
   const handleLogoutClick = () => {
     setShowConfirmation(true);
   };
+
   const handleCancelLogout = () => {
+    setShowConfirmation(false);
+  };
+
+  const handleConfirmLogout = () => {
+    handleLogOut();
     setShowConfirmation(false);
   };
 
@@ -73,7 +80,7 @@ useEffect(() => {
         <div className="confirmationDialog">
           <p className="contentDialog">ARE YOU SURE WANT TO LOGOUT ?</p>
           <section className="containerBtnDiaLog">
-            <button className="btnDialogOk" onClick={handleLogoutClick}>
+            <button className="btnDialogOk" onClick={handleConfirmLogout}>
               Yes
             </button>
             <button className="btnDialogNo" onClick={handleCancelLogout}>

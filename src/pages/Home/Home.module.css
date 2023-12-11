@@ -1,35 +1,19 @@
-$color_1: var(--blue-BG);
-$color_2: var(--Font-Color-Black, #8b8e99);
-$color_3: #f5f5f7;
-$color_4: #8b8e99;
-$color_5: #1e1d1d;
-$font-family_1: Poppins;
-$font-family_2: "Inter";
-$background-color_1: #f5f5f7;
-$background-color_2: var(--BG);
-
 @import "/src/App.css";
-
 .homePage {
-  background-color: $background-color_1;
+  background-color: #f5f5f7;
 }
-
 .bg {
   background: linear-gradient(155deg, #383638 2.06%, #0b0b0b 33.08%);
-
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding-left: 80px;
-
   width: 100%;
 }
-
 .imgBg {
   mix-blend-mode: luminosity;
   width: auto;
 }
-
 .article {
   display: flex;
   align-items: flex-start;
@@ -39,20 +23,17 @@ $background-color_2: var(--BG);
   margin: 30px 0;
   width: 40%;
 }
-
 .icon {
-  color: $color_1;
+  color: var(--blue-BG);
   font-size: 18px;
   padding-right: 10px;
 }
-
 .textField {
   display: flex;
   align-items: center;
   padding: 5px;
   padding-left: 20px;
 }
-
 .searchInput {
   border-radius: 15px;
   background: var(--BG);
@@ -60,72 +41,62 @@ $background-color_2: var(--BG);
   box-sizing: border-box;
   width: 100%;
 }
-
 .input {
   width: 100%;
 }
-
 input {
-  &::placeholder {
-    color: $color_2;
-    font-family: $font-family_1;
-    font-size: 14px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: 125.5%;
-  }
-
-  color: $color_2;
-  font-family: $font-family_1;
+  color: var(--Font-Color-Black, #8b8e99);
+  font-family: Poppins;
 }
-
+input::placeholder {
+  color: var(--Font-Color-Black, #8b8e99);
+  font-family: Poppins;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 125.5%;
+}
 .text1 {
-  color: $color_3;
-  font-family: $font-family_1;
+  color: #f5f5f7;
+  font-family: Poppins;
   font-size: 57px;
   font-style: normal;
   font-weight: 700;
   line-height: 125.5%;
 }
-
 .text2 {
-  color: $color_4;
-  font-family: $font-family_1;
+  color: #8b8e99;
+  font-family: Poppins;
   font-size: 14px;
   font-style: normal;
   font-weight: 700;
   line-height: 125.5%;
 }
-
 .titleCategory {
   display: flex;
   flex-direction: column;
   justify-content: center;
   flex-shrink: 0;
-  color: $color_2;
+  color: var(--Font-Color-Black, #8b8e99);
   text-align: center;
-  font-family: $font-family_1;
+  font-family: Poppins;
   font-size: 43px;
   font-style: normal;
   font-weight: 700;
   line-height: 52.008px;
   letter-spacing: -0.144px;
 }
-
 .contents {
   display: flex;
   flex-direction: column;
-
   gap: 20px;
 }
-
 .categoryField {
   display: flex;
   flex-direction: column;
   gap: 20px;
   padding: 55px 0;
 }
-
 .iphoneBanner {
   display: flex;
   background: #000;
@@ -135,83 +106,70 @@ input {
   align-items: center;
   gap: 89px;
 }
-
 .sliderContainer {
   margin: 45px 0;
 }
-
 .iphoneBannerText {
-  color: $color_3;
+  color: #f5f5f7;
   text-align: center;
-  font-family: $font-family_1;
+  font-family: Poppins;
   font-size: 19px;
   font-style: normal;
   font-weight: 700;
   line-height: 29.001px;
   letter-spacing: 0.231px;
 }
-
 .iphoneBannerBtnField {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 20px;
 }
-
 .iphoneBannerBtnFieldRep {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 20px;
 }
-
 .newsLetter {
   padding: 120px 111px;
   border-radius: 22px;
   background: #fff;
   box-shadow: 2px 4px 12px 0px rgba(0, 0, 0, 0.25);
-
   margin: 50px 85px;
   display: flex;
-
   align-items: center;
 }
 .imgNewsLetter {
   position: absolute;
   right: 111px;
 }
-
 .textBox1 {
-  color: $color_5;
-  font-family: $font-family_2;
+  color: #1e1d1d;
+  font-family: "Inter";
   font-size: 36px;
   font-style: normal;
   font-weight: 700;
   line-height: normal;
 }
-
 .textBox2 {
-  color: $color_4;
-  font-family: $font-family_2;
+  color: #8b8e99;
+  font-family: "Inter";
   font-size: 16px;
   font-style: normal;
   font-weight: 700;
   line-height: normal;
   margin-bottom: 20px;
 }
-
 .leftContentNews {
   display: flex;
   flex-direction: column;
-
   gap: 15px;
 }
-
 .banner {
   display: flex;
   justify-content: space-between;
   align-items: center;
-
   background: linear-gradient(
     127deg,
     #383638 3.9%,
@@ -220,22 +178,18 @@ input {
     #383638 96.6%
   );
   border-radius: 20px;
-
   width: 100%;
   height: 400px;
 }
 .containerBanner {
   padding: 0 20px;
 }
-
 .rightBannerImg {
   padding: 20px 20px 20px 0;
 }
-
 .leftBannerImg {
   padding: 20px 0 20px 20px;
 }
-
 .rightBannerImg,
 .leftBannerImg {
   width: 20%;
@@ -244,7 +198,6 @@ input {
   align-items: center;
   justify-content: center;
 }
-
 .text {
   color: #fff;
   text-align: center;
@@ -254,28 +207,24 @@ input {
   font-weight: 700;
   line-height: normal;
 }
-
 .imgBanner {
   width: auto;
   height: auto;
 }
-
 .Rep {
   display: none;
 }
-
 @media only screen and (max-width: 950px) {
-  .article{
+  .article {
     align-items: center;
-   width: 100% !important;
-  
+    width: 100% !important;
   }
-  .bg{
+  .bg {
     flex-direction: column;
     align-items: flex-end !important;
-      width: 100% !important;
+    width: 100% !important;
   }
-  .imgBg{
+  .imgBg {
     width: 80% !important;
   }
   .text1 {
@@ -287,11 +236,9 @@ input {
   .noRep {
     display: none;
   }
-
   .Rep {
     display: block;
   }
-
   .titleCategory {
     font-size: 23px;
   }
@@ -299,7 +246,7 @@ input {
 @media only screen and (max-width: 1300px) {
   .article {
     padding: 0 30px;
-     width: 60% ;
+    width: 60%;
   }
   .text1 {
     font-size: 25px;
@@ -310,10 +257,10 @@ input {
   .imgBg {
     width: 40%;
   }
-  .input{
+  .input {
     font-size: 14px;
   }
-    .input::placeholder{
+  .input::placeholder {
     font-size: 14px;
   }
   .bg {
@@ -322,14 +269,12 @@ input {
     align-items: center;
     padding: 0;
     width: 100%;
-
     display: flex;
   }
   .banner {
     display: flex;
     justify-content: space-between;
     align-items: center;
-
     background: linear-gradient(
       127deg,
       #383638 3.9%,
@@ -338,16 +283,13 @@ input {
       #383638 96.6%
     );
     border-radius: 20px;
-
     width: 100%;
     height: 150px;
   }
-
   .rightBannerImg,
   .leftBannerImg {
     height: auto;
   }
-
   .text {
     color: #fff;
     text-align: center;
@@ -357,7 +299,6 @@ input {
     font-weight: 700;
     line-height: normal;
   }
-
   .newsLetter {
     display: flex;
     flex-direction: column;
@@ -373,29 +314,24 @@ input {
   .searchInput {
     width: 70%;
   }
-
   input {
-    &::placeholder {
-      color: $color_2;
-      font-family: $font-family_1;
-      font-size: 16px;
-      font-style: normal;
-      font-weight: 500;
-      line-height: 125.5%;
-    }
-
-    color: $color_2;
-    font-family: $font-family_1;
+    color: var(--Font-Color-Black, #8b8e99);
+    font-family: Poppins;
   }
-
+  input::placeholder {
+    color: var(--Font-Color-Black, #8b8e99);
+    font-family: Poppins;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 125.5%;
+  }
   .imgNewsLetter {
     position: static;
   }
-
   .textBox1 {
     font-size: 22px;
   }
-
   .textBox2 {
     font-size: 13px;
   }
@@ -414,33 +350,32 @@ input {
     gap: 30px;
   }
   input {
-    &::placeholder {
-      color: $color_2;
-      font-family: $font-family_1;
-      font-size: 13px;
-      font-style: normal;
-      font-weight: 500;
-      line-height: 125.5%;
-    }
-
-    color: $color_2;
-    font-family: $font-family_1;
+    color: var(--Font-Color-Black, #8b8e99);
+    font-family: Poppins;
+  }
+  input::placeholder {
+    color: var(--Font-Color-Black, #8b8e99);
+    font-family: Poppins;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 125.5%;
   }
   .imgNewsLetter {
     position: static;
   }
-   .text1 {
+  .text1 {
     font-size: 22px !important;
   }
   .text2 {
     font-size: 14px !important;
     font-weight: 500;
   }
-  .iphoneBanner{
+  .iphoneBanner {
     padding: 0 30px;
     padding-top: 50px;
   }
-  .iphoneBannerText{
+  .iphoneBannerText {
     font-size: 16px;
   }
 }

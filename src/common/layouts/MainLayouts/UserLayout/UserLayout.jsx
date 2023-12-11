@@ -1,14 +1,23 @@
-import React, { useState } from "react";
-import { Link, Outlet } from "react-router-dom";
-import BeforeLoginNav from "../../navbar/LoginNav/LoginNav";
+import React, { useEffect, useState } from "react";
+import { AiFillAppstore } from "react-icons/ai";
+import { useSelector } from "react-redux";
+import { Outlet, useNavigate } from "react-router-dom";
 import Footer from "../../footer/Footer";
-import SidebarDashboard from "../../../components/Side/SidebarDashboard/SidebarDashboard";
+import BeforeLoginNav from "../../navbar/LoginNav/LoginNav";
 import UserNav from "../../navbar/UserNav/UserNav";
 import styles from "./UserLayout.module.css";
-import { AiFillAppstore } from "react-icons/ai";
 
 function UserLayout() {
   const [isChecked, setChecked] = useState(false);
+  const user = useSelector((state) => state.userApi?.user);
+  
+  const navigate = useNavigate()
+   useEffect(() => {
+     if (!user) {
+       navigate("/login");
+     }
+    
+   }, []);
   return (
     <div className={styles.container}>
       <BeforeLoginNav></BeforeLoginNav>

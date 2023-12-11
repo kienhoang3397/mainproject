@@ -7,14 +7,14 @@
 
 .color {
     margin-bottom: 10px;
-    width: 104px;
-    height: 14px;
+    width: 104px !important;
+    height: 14px !important;
     flex-shrink: 0;
 }
 
 .img {
-    width: 216px;
-    height: 254px;
+    width: 216px !important;
+    height: 254px !important;
     flex-shrink: 0;
     margin-bottom: 22px;
 }

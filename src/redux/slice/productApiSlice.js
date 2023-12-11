@@ -101,7 +101,7 @@ const productApiSlice = createSlice({
       })
       .addCase(deleteProduct.fulfilled, (state, action) => {
         state.product.status = "fulfilled";
-        // Remove the deleted product from the items array
+        
         state.product.items = state.product.items.filter(
           (item) => item._id !== action.payload._id
         );

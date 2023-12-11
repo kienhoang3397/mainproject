@@ -8,7 +8,7 @@ import { IoMdArrowForward } from "react-icons/io";
 import { Link } from "react-router-dom";
 
 function OrtherHistory() {
-  const orderhistory = useSelector((state) => state.userApi.user.orderhistory);
+  const orderhistory = useSelector((state) => state.infoUserApi.user.orderhistory);
 
   const formatDate = (dateString) => {
     const options = {

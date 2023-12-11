@@ -21,8 +21,13 @@ const { Option } = Select;
 
 const schemaFormUpdate = yup.object().shape({
   name: yup.string().required("Product Name is required"),
-  productDescription: yup.string().required("Description is required"),
+  productDescription1: yup.string().required("Description is required"),
+  productDescription2: yup.string().required("Description is required"),
   image: yup.string().required("Image URL is required"),
+  image1: yup.string().required("Image URL is required"),
+  image2: yup.string().required("Image URL is required"),
+  image3: yup.string().required("Image URL is required"),
+  image4: yup.string().required("Image URL is required"),
   price: yup
     .number()
     .typeError("Price must be a number")
@@ -64,6 +69,10 @@ function FormUpdateProduct() {
       setValue("name", product.name);
       setValue("category", product.category);
       setValue("image", product.image);
+      setValue("image1", product.image1);
+      setValue("image2", product.image2);
+      setValue("image3", product.image3);
+      setValue("image4", product.image4);
       setValue("price", product.price);
       setValue("stock", product.stock);
     }
@@ -79,6 +88,8 @@ function FormUpdateProduct() {
       await schemaFormUpdate.validate(data, { abortEarly: false });
       const productData = {
         name: data.name,
+        productDescription1: data.productDescription1,
+        productDescription2: data.productDescription2,
         image: data.image,
         image1: data.image1,
         image2: data.image2,
@@ -173,27 +184,54 @@ function FormUpdateProduct() {
                 </div>
               </section>
               <section className={styles.fieldInput}>
-                <label htmlFor="productDescription" className={styles.label}>
-                  Description
+                <label htmlFor="productDescription1" className={styles.label}>
+                  Description 1
                 </label>
                 <div className={styles.inputArea}>
                   <Controller
-                    name="productDescription"
+                    name="productDescription1"
                     control={control}
                     render={({ field }) => (
                       <>
                         <TextArea
                           {...field}
-                          id="productDescription"
+                          id="productDescription1"
                           className={styles.inputTextArea}
                           placeholder="Controlled autosize"
                           autoSize={{ minRows: 3, maxRows: 5 }}
                         />
-                        {/* {errors.productDescription && (
+                        {errors.productDescription1 && (
                           <p className={styles.errorMessage}>
-                            {errors.productDescription.message}
+                            {errors.productDescription1.message}
                           </p>
-                        )} */}
+                        )}
+                      </>
+                    )}
+                  />
+                </div>
+              </section>
+              <section className={styles.fieldInput}>
+                <label htmlFor="productDescription2" className={styles.label}>
+                  Description 2
+                </label>
+                <div className={styles.inputArea}>
+                  <Controller
+                    name="productDescription2"
+                    control={control}
+                    render={({ field }) => (
+                      <>
+                        <TextArea
+                          {...field}
+                          id="productDescription2"
+                          className={styles.inputTextArea}
+                          placeholder="Controlled autosize"
+                          autoSize={{ minRows: 3, maxRows: 5 }}
+                        />
+                        {errors.productDescription2 && (
+                          <p className={styles.errorMessage}>
+                            {errors.productDescription2.message}
+                          </p>
+                        )}
                       </>
                     )}
                   />
@@ -270,7 +308,41 @@ function FormUpdateProduct() {
             </div>
           </div>
           <div className={styles.containerForm}>
-            <p className={styles.formTitle}>Media</p>
+            <p className={styles.formTitle}>Media Deta 1</p>
+            <div className={styles.containerfieldInput}>
+              <section className={styles.fieldInput}>
+                <label htmlFor="image1" className={styles.label}>
+                  Photo
+                </label>
+                <div className={styles.inputArea}>
+                  <Controller
+                    name="image1"
+                    control={control}
+                    render={({ field }) => (
+                      <>
+                        <Input
+                          {...field}
+                          id="image1"
+                          className={styles.inputTextArea}
+                          placeholder="Controlled autosize"
+                          onChange={(e) =>
+                            handleInputChange("image1", e.target.value)
+                          }
+                        />
+                        {errors.image1 && (
+                          <p className={styles.errorMessage}>
+                            {errors.image1.message}
+                          </p>
+                        )}
+                      </>
+                    )}
+                  />
+                </div>
+              </section>
+            </div>
+          </div>
+          <div className={styles.containerForm}>
+            <p className={styles.formTitle}>Media Deta 2</p>
             <div className={styles.containerfieldInput}>
               <section className={styles.fieldInput}>
                 <label htmlFor="image2" className={styles.label}>
@@ -288,7 +360,7 @@ function FormUpdateProduct() {
                           className={styles.inputTextArea}
                           placeholder="Controlled autosize"
                           onChange={(e) =>
-                            handleInputChange("image", e.target.value)
+                            handleInputChange("image2", e.target.value)
                           }
                         />
                         {errors.image2 && (
@@ -304,10 +376,10 @@ function FormUpdateProduct() {
             </div>
           </div>
           <div className={styles.containerForm}>
-            <p className={styles.formTitle}>Media</p>
+            <p className={styles.formTitle}>Media Detail 3</p>
             <div className={styles.containerfieldInput}>
               <section className={styles.fieldInput}>
-                <label htmlFor="image" className={styles.label}>
+                <label htmlFor="image3" className={styles.label}>
                   Photo
                 </label>
                 <div className={styles.inputArea}>
@@ -338,7 +410,7 @@ function FormUpdateProduct() {
             </div>
           </div>
           <div className={styles.containerForm}>
-            <p className={styles.formTitle}>Media</p>
+            <p className={styles.formTitle}>Media Detail 4</p>
             <div className={styles.containerfieldInput}>
               <section className={styles.fieldInput}>
                 <label htmlFor="image4" className={styles.label}>

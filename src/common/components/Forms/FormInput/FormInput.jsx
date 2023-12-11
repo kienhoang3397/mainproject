@@ -131,7 +131,7 @@ export const FormInputt = ({ defaultValue, placeholder, fontFamily, dark, light,
   });
 
   const titleClasses = clsx(styles.title, {
-    [styles.darkTitle]: dark, // Add a new darkTitle class
+    [styles.darkTitle]: dark, 
     [styles.light]: light,
   });
 

@@ -1,12 +1,12 @@
-import React from 'react';
-import Slider from 'react-slick';
-import { ArrowBtnLeft, ArrowBtnRight } from '../../Buttons/Button';
-import NewestCollection from '../../MappingComponents/NewestCollection/NewestCollection';
+import React from "react";
+import Slider from "react-slick";
+import { ArrowBtnLeft, ArrowBtnRight } from "../../Buttons/Button";
+import NewestCollection from "../../MappingComponents/NewestCollection/NewestCollection";
 
-import 'slick-carousel/slick/slick-theme.css';
-import 'slick-carousel/slick/slick.css';
-import { appleWatchs } from '../../../datas/AppleWatch';
-import styles from './AppleWatchSlide.module.css';
+import "slick-carousel/slick/slick-theme.css";
+import "slick-carousel/slick/slick.css";
+import { appleWatchs } from "../../../datas/AppleWatch";
+import styles from "./AppleWatchSlide.module.css";
 
 function SampleNextArrow(props) {
   const { onClick } = props;
@@ -23,11 +23,10 @@ function SamplePrevArrow(props) {
     <div className={styles.btnLeft} onClick={onClick}>
       <ArrowBtnLeft />
     </div>
-  )
+  );
 }
 
 function AppleWatch() {
-
   const settings = {
     dots: false,
     infinite: false,
@@ -35,8 +34,9 @@ function AppleWatch() {
     slidesToShow: 4,
     slidesToScroll: 4,
     initialSlide: 0,
-    nextArrow: <SampleNextArrow/>,
-    prevArrow: <SamplePrevArrow/>,
+    nextArrow: <SampleNextArrow />,
+    prevArrow: <SamplePrevArrow />,
+    infinite: true,
     responsive: [
       {
         breakpoint: 1024,
@@ -44,8 +44,7 @@ function AppleWatch() {
           slidesToShow: 3,
           slidesToScroll: 3,
           infinite: true,
-          dots: false
-         
+          dots: false,
         },
       },
       {
@@ -71,25 +70,20 @@ function AppleWatch() {
   };
 
   return (
-
     <div className={styles.bg}>
-  
-
       <Slider {...settings} className={styles.container}>
         {appleWatchs.map((newest) => (
           <div key={newest.id} className={styles.containerNewest}>
-            <NewestCollection image={newest.image} content={newest.content} color={newest.color} />
+            <NewestCollection
+              image={newest.image}
+              content={newest.content}
+              color={newest.color}
+            />
           </div>
         ))}
       </Slider>
     </div>
-
-
-
-
-
   );
 }
-
 
 export default AppleWatch;
