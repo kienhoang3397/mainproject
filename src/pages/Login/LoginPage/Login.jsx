@@ -112,7 +112,7 @@ const onSubmit = async (data) => {
           <div className={styles.themeSmall}>
             <Theme fontsize={"medium"} />
           </div>
-          <p className={styles.textLogin}>Sign Up</p>
+          <p className={styles.textLogin}>Login</p>
 
           <section className={styles.containerInput}>
             <label htmlFor="username" className={styles.label}>
@@ -142,8 +142,6 @@ const onSubmit = async (data) => {
               )}
             />
           </section>
-
-          
 
           <section className={styles.containerInput}>
             <label htmlFor="password" className={styles.label}>
@@ -175,8 +173,6 @@ const onSubmit = async (data) => {
             />
           </section>
 
-         
-
           {isLoading && <p>Loading...</p>}
 
           {errorMessage && (
@@ -193,9 +189,9 @@ const onSubmit = async (data) => {
           />
 
           <section className={styles.questionSignup}>
-            <p className={styles.question}>Already have an account?</p>
-            <Link to={"/login"} className={styles.signupNow}>
-              Login Now
+            <p className={styles.question}>Don't have an account?</p>
+            <Link to={"/register"} className={styles.signupNow}>
+              Sign up now
             </Link>
           </section>
         </form>
