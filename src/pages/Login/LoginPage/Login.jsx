@@ -184,7 +184,7 @@ const onSubmit = async (data) => {
           <Btn
             defaultValue
             htmlType="submit"
-            content="Sign Up"
+            content="Login "
             width="100%"
             height="40px"
             marginTop="15px"
