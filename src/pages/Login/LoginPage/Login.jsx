@@ -1,78 +1,96 @@
 import React, { useEffect, useState } from "react";
 import { useForm, Controller } from "react-hook-form";
-import { RiLockPasswordLine } from "react-icons/ri";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
+import { Alert, Input } from "antd";
+import { RiLockPasswordLine } from "react-icons/ri";
+import { FiUser } from "react-icons/fi";
+import styles from "./LoginPage.module.css";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { string, z } from "zod";
 
-import Logo from "../../../common/components/Logos/Logo";
-
-import styles from "./LoginPage.module.css";
 import Theme from "../../../common/components/Themes/Theme";
-import { FiUser } from "react-icons/fi";
-import { Alert, Input } from "antd";
-import { zodResolver } from "@hookform/resolvers/zod";
 import Btn from "../../../common/components/Buttons/Button";
 import { loginUser } from "../../../redux/slice/userApiSlice";
 
 const schema = z.object({
   username: string()
-    .min(6, { message: "Tên người dùng ít nhất phải có 6 ký tự." })
-    .max(20, { message: "Tên người dùng không được quá 20 ký tự." }),
-  password: string().min(1, { message: "Vui lòng nhập mật khẩu !" }),
+    .min(6, "Username must be at least 6 characters.")
+    .max(20, "Username cannot exceed 20 characters."),
+  password: string().min(4, "Password must be at least 4 characters."),
 });
 
 function LoginPage() {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [error, setError] = useState("");
-
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-
-  const [userData, setUserData] = useState({ username: "", password: "" });
-
-  const handleChange = (name, value) => {
-    setUserData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
-  };
+  const errorMessage = useSelector((state) => state.userApi?.errorMessage);
+  const isLoading = useSelector((state) => state.userApi?.status === "pending");
 
   const {
     control,
     handleSubmit,
-    formState: { errors, isValid },
-  } = useForm({ resolver: zodResolver(schema) });
-  const handleSign = async () => {
-    try {
-      const response = await dispatch(loginUser(userData));
+    setValue,
+    reset,
+    formState: { errors },
+  } = useForm({
+    resolver: zodResolver(schema),
+  });
 
-      if (response.payload && response.payload.user) {
-        setIsSubmitted(true);
-        navigate("/");
-      } else {
-        setError("Error during login. Please check your credentials.");
-      }
-    } catch (error) {
-      setError("Error during login. Please try again later.");
-    }
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const handleInputChange = (name, value) => {
+    setValue(name, value);
   };
+
+const onSubmit = async (data) => {
+  try {
+   
+
+    const newUser = {
+      username: data.username,
+      password: data.password,
+    };
+
+    dispatch(loginUser(newUser))
+      .then(() => {
+        setIsSubmitted(true);
+         navigate("/");
+      })
+      .catch((error) => {
+        console.error("Error during login:", error);
+        setError("Error during login. Please try again.");
+      });
+
+    reset();
+    setTimeout(() => {
+      setIsSubmitted(false);
+      setError(null);
+    }, 4000);
+  } catch (validationError) {
+    const errorMessage =
+      (validationError.errors && validationError.errors[0]?.message) ||
+      "Error during login. Please try again.";
+
+    setError(errorMessage);
+  }
+};
+
 
   useEffect(() => {
     const timeoutId = setTimeout(() => {
-      setIsSubmitted(false);
-      setError("");
-    }, 3000);
+      setError(null);
+    }, 5000);
 
     return () => clearTimeout(timeoutId);
-  }, [isSubmitted, error]);
+  }, [error]);
 
   return (
     <div className={styles.loginPageContainer}>
       {isSubmitted && (
         <Alert
           className={styles.alert}
-          message="Login Susscess"
+          message="Congratulations, you have successfully registered"
           type="success"
           showIcon
         />
@@ -81,19 +99,21 @@ function LoginPage() {
       {error && (
         <Alert className={styles.alert} message={error} type="error" showIcon />
       )}
+
       <section className={styles.imgLogin}>
         <img src="https://i.ibb.co/hFXwLcv/imgLogin.png" alt="" />
       </section>
       <section className={styles.formLogin}>
-        <div className={styles.themeLarge}>
-          <Theme fontsize={"large"} />
-        </div>
+        <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
+          <div className={styles.themeLarge}>
+            <Theme fontsize={"large"} />
+          </div>
 
-        <div className={styles.themeSmall}>
-          <Theme fontsize={"medium"} />
-        </div>
-        <p className={styles.textLogin}>Login</p>
-        <form className={styles.form} onSubmit={handleSubmit(handleSign)}>
+          <div className={styles.themeSmall}>
+            <Theme fontsize={"medium"} />
+          </div>
+          <p className={styles.textLogin}>Sign Up</p>
+
           <section className={styles.containerInput}>
             <label htmlFor="username" className={styles.label}>
               Username
@@ -109,7 +129,9 @@ function LoginPage() {
                     {...field}
                     placeholder="Enter your name"
                     prefix={<FiUser />}
-                    onChange={(e) => handleChange("username", e.target.value)}
+                    onChange={(e) =>
+                      handleInputChange("username", e.target.value)
+                    }
                   />
                   {errors.username && (
                     <p className={styles.errorMessage}>
@@ -121,6 +143,8 @@ function LoginPage() {
             />
           </section>
 
+          
+
           <section className={styles.containerInput}>
             <label htmlFor="password" className={styles.label}>
               Password
@@ -130,14 +154,16 @@ function LoginPage() {
               control={control}
               render={({ field }) => (
                 <>
-                  <Input
+                  <Input.Password
                     id="password"
                     className={styles.inputTextArea}
                     {...field}
-                    type="password"
                     placeholder="Enter your password"
                     prefix={<RiLockPasswordLine />}
-                    onChange={(e) => handleChange("password", e.target.value)}
+                    type="password"
+                    onChange={(e) =>
+                      handleInputChange("password", e.target.value)
+                    }
                   />
                   {errors.password && (
                     <p className={styles.errorMessage}>
@@ -148,21 +174,31 @@ function LoginPage() {
               )}
             />
           </section>
-          <Btn defaultValue handleBtn={handleSign} content={"Login"} />
+
+         
+
+          {isLoading && <p>Loading...</p>}
+
+          {errorMessage && (
+            <Alert message={errorMessage} type="error" showIcon />
+          )}
+
+          <Btn
+            defaultValue
+            htmlType="submit"
+            content="Sign Up"
+            width="100%"
+            height="40px"
+            marginTop="15px"
+          />
+
+          <section className={styles.questionSignup}>
+            <p className={styles.question}>Already have an account?</p>
+            <Link to={"/login"} className={styles.signupNow}>
+              Login Now
+            </Link>
+          </section>
         </form>
-
-        <section className={styles.shapeForm}>
-          <div className={styles.shapeW}></div>
-          <p className={styles.shapeFormText}>OR</p>
-          <div className={styles.shapeW}></div>
-        </section>
-
-        <section className={styles.questionSignup}>
-          <p className={styles.question}>Don't have an account?</p>
-          <Link to={"/register"} className={styles.signupNow}>
-            Sign up now
-          </Link>
-        </section>
       </section>
     </div>
   );

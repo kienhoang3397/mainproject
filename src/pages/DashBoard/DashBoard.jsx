@@ -1,27 +1,23 @@
-import { MenuFoldOutlined, MenuUnfoldOutlined } from "@ant-design/icons";
-import { Alert, Button, Checkbox } from "antd";
+import { Alert, Checkbox } from "antd";
 import React, { useEffect, useState } from "react";
-import { AiFillCaretDown } from "react-icons/ai";
-import { BiSolidTrashAlt } from "react-icons/bi";
 import { IoEyeSharp } from "react-icons/io5";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
-import styles from "./DashBoard.module.css";
-import { deleteProduct, productsFetch } from "../../redux/slice/productApiSlice";
-import { HiPencil } from "react-icons/hi";
 import { BiSolidTrash } from "react-icons/bi";
-import Btn from "../../common/components/Buttons/Button";
 import { FiPlus } from "react-icons/fi";
+import { HiPencil } from "react-icons/hi";
+import { deleteProduct, productsFetch } from "../../redux/slice/productApiSlice";
+import styles from "./DashBoard.module.css";
 
 function DashBoard() {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const productList = useSelector((state) => state.productsApi?.product?.items);
   const dispatch = useDispatch()
 
-  useEffect(() => {
-    dispatch(productsFetch());
-  }, []);
+   useEffect(() => {
+     dispatch(productsFetch());
+   }, [dispatch]);
 
 const handleDelete = async (productId) => {
   try {

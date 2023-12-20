@@ -68,7 +68,6 @@ function RegPage() {
       [name]: value,
     }));
     setValue(name, value);
-    console.log(userData);
   };
 
   const onSubmit = async (data) => {

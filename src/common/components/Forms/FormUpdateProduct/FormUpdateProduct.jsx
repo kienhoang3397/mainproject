@@ -21,8 +21,8 @@ const { Option } = Select;
 
 const schemaFormUpdate = yup.object().shape({
   name: yup.string().required("Product Name is required"),
-  productDescription1: yup.string().required("Description is required"),
-  productDescription2: yup.string().required("Description is required"),
+  desc1: yup.string().required("Description is required"),
+  desc2: yup.string().required("Description is required"),
   image: yup.string().required("Image URL is required"),
   image1: yup.string().required("Image URL is required"),
   image2: yup.string().required("Image URL is required"),
@@ -68,6 +68,8 @@ function FormUpdateProduct() {
     if (product) {
       setValue("name", product.name);
       setValue("category", product.category);
+      setValue("desc1", product.desc1);
+      setValue("desc2", product.desc2);
       setValue("image", product.image);
       setValue("image1", product.image1);
       setValue("image2", product.image2);
@@ -88,8 +90,8 @@ function FormUpdateProduct() {
       await schemaFormUpdate.validate(data, { abortEarly: false });
       const productData = {
         name: data.name,
-        productDescription1: data.productDescription1,
-        productDescription2: data.productDescription2,
+        desc1: data.desc1,
+        desc2: data.desc2,
         image: data.image,
         image1: data.image1,
         image2: data.image2,
@@ -184,25 +186,25 @@ function FormUpdateProduct() {
                 </div>
               </section>
               <section className={styles.fieldInput}>
-                <label htmlFor="productDescription1" className={styles.label}>
+                <label htmlFor="desc1" className={styles.label}>
                   Description 1
                 </label>
                 <div className={styles.inputArea}>
                   <Controller
-                    name="productDescription1"
+                    name="desc1"
                     control={control}
                     render={({ field }) => (
                       <>
                         <TextArea
                           {...field}
-                          id="productDescription1"
+                          id="desc1"
                           className={styles.inputTextArea}
                           placeholder="Controlled autosize"
                           autoSize={{ minRows: 3, maxRows: 5 }}
                         />
-                        {errors.productDescription1 && (
+                        {errors.desc1 && (
                           <p className={styles.errorMessage}>
-                            {errors.productDescription1.message}
+                            {errors.desc1.message}
                           </p>
                         )}
                       </>
@@ -211,25 +213,25 @@ function FormUpdateProduct() {
                 </div>
               </section>
               <section className={styles.fieldInput}>
-                <label htmlFor="productDescription2" className={styles.label}>
+                <label htmlFor="desc2" className={styles.label}>
                   Description 2
                 </label>
                 <div className={styles.inputArea}>
                   <Controller
-                    name="productDescription2"
+                    name="desc2"
                     control={control}
                     render={({ field }) => (
                       <>
                         <TextArea
                           {...field}
-                          id="productDescription2"
+                          id="desc2"
                           className={styles.inputTextArea}
                           placeholder="Controlled autosize"
                           autoSize={{ minRows: 3, maxRows: 5 }}
                         />
-                        {errors.productDescription2 && (
+                        {errors.desc2 && (
                           <p className={styles.errorMessage}>
-                            {errors.productDescription2.message}
+                            {errors.desc2.message}
                           </p>
                         )}
                       </>

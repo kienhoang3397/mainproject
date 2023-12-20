@@ -179,7 +179,9 @@ width: 5px;
 
   background: #fff;
 }
-
+a{
+  text-decoration: none;
+}
 .thTableWLFirst {
   border-top-left-radius: 12px; /* Góc trên bên trái */
 }

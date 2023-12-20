@@ -37,7 +37,7 @@ export const registerUserApi = createAsyncThunk(
         "https://apimainproject-kienhoangs-projects.vercel.app/v1/auth/register",
         userData
       );
-      return response.data;
+      
     } catch (error) {
       console.error("Error registering user:", error);
       throw error;
@@ -45,7 +45,7 @@ export const registerUserApi = createAsyncThunk(
   }
 );
 
-// Async function to log in a user
+
 export const loginUser = createAsyncThunk(
   "user/loginUser",
   async (userData, { rejectWithValue }) => {
