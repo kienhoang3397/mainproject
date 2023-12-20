@@ -51,7 +51,7 @@ export const removeFromCart = createAsyncThunk(
 export const addToCart = createAsyncThunk(
   "carts/addToCart",
   async ({ productId, quantity, token }) => {
-    // console.log(productId)
+
     try {
       const accessToken = token;
 

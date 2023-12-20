@@ -1,5 +1,5 @@
 @import url(/src/App.css);
-/* Add the following styles to your stylesheet (replace with your actual styles) */
+
 
 .form {
     position: relative;
@@ -23,7 +23,6 @@
     cursor: pointer;
 }
 
-/* Add hover styles if desired */
 .toggle-button:hover {
     text-decoration: underline;
 }
@@ -45,7 +44,7 @@
     line-height: 24px;
     /* 150% */
 
-    /* Màu của dấu nhấp nháy */
+   
 
 }
 .inputFrame {
@@ -65,7 +64,7 @@
     line-height: 24px;
     /* 150% */
 
-    /* Màu của dấu nhấp nháy */
+  
 
 }
 
@@ -126,9 +125,9 @@
     display: flex;
     align-items: center;
 }
-/* Add this style definition to your CSS file */
+
 .darkTitle {
-    color: black; /* Set the desired color for dark mode */
+    color: black;
   }
   
 .dark {
@@ -136,7 +135,7 @@
 
     font-family: 'Public Sans';
 
-    /* Additional styles for dark mode */
+  
     & .input::placeholder {
         font-family: 'Public Sans';
     }
@@ -193,7 +192,7 @@
     cursor: pointer;
 }
 
-/* Add hover styles if desired */
+
 .toggle-button:hover {
     text-decoration: underline;
 }

@@ -28,13 +28,13 @@ align-items: center;
     color: #8B8E99;
 }
 .small {
-  font-size: 12px; /* Adjust the size as needed */
+  font-size: 12px; 
 }
 
 .medium {
-  font-size: 20px; /* Adjust the size as needed */
+  font-size: 20px; 
 }
 
 .large {
-  font-size: 30px; /* Adjust the size as needed */
+  font-size: 30px; 
 }

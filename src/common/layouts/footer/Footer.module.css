@@ -129,7 +129,7 @@ line-height: 140%; /* 14px */
   text-transform: uppercase;
 }
 
-/* Content text */
+
 .content {
   color: rgba(255, 255, 255, 0.4);
   font-family: "Inter", sans-serif;
@@ -180,7 +180,7 @@ line-height: 140%; /* 14px */
   flex-direction: column;
   gap: 5px;
 }
-/* CSS cho toàn bộ .main */
+
 .item {
   color: #fff;
   font-family: Inter;

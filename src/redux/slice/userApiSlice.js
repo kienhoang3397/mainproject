@@ -68,7 +68,6 @@ export const loginUser = createAsyncThunk(
   }
 );
 
-// Async function to delete a user
 export const deleteUser = createAsyncThunk(
   "user/deleteUser",
   async (userId) => {

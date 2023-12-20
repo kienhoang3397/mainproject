@@ -45,24 +45,21 @@ function LoginPage() {
 
 const onSubmit = async (data) => {
   try {
-   
-
     const newUser = {
       username: data.username,
       password: data.password,
     };
 
-    dispatch(loginUser(newUser))
-      .then(() => {
-        setIsSubmitted(true);
-          setTimeout(() => {
-            navigate("/");
-          }, 1500);
-      })
-      .catch((error) => {
-        console.error("Error during login:", error);
-        setError("Error during login. Please try again.");
-      });
+    const response = await dispatch(loginUser(newUser));
+
+    if (response.payload && response.payload.user) {
+      setIsSubmitted(true);
+      setTimeout(() => {
+        navigate("/");
+      }, 1500);
+    } else {
+      setError("Error during login. Please check your credentials.");
+    }
 
     reset();
     setTimeout(() => {
@@ -77,6 +74,7 @@ const onSubmit = async (data) => {
     setError(errorMessage);
   }
 };
+
 
 
   useEffect(() => {

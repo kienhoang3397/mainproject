@@ -29,7 +29,7 @@ function HomePage(props) {
             <div className={styles.textField}>
               <SearchOutlined className={styles.icon} />
               <input
-                className={styles.input} /* Thêm một lớp CSS cho ô input */
+                className={styles.input} 
                 placeholder="Find the best product"
               />
               <Btn defaultValue content={"Search"} />
@@ -99,7 +99,7 @@ function HomePage(props) {
           <div className={styles.searchInput}>
             <div className={styles.textField}>
               <input
-                className={styles.input} /* Thêm một lớp CSS cho ô input */
+                className={styles.input}
                 placeholder="Enter Email Address"
               />
               <Btn defaultValue content={"Search"} />

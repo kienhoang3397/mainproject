@@ -24,7 +24,7 @@ margin-bottom: 20px;
 .btnAddContent{
   color: var(--neutral-white, #FFF);
 
-/* Text M/Semibold */
+
 font-family: Public Sans;
 font-size: 14px;
 font-style: normal;
@@ -45,7 +45,7 @@ letter-spacing: 0.07px;
 .formTitle {
   color: var(--Default-Text-Color, #191c1f);
 
-  /* Display M/Semibold */
+
   font-family: Public Sans;
   font-size: 24px;
   font-style: normal;
@@ -64,7 +64,7 @@ letter-spacing: 0.07px;
 .thTableWLFirst {
  color: var(--neutral-gray-gray-500, #667085);
   border-bottom: 1px solid var(--Border-Color, #e4e7e9);
-  /* Text M/Medium */
+
 
   font-size: 14px;
   font-style: normal;
@@ -85,7 +85,7 @@ width: 5px;
 .thTableWL {
   color: var(--neutral-black-black-500, #1d1f2c);
 
-  /* Text M/Medium */
+
 
   font-size: 14px;
   font-style: normal;
@@ -125,7 +125,7 @@ width: 5px;
   /* 142.857% */
   padding-right: 24px;
   white-space: nowrap;
-  /* Ngăn chặn ngắn dòng nếu nội dung quá nhiều */
+ 
 }
 .product {
   color: var(--neutral-gray-gray-500, #667085);
@@ -183,14 +183,14 @@ a{
   text-decoration: none;
 }
 .thTableWLFirst {
-  border-top-left-radius: 12px; /* Góc trên bên trái */
+  border-top-left-radius: 12px;
 }
 
 .thTableWL:last-child {
-  border-top-right-radius: 12px; /* Góc trên bên phải */
+  border-top-right-radius: 12px; 
 }
 
-/* Các CSS khác */
+
 
 .table {
   border-spacing: 0px;

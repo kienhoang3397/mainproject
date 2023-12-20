@@ -117,7 +117,7 @@
   /* 142.857% */
   padding-right: 24px;
   white-space: nowrap;
-  /* Ngăn chặn ngắn dòng nếu nội dung quá nhiều */
+
 }
 
 .delPrice {
@@ -217,11 +217,11 @@
 }
 .btnDialogOk:hover,
 .btnDialogNo:hover {
-  background-color: #f7f7f7; /* Change the color to your desired hover color */
+  background-color: #f7f7f7; 
 }
 
 .contentDialog:hover {
-  background-color: #f0f0f0; /* Change the color to your desired hover color */
+  background-color: #f0f0f0; 
 }
 
 @media only screen and (max-width: 1100px) {

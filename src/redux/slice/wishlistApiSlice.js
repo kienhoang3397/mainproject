@@ -67,26 +67,7 @@ const wishlistApiSlice = createSlice({
       .addCase(addTowishlist.rejected, (state) => {
         state.wishlists.status = "rejected";
       });
-    //   .addCase(removeFromwishlist.pending, (state) => {
-    //     state.wishlists.status = "pending";
-    //   })
-    //   .addCase(removeFromwishlist.fulfilled, (state, action) => {
-    //     state.wishlists.status = "fulfilled";
-    //     state.wishlists.items = action.payload.user.wishlist;
-    //   })
-    //   .addCase(removeFromwishlist.rejected, (state) => {
-    //     state.wishlists.status = "rejected";
-    //   })
-    //   .addCase(decreaseQuantity.pending, (state) => {
-    //     state.wishlists.status = "pending";
-    //   })
-    //   .addCase(decreaseQuantity.fulfilled, (state, action) => {
-    //     state.wishlists.status = "fulfilled";
-    //     state.wishlists.items = action.payload.user.wishlist;
-    //   })
-    //   .addCase(decreaseQuantity.rejected, (state) => {
-    //     state.wishlists.status = "rejected";
-    //   });
+  
   },
 });
 

@@ -26,15 +26,8 @@ function QuickAccess() {
 
   useEffect(() => {
     dispatch(fetchUserInfo(token));
-  }, []);
+  }, [token]);
 
-  // useEffect(() => {
-  //   console.log("QuickAccess mounted");
-
-  //   return () => {
-  //     console.log("QuickAccess unmounted");
-  //   };
-  // }, []);
 
   return (
     <div className={styles.container}>

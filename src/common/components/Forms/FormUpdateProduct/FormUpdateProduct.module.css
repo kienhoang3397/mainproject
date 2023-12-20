@@ -2,7 +2,7 @@
 .headingTitle {
   color: var(--neutral-black-black-500, #1d1f2c);
 margin-bottom: 24px;
-  /* Display M/Semibold */
+
  font-family: 'Public Sans', sans-serif;
   font-size: 24px;
   font-style: normal;
@@ -39,7 +39,7 @@ flex: 1 0 0;
   border-radius: 12px;
   background: var(--neutral-white, #fff);
 
-  /* Soft Shadow */
+ 
   box-shadow: 0px 4px 30px 0px rgba(46, 45, 116, 0.05);
 }
 .containerHeadingTitle{
@@ -55,7 +55,7 @@ flex: 1 0 0;
 .formTitle {
   color: var(--neutral-black-black-500, #1d1f2c);
 margin-bottom: 14px;
-  /* Text XL/Semibold */
+
   font-family: 'Public Sans', sans-serif;
   font-size: 18px;
   font-style: normal;
@@ -75,7 +75,6 @@ margin-bottom: 14px;
 .label {
   color: var(--neutral-black-black-300, #777980);
 
-  /* Text M/Medium */
   font-family: 'Public Sans', sans-serif;
   font-size: 14px;
   font-style: normal;
@@ -94,7 +93,7 @@ margin-bottom: 14px;
   background: var(--neutral-gray-gray-25, #f9f9fc);
   color: var(--neutral-black-black-500, #1d1f2c);
 
-  /* Text M/Regular */
+
    font-family: 'Public Sans', sans-serif;
   font-size: 14px;
   font-style: normal;

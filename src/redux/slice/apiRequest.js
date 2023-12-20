@@ -125,7 +125,7 @@ const addAllProductsAPI = async () => {
     console.log("All products added successfully:", results);
   } catch (error) {
     console.error("Error adding products:", error);
-    // Handle the error as needed
+   
   }
 };
 
