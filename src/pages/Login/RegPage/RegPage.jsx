@@ -95,6 +95,9 @@ function RegPage() {
         dispatch(registerUserApi(newUser))
           .then(() => {
             setIsSubmitted(true);
+             setTimeout(() => {
+               navigate("/login");
+             }, 1000);
           })
           .catch((error) => {
             console.error("Error updating product:", error);

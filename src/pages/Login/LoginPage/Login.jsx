@@ -55,7 +55,9 @@ const onSubmit = async (data) => {
     dispatch(loginUser(newUser))
       .then(() => {
         setIsSubmitted(true);
-         navigate("/");
+          setTimeout(() => {
+            navigate("/");
+          }, 1500);
       })
       .catch((error) => {
         console.error("Error during login:", error);
